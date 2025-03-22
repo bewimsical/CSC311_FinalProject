@@ -4,32 +4,42 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="437.0" prefWidth="497.0" spacing="20.0" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="edu.farmingdale.csc311_finalproject.LoginPageController">
+<VBox alignment="CENTER" prefHeight="517.0" prefWidth="535.0" spacing="20.0" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="edu.farmingdale.csc311_finalproject.LoginPageController">
   <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
-   <SplitPane dividerPositions="0.5505115089514067" orientation="VERTICAL" prefHeight="324.0" prefWidth="458.0" style="-fx-background-color: black;">
+   <SplitPane fx:id="splitPaneGameNight" dividerPositions="0.8157114624505929" orientation="VERTICAL" prefHeight="430.0" prefWidth="495.0" style="-fx-background-color: black;">
      <items>
        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="106.0" prefWidth="456.0" style="-fx-background-color: black;">
             <children>
-               <ImageView fitHeight="127.0" fitWidth="458.0" layoutX="-1.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="127.0" fitWidth="458.0" layoutX="18.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../../../figma%20login%20game%20night.png" />
                   </image>
                </ImageView>
                <Text fill="WHITE" layoutX="192.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font: Georiga;" text="    Sign in" wrappingWidth="70.93678283691406" />
+               <Text fill="#636161" layoutX="51.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address:" wrappingWidth="108.5367431640625" />
+               <TextField fx:id="emailAddressTextField" layoutX="51.0" layoutY="162.0" prefHeight="26.0" prefWidth="362.0" />
+               <Text fill="#636161" layoutX="51.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="84.5367431640625" />
+               <TextField fx:id="passwordTextField" layoutX="51.0" layoutY="251.0" prefHeight="26.0" prefWidth="362.0" />
+               <Text fill="BLUE" layoutX="51.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot Password?" wrappingWidth="155.7367706298828" />
             </children>
          </AnchorPane>
-       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: black;" />
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: black;">
+            <children>
+              <Button fx:id="signInButton" layoutX="117.0" layoutY="14.0" onAction="#signInOnButton" prefHeight="26.0" prefWidth="260.0" text="Sign In" />
+               <Text fill="BLUE" layoutX="206.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Account" />
+            </children>
+         </AnchorPane>
      </items>
    </SplitPane>
 
   <Label fx:id="welcomeText" />
-  <Button onAction="#onHelloButtonClick" text="Hello!" />
 </VBox>

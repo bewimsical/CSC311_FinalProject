@@ -1,14 +1,17 @@
 package edu.farmingdale.csc311_finalproject;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class LoginPageController {
+
     @FXML
     private Label welcomeText;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    void onHelloButtonClick(ActionEvent event) {
+
     }
+
 }

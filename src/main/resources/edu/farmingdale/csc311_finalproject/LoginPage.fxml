@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" prefHeight="437.0" prefWidth="497.0" spacing="20.0" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="edu.farmingdale.csc311_finalproject.LoginPageController">
+  <padding>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+  </padding>
+   <SplitPane dividerPositions="0.5505115089514067" orientation="VERTICAL" prefHeight="324.0" prefWidth="458.0" style="-fx-background-color: black;">
+     <items>
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="106.0" prefWidth="456.0" style="-fx-background-color: black;">
+            <children>
+               <ImageView fitHeight="127.0" fitWidth="458.0" layoutX="-1.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../figma%20login%20game%20night.png" />
+                  </image>
+               </ImageView>
+               <Text fill="WHITE" layoutX="192.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font: Georiga;" text="    Sign in" wrappingWidth="70.93678283691406" />
+            </children>
+         </AnchorPane>
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: black;" />
+     </items>
+   </SplitPane>
+
+  <Label fx:id="welcomeText" />
+  <Button onAction="#onHelloButtonClick" text="Hello!" />
+</VBox>

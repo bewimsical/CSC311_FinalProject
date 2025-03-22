@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class LoginPageController {
 
@@ -19,6 +20,9 @@ public class LoginPageController {
     private Button signInButton;
 
     @FXML
+    private Text signInFont;
+
+    @FXML
     private SplitPane splitPaneGameNight;
 
     @FXML
@@ -26,6 +30,8 @@ public class LoginPageController {
 
     @FXML
     void signInOnButton(ActionEvent event) {
+
+
 
     }
 

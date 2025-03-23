@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="591.0" prefWidth="650.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="71.0" fitWidth="178.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -36,24 +35,60 @@
             </Pane>
             <Pane layoutX="15.0" layoutY="163.0" prefHeight="102.0" prefWidth="425.0" style="-fx-background-color: #5A5A5A;">
                <children>
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="6.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="6.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Catan.jpg" />
+                     </image></ImageView>
                   <Text fill="WHITE" layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent Activity" />
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="100.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="213.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="307.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="100.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../better%20uno.jpg" />
+                     </image></ImageView>
+                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="213.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Twlight%20imperium.jpg" />
+                     </image></ImageView>
+                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="307.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Gloomhaven.jpg" />
+                     </image></ImageView>
                </children>
             </Pane>
-            <Pane layoutX="13.0" layoutY="287.0" prefHeight="175.0" prefWidth="425.0" style="-fx-background-color: #5A5A5A;">
+            <Pane layoutX="13.0" layoutY="287.0" prefHeight="193.0" prefWidth="425.0" style="-fx-background-color: #5A5A5A;">
                <children>
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="6.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="6.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Haunted%20house.jpg" />
+                     </image></ImageView>
                   <Text fill="WHITE" layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Games Owned" />
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="100.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="213.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="307.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="6.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="100.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="213.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="307.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="100.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../monoploy.jpg" />
+                     </image></ImageView>
+                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="213.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../warhammer.jpg" />
+                     </image></ImageView>
+                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="307.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../red%20dragon.jpg" />
+                     </image></ImageView>
+                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="6.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Cards%20against%20humanity.jpg" />
+                     </image></ImageView>
+                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="100.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../dark%20souls%20board%20game.jpg" />
+                     </image></ImageView>
+                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="213.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../connect%20four.jpg" />
+                     </image></ImageView>
+                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="307.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../marvel%20board%20game.jpg" />
+                     </image></ImageView>
                </children>
             </Pane>
          </children>

@@ -9,9 +9,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class LoginPageController {
+
+    @FXML
+    private Text createAccountText;
 
     @FXML
     private TextField emailTextField;
@@ -40,6 +45,8 @@ public class LoginPageController {
 
         signInButton.setOnAction(event -> handleSignIn());
     }
+
+
 
     @FXML
     private void handleSignIn() {
@@ -70,7 +77,34 @@ public class LoginPageController {
                 alert.setHeaderText("Failed to load Profile Page");
                 alert.setContentText("An error occurred while trying to load the profile page.");
                 alert.showAndWait();
-            }}}}
+            }}}
+    @FXML
+    void createAccountHandler(MouseEvent event) {
+        try {
+
+            FXMLLoader fxmlCreateAccountLoader = new FXMLLoader(HelloApplication.class.getResource("CreateAccountPage.fxml"));
+
+            Scene createAccountScene = new Scene(fxmlCreateAccountLoader.load(), 650, 600);
+
+            Stage createAccountStage = new Stage();
+            createAccountStage.setTitle("Create Account Page");
+            createAccountStage.setScene(createAccountScene);
+            createAccountStage.show();
+
+
+            Stage currentStage = (Stage) createAccountText.getScene().getWindow();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to load Profile Page");
+            alert.setContentText("An error occurred while trying to load the profile page.");
+            alert.showAndWait();
+
+        }}
+
+}
 
 
 

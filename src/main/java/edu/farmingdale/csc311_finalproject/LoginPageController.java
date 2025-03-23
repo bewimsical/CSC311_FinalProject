@@ -84,7 +84,7 @@ public class LoginPageController {
 
             FXMLLoader fxmlCreateAccountLoader = new FXMLLoader(HelloApplication.class.getResource("CreateAccountPage.fxml"));
 
-            Scene createAccountScene = new Scene(fxmlCreateAccountLoader.load(), 650, 600);
+            Scene createAccountScene = new Scene(fxmlCreateAccountLoader.load(), 600, 400);
 
             Stage createAccountStage = new Stage();
             createAccountStage.setTitle("Create Account Page");

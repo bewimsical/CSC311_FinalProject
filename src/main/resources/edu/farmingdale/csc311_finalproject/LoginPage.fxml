@@ -23,11 +23,11 @@
          </ImageView>
          <Text fill="WHITE" layoutX="229.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In" />
          <Text fill="#737373" layoutX="72.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address" />
-         <TextField layoutX="72.0" layoutY="163.0" prefHeight="25.0" prefWidth="287.0" />
+         <TextField fx:id="emailTextField" layoutX="72.0" layoutY="163.0" prefHeight="25.0" prefWidth="287.0" />
          <Text fill="#737373" layoutX="72.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-         <TextField layoutX="72.0" layoutY="247.0" prefHeight="25.0" prefWidth="287.0" />
+         <TextField fx:id="passwordTextField" layoutX="72.0" layoutY="247.0" prefHeight="25.0" prefWidth="287.0" />
          <Text fill="BLUE" layoutX="72.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot Password?" />
-         <Button layoutX="72.0" layoutY="335.0" mnemonicParsing="false" opacity="0.6" prefHeight="25.0" prefWidth="287.0" text="Sign In" />
+         <Button fx:id="signInButton" layoutX="72.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleSignIn" opacity="0.6" prefHeight="25.0" prefWidth="287.0" text="Sign In" />
          <Text fill="BLUE" layoutX="174.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Account" />
       </children>
    </Pane>

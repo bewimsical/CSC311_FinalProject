@@ -67,18 +67,27 @@ public class CreateAccountPageController {
         else{
             try {
 
-                FXMLLoader fxmlProfileLoader = new FXMLLoader(HelloApplication.class.getResource("ProfilePage.fxml"));
-
-                Scene profileScene = new Scene(fxmlProfileLoader.load(), 650, 600);
-
-                Stage profileStage = new Stage();
-                profileStage.setTitle("Profile Page");
-                profileStage.setScene(profileScene);
-                profileStage.show();
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Success!");
+                alert.setHeaderText("Account Created");
+                alert.setContentText("Your account has been created successfully.");
+                alert.showAndWait();
 
 
                 Stage currentStage = (Stage) createAccountButton.getScene().getWindow();
                 currentStage.close();
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LoginPage.fxml"));
+
+                Scene loginScene = new Scene(fxmlLoader.load(), 530, 500);
+
+                Stage loginStage = new Stage();
+
+                loginStage.setScene(loginScene);
+                loginStage.show();
+
+
+                Stage currentAlertStage = (Stage) createAccountButton.getScene().getWindow();
+                currentAlertStage.close();
             } catch (Exception e) {
                 e.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -47,10 +47,7 @@ public class CreateAccountPageController {
                 createAccountButton.setOpacity(0.3); // Keep opacity at 0.3 when disabled
                 createAccountButton.setDisable(true); // Keep the button disabled
             }
-   /** if(!createAccountEmailTextField.getText().isEmpty() && !createAccountPasswordTextFIeld.getText().isEmpty() && !createAccountConfirmPasswordTextField.getText().isEmpty()) {
-        createAccountButton.setOpacity(1);
-        createAccountButton.setDisable(false);
-    }*/
+
 
     }
 

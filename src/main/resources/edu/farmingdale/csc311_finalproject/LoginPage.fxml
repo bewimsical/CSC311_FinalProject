@@ -26,7 +26,7 @@
          <TextField fx:id="emailTextField" layoutX="72.0" layoutY="163.0" prefHeight="25.0" prefWidth="287.0" />
          <Text fill="#737373" layoutX="72.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
          <TextField fx:id="passwordTextField" layoutX="72.0" layoutY="247.0" prefHeight="25.0" prefWidth="287.0" />
-         <Text fill="BLUE" layoutX="72.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot Password?" />
+         <Text fx:id="forgotPasswordField" fill="BLUE" layoutX="72.0" layoutY="313.0" onMouseClicked="#forgotPasswordHandler" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot Password?" />
          <Button fx:id="signInButton" layoutX="72.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleSignIn" opacity="0.6" prefHeight="25.0" prefWidth="287.0" text="Sign In" />
          <Text fx:id="createAccountText" fill="BLUE" layoutX="174.0" layoutY="399.0" onMouseClicked="#createAccountHandler" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Account" />
       </children>

@@ -19,6 +19,9 @@ public class LoginPageController {
     private Text createAccountText;
 
     @FXML
+    private Text forgotPasswordField;
+
+    @FXML
     private TextField emailTextField;
 
     @FXML
@@ -104,7 +107,35 @@ public class LoginPageController {
 
         }}
 
-}
+    @FXML
+    void forgotPasswordHandler(MouseEvent event) {
+        try {
+
+            FXMLLoader fxmlForgotPasswordLoader = new FXMLLoader(HelloApplication.class.getResource("ForgotPasswordPage.fxml"));
+
+            Scene forgotPasswordScene = new Scene(fxmlForgotPasswordLoader.load(), 600, 400);
+
+            Stage forgotPasswordStage = new Stage();
+            forgotPasswordStage.setTitle("Forgot Password Page");
+            forgotPasswordStage.setScene(forgotPasswordScene);
+            forgotPasswordStage.show();
+
+
+            Stage currentStage = (Stage) forgotPasswordField.getScene().getWindow();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to load Page");
+            alert.setContentText("An error occurred while trying to load the page.");
+            alert.showAndWait();
+
+        }}
+
+    }
+
+
 
 
 

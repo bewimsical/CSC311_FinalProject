@@ -6,9 +6,9 @@ The planning phase involves everyone seeing each other's libraries and voting on
 The technologies game night operates with is Java/JavaFX for the front end and back end, Microsoft Azure for the database and authentification services, and Java Spring Boot to implement any API needs.
 
 ## Technologies Used
--Java
--JavaFX
--Figma
+-Java  
+-JavaFX  
+-Figma  
 
 ## Contributors
 - Kathleen Wims [GitHub](https://github.com/bewimsical)  

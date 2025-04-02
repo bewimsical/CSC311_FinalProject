@@ -1,0 +1,22 @@
+5 week plan
+-Josh
+Weekly Check ins (individually) and hosting any group meetings
+Update any documentation such as read me
+Be on call for any members who need assistance
+
+-Kenneth
+Set up database on Azure
+connect IntelliJ to Azure set up
+verify the API revives data from database
+
+-Efrat
+Authentication and login system (handling account creation, password verification, and user session management as well as assisting with database design)
+
+-Darianne
+finishing the design of our application
+dealing with the data from the database and API and connecting that to the GUI
+ (making sure the logic shows up)
+
+-Katie
+Create data classes to store the data from the requests
+Create routes for all of the get and post requests. 

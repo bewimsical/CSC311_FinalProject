@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="426.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.SplashController">
+    <children>
+      <ImageView fitHeight="426.0" fitWidth="609.0" layoutY="1.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../240_F_317264974_2RsPbGMW0JVHPKYt3eBQwBj65OgC23Bv.jpg" />
+         </image>
+      </ImageView>
+        <ImageView fitHeight="424.0" fitWidth="451.0" layoutX="87.0" layoutY="1.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../wardrobe.jpg" />
+         </image>
+        </ImageView>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="266.0" layoutX="169.0" layoutY="48.0" stroke="BLACK" strokeType="INSIDE" width="143.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" proportional="false" startY="0.8674242460366451">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.21960784494876862" green="0.05882352963089943" blue="0.05882352963089943" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill></Rectangle>
+      <ImageView fitHeight="63.0" fitWidth="123.0" layoutX="173.0" layoutY="105.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../table-floating-shelf-furniture-table-a383fd09d511e070d488ba174a16620e.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="61.0" fitWidth="111.0" layoutX="180.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Screenshot%202025-04-08%20160726.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="74.0" fitWidth="123.0" layoutX="173.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../table-floating-shelf-furniture-table-a383fd09d511e070d488ba174a16620e.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="55.0" fitWidth="111.0" layoutX="180.0" layoutY="158.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../login.png" />
+         </image>
+      </ImageView>
+        <ImageView fx:id="door1" fitHeight="266.0" fitWidth="143.0" layoutX="169.0" layoutY="48.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../leftDoor.png" />
+         </image>
+        </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#380f0f" height="266.0" layoutX="312.0" layoutY="48.0" stroke="BLACK" strokeType="INSIDE" width="133.0" />
+      <ImageView fitHeight="67.0" fitWidth="123.0" layoutX="317.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../table-floating-shelf-furniture-table-a383fd09d511e070d488ba174a16620e.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="67.0" fitWidth="123.0" layoutX="319.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../table-floating-shelf-furniture-table-a383fd09d511e070d488ba174a16620e.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="61.0" fitWidth="111.0" layoutX="325.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../singup.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="door" fitHeight="266.0" fitWidth="133.0" layoutX="312.0" layoutY="48.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../rightdoor.png" />
+         </image>
+      </ImageView>
+    </children>
+</Pane>

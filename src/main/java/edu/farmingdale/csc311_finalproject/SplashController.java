@@ -1,25 +1,29 @@
 package edu.farmingdale.csc311_finalproject;
-import javafx.animation.FadeTransition;
-import javafx.animation.RotateTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.IOException;
 
 
 public class SplashController {
-    double originalWidth=111;
-    double originalHeight=55;
+    double originalWidth=148;
+    double originalHeight=73;
 
-    double enlargedWidth=120;
-    double enlargedHeight=70;
+    double enlargedWidth=180;
+    double enlargedHeight=85;
 
         @FXML
         private Button byebtn;
@@ -82,6 +86,38 @@ public class SplashController {
 
 
         }
+        ScaleTransition st = new ScaleTransition(Duration.seconds(4), logInBoard);
+    PauseTransition pause = new PauseTransition(Duration.seconds(5));
+    @FXML
+    void logInPage(MouseEvent event) throws IOException {
+        logInBoard.setDisable(true);
+
+            logInBoard.toFront(); // Bring this image to the front
+
+        ScaleTransition st = new ScaleTransition(Duration.seconds(4), logInBoard);
+ // Adjust time as needed
+st.setByX(3.5f);
+st.setByY(8.5f);
+st.setCycleCount(1);
+st.play();
+        // Define what happens after the delay
+        pause.setOnFinished(e -> {
+            try {
+                // Load the next scene
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("spareLoginPage.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) logInBoard.getScene().getWindow();
+                Scene scene = new Scene(root, 650, 600);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        // Start the delay
+        pause.play();
+    }
         /**
     @FXML
     void increaseSize(MouseEvent event) {

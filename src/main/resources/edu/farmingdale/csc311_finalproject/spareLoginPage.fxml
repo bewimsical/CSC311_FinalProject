@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.SpareLoginPageController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="650.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../240_F_317264974_2RsPbGMW0JVHPKYt3eBQwBj65OgC23Bv.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="loginBoardGame" fitHeight="73.0" fitWidth="148.0" layoutX="251.0" layoutY="310.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../login.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

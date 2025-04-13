@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.SpareLoginPageController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="650.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../240_F_317264974_2RsPbGMW0JVHPKYt3eBQwBj65OgC23Bv.jpg" />
+            <Image url="@../../../board%20game.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="loginBoardGame" fitHeight="73.0" fitWidth="148.0" layoutX="251.0" layoutY="310.0" pickOnBounds="true">
+      <ImageView fx:id="loginBoardGame" fitHeight="444.0" fitWidth="480.0" layoutX="69.0" layoutY="78.0">
          <image>
             <Image url="@../../../login.png" />
          </image>
       </ImageView>
+      <Pane layoutX="88.0" layoutY="78.0" prefHeight="482.0" prefWidth="495.0">
+         <children>
+            <Text fx:id="forgotPasswordField" fill="BLUE" layoutX="16.0" layoutY="38.0" onMouseClicked="#forgotPasswordHandler" strokeType="OUTSIDE" strokeWidth="0.0"  text="Forgot Password?" />
+            <Button fx:id="signInButton" layoutX="80.0" layoutY="393.0" mnemonicParsing="false" onAction="#handleSignIn" opacity="0.6" prefHeight="25.0" prefWidth="287.0" text="Sign In" />
+            <Text fx:id="createAccountText" fill="BLUE" layoutX="336.0" layoutY="38.0" onMouseClicked="#createAccountHandler" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Account" />
+            <Text fill="#737373" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address" />
+            <TextField fx:id="emailTextField" layoutX="80.0" layoutY="250.0" prefHeight="25.0" prefWidth="287.0" />
+            <Text fill="#737373" layoutX="13.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+            <TextField fx:id="passwordTextField" layoutX="80.0" layoutY="344.0" prefHeight="25.0" prefWidth="287.0" />
+         </children>
+      </Pane>
+      <Label fx:id="welcomeText" layoutX="88.0" layoutY="78.0" />
    </children>
 </Pane>

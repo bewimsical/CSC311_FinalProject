@@ -87,19 +87,28 @@ public class SplashController {
 
         }
         ScaleTransition st = new ScaleTransition(Duration.seconds(4), logInBoard);
+        ScaleTransition st1 = new ScaleTransition(Duration.seconds(4), signUpBoard);
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(2), logInBoard);
     PauseTransition pause = new PauseTransition(Duration.seconds(5));
     @FXML
     void logInPage(MouseEvent event) throws IOException {
         logInBoard.setDisable(true);
 
             logInBoard.toFront(); // Bring this image to the front
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(2), logInBoard);
 
         ScaleTransition st = new ScaleTransition(Duration.seconds(4), logInBoard);
  // Adjust time as needed
-st.setByX(3.5f);
-st.setByY(8.5f);
+st.setByX(3.8f);
+st.setByY(8.0f);
 st.setCycleCount(1);
 st.play();
+//st1.setByX(1000);
+tt.setByY(0);
+        st1.setToY(-40);
+tt.setCycleCount(1);
+tt.play();
+
         // Define what happens after the delay
         pause.setOnFinished(e -> {
             try {
@@ -118,6 +127,48 @@ st.play();
         // Start the delay
         pause.play();
     }
+
+    @FXML
+    void signUpPage(MouseEvent event) {
+        ScaleTransition st1 = new ScaleTransition(Duration.seconds(4), signUpBoard);
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(2), signUpBoard);
+
+        PauseTransition pause = new PauseTransition(Duration.seconds(5));
+        signUpBoard.setDisable(true);
+
+        signUpBoard.toFront(); // Bring this image to the front
+
+        // Adjust time as needed
+        st1.setByX(3.5f);
+        st1.setByY(8.0f);
+        st1.setCycleCount(1);
+        st1.play();
+//st1.setByX(1000);
+        tt.setByY(0);
+        tt.setToY(100);
+        tt.setCycleCount(1);
+        tt.play();
+
+        // Define what happens after the delay
+        pause.setOnFinished(e -> {
+            try {
+                // Load the next scene
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("createAccountPage.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) signUpBoard.getScene().getWindow();
+                Scene scene = new Scene(root, 650, 600);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        // Start the delay
+        pause.play();
+    }
+
+    }
         /**
     @FXML
     void increaseSize(MouseEvent event) {
@@ -131,4 +182,4 @@ st.play();
         logInBoard.setFitHeight(originalHeight);
     }**/
 
-}
+

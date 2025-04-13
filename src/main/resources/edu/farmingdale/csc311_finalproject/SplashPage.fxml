@@ -46,12 +46,12 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="62.0" fitWidth="274.0" layoutX="181.0" layoutY="377.0" pickOnBounds="true">
+      <ImageView fitHeight="62.0" fitWidth="274.0" layoutX="181.0" layoutY="367.0" pickOnBounds="true">
          <image>
             <Image url="@../../../table-floating-shelf-furniture-table-a383fd09d511e070d488ba174a16620e.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="logInBoard" fitHeight="73.0" fitWidth="148.0" layoutX="251.0" layoutY="310.0" onMouseClicked="#logInPage" pickOnBounds="true">
+      <ImageView fx:id="logInBoard" fitHeight="73.0" fitWidth="148.0" layoutX="235.0" layoutY="301.0" onMouseClicked="#logInPage" pickOnBounds="true">
          <image>
             <Image url="@../../../login.png" />
          </image>
@@ -64,7 +64,7 @@
             <Image url="@../../../table-floating-shelf-furniture-table-a383fd09d511e070d488ba174a16620e.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="signUpBoard" fitHeight="73.0" fitWidth="148.0" layoutX="251.0" layoutY="190.0" pickOnBounds="true">
+      <ImageView fx:id="signUpBoard" fitHeight="73.0" fitWidth="148.0" layoutX="251.0" layoutY="190.0" onMouseClicked="#signUpPage" pickOnBounds="true">
          <image>
             <Image url="@../../../singup.png" />
          </image>
@@ -77,7 +77,7 @@
             <Image url="@../../../leftDoor.png" />
          </image>
         </ImageView>
-      <ImageView fx:id="door" fitHeight="266.0" fitWidth="139.0" layoutX="317.0" layoutY="168.0" pickOnBounds="true">
+      <ImageView fx:id="door" fitHeight="266.0" fitWidth="139.0" layoutX="317.0" layoutY="169.0" pickOnBounds="true">
          <image>
             <Image url="@../../../rightdoor.png" />
          </image>

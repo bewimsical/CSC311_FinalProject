@@ -22,12 +22,12 @@
       </ImageView>
       <Pane layoutX="88.0" layoutY="78.0" prefHeight="482.0" prefWidth="495.0">
          <children>
-            <Text fx:id="forgotPasswordField" fill="BLUE" layoutX="16.0" layoutY="38.0" onMouseClicked="#forgotPasswordHandler" strokeType="OUTSIDE" strokeWidth="0.0"  text="Forgot Password?" />
-            <Button fx:id="signInButton" layoutX="80.0" layoutY="393.0" mnemonicParsing="false" onAction="#handleSignIn" opacity="0.6" prefHeight="25.0" prefWidth="287.0" text="Sign In" />
-            <Text fx:id="createAccountText" fill="BLUE" layoutX="336.0" layoutY="38.0" onMouseClicked="#createAccountHandler" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Account" />
-            <Text fill="#737373" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address" />
+            <Text fx:id="forgotPasswordField" fill="WHITE" layoutX="16.0" layoutY="38.0" onMouseClicked="#forgotPasswordHandler" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot Password?" />
+            <Button fx:id="signInButton" layoutX="80.0" layoutY="393.0" mnemonicParsing="false" onAction="#handleSignIn" prefHeight="25.0" prefWidth="287.0" text="Sign In" />
+            <Text fx:id="createAccountText" fill="WHITE" layoutX="336.0" layoutY="38.0" onMouseClicked="#createAccountHandler" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Account?" />
+            <Text fill="WHITE" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address" />
             <TextField fx:id="emailTextField" layoutX="80.0" layoutY="250.0" prefHeight="25.0" prefWidth="287.0" />
-            <Text fill="#737373" layoutX="13.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+            <Text fill="WHITE" layoutX="13.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
             <TextField fx:id="passwordTextField" layoutX="80.0" layoutY="344.0" prefHeight="25.0" prefWidth="287.0" />
          </children>
       </Pane>

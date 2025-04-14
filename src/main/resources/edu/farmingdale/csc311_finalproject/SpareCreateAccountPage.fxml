@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.SpareCreateAccountPageController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="672.0" layoutX="1.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../board%20game.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="signUpBoard" fitHeight="450.0" fitWidth="495.0" layoutX="73.0" layoutY="76.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../singup.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="emailAddressText" fill="WHITE" layoutX="112.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address" />
+      <Text fx:id="passwordText" fill="WHITE" layoutX="112.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+      <Text fx:id="reconfirmPasswordText" fill="WHITE" layoutX="95.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reconfirm Password" />
+      <TextField fx:id="createAccountEmailTextField" layoutX="213.0" layoutY="321.0" prefHeight="25.0" prefWidth="235.0" />
+      <TextField fx:id="createAccountPasswordTextFIeld" layoutX="213.0" layoutY="407.0" prefHeight="25.0" prefWidth="235.0" />
+      <TextField fx:id="createAccountConfirmPasswordTextField" layoutX="213.0" layoutY="453.0" prefHeight="25.0" prefWidth="235.0" />
+      <Button fx:id="createAccountButton" layoutX="255.0" layoutY="488.0" mnemonicParsing="false" onAction="#createAccountHandler" prefHeight="25.0" prefWidth="127.0" text="Confirm" />
+   </children>
+</Pane>

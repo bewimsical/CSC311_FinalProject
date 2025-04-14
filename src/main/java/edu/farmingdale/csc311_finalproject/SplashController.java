@@ -100,12 +100,12 @@ public class SplashController {
         ScaleTransition st = new ScaleTransition(Duration.seconds(4), logInBoard);
  // Adjust time as needed
 st.setByX(3.8f);
-st.setByY(8.0f);
+st.setByY(7.6f);
 st.setCycleCount(1);
 st.play();
 //st1.setByX(1000);
 tt.setByY(0);
-        st1.setToY(-40);
+        tt.setToY(-50);
 tt.setCycleCount(1);
 tt.play();
 

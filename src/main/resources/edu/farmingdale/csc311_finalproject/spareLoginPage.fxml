@@ -11,14 +11,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.SpareLoginPageController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="650.0" pickOnBounds="true">
+      <ImageView fx:id="loginBoardGame" fitHeight="130.0" fitWidth="166.0" layoutX="256.0" layoutY="424.0">
          <image>
-            <Image url="@../../../board%20game.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="loginBoardGame" fitHeight="444.0" fitWidth="480.0" layoutX="69.0" layoutY="64.0">
-         <image>
-            <Image url="@../../../login.png" />
+            <Image url="@../../../Potential%20login%20screen.png" />
          </image>
       </ImageView>
       <Pane layoutX="88.0" layoutY="79.0" prefHeight="482.0" prefWidth="495.0">
@@ -27,7 +22,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Text>
-            <Button fx:id="signInButton" layoutX="80.0" layoutY="393.0" mnemonicParsing="false" onAction="#handleSignIn" prefHeight="25.0" prefWidth="287.0" text="Sign In">
+            <Button fx:id="signInButton" layoutX="136.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleSignIn" opacity="0.0" prefHeight="56.0" prefWidth="215.0" style="-fx-background-radius: 10;" text="Sign In">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
@@ -35,10 +30,8 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Text>
-            <Text fx:id="emailText" fill="WHITE" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address" />
-            <TextField fx:id="emailTextField" layoutX="80.0" layoutY="241.0" prefHeight="25.0" prefWidth="287.0" />
-            <Text fx:id="passwordText" fill="WHITE" layoutX="13.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-            <TextField fx:id="passwordTextField" layoutX="80.0" layoutY="344.0" prefHeight="25.0" prefWidth="287.0" />
+            <TextField fx:id="emailTextField" layoutX="91.0" layoutY="135.0" prefHeight="41.0" prefWidth="327.0" style="-fx-background-radius: 5; -fx-background-color: transparent;" />
+            <TextField fx:id="passwordTextField" layoutX="91.0" layoutY="230.0" prefHeight="41.0" prefWidth="327.0" style="-fx-background-radius: 5; -fx-background-color: transparent;" />
          </children>
       </Pane>
       <Label fx:id="welcomeText" layoutX="88.0" layoutY="78.0" />

@@ -45,13 +45,24 @@ public class SpareLoginPageController {
     double originalWidth = 148;
     double originalHeight = 73;
     public void initialize() {
-        loginBoardGame.setScaleX(1.48f);
+        loginBoardGame.setScaleX(4.1f);
+        loginBoardGame.setScaleY(5f);
+        loginBoardGame.setX(-13);
+        loginBoardGame.setY(-195);
+        /**
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1), loginBoardGame);
+        tt.setToY(-195);
+        tt.setToX(-13);
+        tt.setCycleCount(1);
+        tt.play();
+         /**
+       /** loginBoardGame.setScaleX(1.48f);
         loginBoardGame.setScaleY(1.42f);
 
         // Initially set opacity of all elements to 0
         createAccountText.setOpacity(0);
         forgotPasswordField.setOpacity(0);
-        emailTextField.setOpacity(0);
+        emailTextField.setOpacity(1);
         passwordTextField.setOpacity(0);
         signInButton.setOpacity(0);
         emailText.setOpacity(0);
@@ -114,7 +125,8 @@ public class SpareLoginPageController {
         fadeEmailText.play();
         fadePasswordText.play();
     }
-
+**/
+    }
     @FXML
     private void handleSignIn() {
         if (!emailTextField.getText().isEmpty() && !passwordTextField.getText().isEmpty()) {

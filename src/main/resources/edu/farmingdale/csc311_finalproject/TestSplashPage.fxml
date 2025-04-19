@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.TestSplashController">
+    <children>
+      <ImageView fitHeight="600.0" fitWidth="650.0" layoutY="1.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../240_F_317264974_2RsPbGMW0JVHPKYt3eBQwBj65OgC23Bv.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="logInBoard" fitHeight="130.0" fitWidth="166.0" layoutX="256.0" layoutY="424.0" onMouseClicked="#logInPage" pickOnBounds="true">
+         <image>
+            <Image url="@../../../Potential%20login%20screen.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="signUpBoard" fitHeight="73.0" fitWidth="148.0" layoutX="294.0" layoutY="48.0" onMouseClicked="#signUpPage" pickOnBounds="true">
+         <image>
+            <Image url="@../../../singup.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="505.0" fitWidth="473.0" layoutX="102.0" layoutY="121.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../Chest.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="logInText" fill="#fff600" layoutX="152.0" layoutY="388.0" onMouseClicked="#logInPage" strokeType="OUTSIDE" strokeWidth="0.0" text="Log In" wrappingWidth="62.936767578125">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Text>
+      <Text fill="#fff600" layoutX="433.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up" wrappingWidth="118.13677978515625">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+    </children>
+</Pane>

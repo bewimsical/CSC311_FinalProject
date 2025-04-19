@@ -45,6 +45,11 @@ public class SpareCreateAccountPageController {
 
 
     public void initialize() {
+        signUpBoard.setScaleX(4.1f);
+        signUpBoard.setScaleY(5f);
+        signUpBoard.setX(-13);
+        signUpBoard.setY(-195);
+       /**
         signUpBoard.setScaleX(1.5f);
         signUpBoard.setScaleY(1.5f);
         ScaleTransition st = new ScaleTransition(Duration.seconds(4), signUpBoard);
@@ -107,6 +112,8 @@ public class SpareCreateAccountPageController {
         fadeinPasswordText.play();
         fadeInConfirmPassword.play();
     }
+        **/
+    }
         private void checkFields() {
             boolean fieldsFilled = !createAccountEmailTextField.getText().isEmpty() &&
                     !createAccountPasswordTextFIeld.getText().isEmpty() &&
@@ -146,9 +153,9 @@ public class SpareCreateAccountPageController {
 
                 Stage currentStage = (Stage) createAccountButton.getScene().getWindow();
                 currentStage.close();
-                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LoginPage.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("spareLoginPage.fxml"));
 
-                Scene loginScene = new Scene(fxmlLoader.load(), 530, 500);
+                Scene loginScene = new Scene(fxmlLoader.load(), 650, 600);
 
                 Stage loginStage = new Stage();
 

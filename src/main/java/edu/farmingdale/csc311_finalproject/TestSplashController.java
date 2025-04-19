@@ -92,8 +92,64 @@ public class TestSplashController {
 
         @FXML
     void signUpPage(MouseEvent event) {
+            signUpBoard.setDisable(true);
 
-    }
+            // 1. Shake animation for gameNightChest
+            TranslateTransition shake = new TranslateTransition(Duration.millis(100), gameNightChest);
+            shake.setByX(20);
+            shake.setCycleCount(6);
+            shake.setAutoReverse(true);
+            TranslateTransition shake1 = new TranslateTransition(Duration.millis(100), insideBox);
+            shake1.setByX(20);
+            shake1.setCycleCount(6);
+            shake1.setAutoReverse(true);
 
-    }
+            // 2. After shake, continue with main logInBoard animations
+            shake.setOnFinished(event1 -> {
+                // Move the board
+                TranslateTransition tt = new TranslateTransition(Duration.seconds(2), signUpBoard);
+                tt.setToY(-195);
+                tt.setToX(-13);
+                tt.setCycleCount(1);
+                tt.play();
+
+
+                // Bring to front after 1.3 seconds
+                PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                pause.setOnFinished(e -> signUpBoard.toFront());
+                pause.play();
+
+                // After translation is done, do a scale transition
+                tt.setOnFinished(e -> {
+                    ScaleTransition st = new ScaleTransition(Duration.seconds(2), signUpBoard);
+                    st.setToX(4.1);
+                    st.setToY(5);
+                    st.setCycleCount(1);
+                    st.setAutoReverse(false);
+                    st.play();
+                    st.setOnFinished(ev2 -> {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("SpareCreateAccountPage.fxml"));
+                            Parent root = loader.load();
+                            Stage stage = (Stage) logInBoard.getScene().getWindow();
+                            Scene scene = new Scene(root, 650, 600);
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+                });
+            });
+
+            // Start the shake
+            shake.play();
+            shake1.play();
+        }
+
+
+
+}
+
+
 

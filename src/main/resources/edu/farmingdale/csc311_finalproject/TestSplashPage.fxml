@@ -14,22 +14,22 @@
             <Image url="@../../../cartoon%20room.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="insideBox" fitHeight="219.0" fitWidth="473.0" layoutX="102.0" layoutY="263.0" pickOnBounds="true">
+      <ImageView fx:id="insideBox" fitHeight="219.0" fitWidth="473.0" layoutX="102.0" layoutY="266.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../box_inside.png" />
+            <Image url="@../../../box_inside_NORIM.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="logInBoard" fitHeight="130.0" fitWidth="166.0" layoutX="256.0" layoutY="424.0" onMouseClicked="#logInPage" pickOnBounds="true">
+      <ImageView fx:id="signUpBoard" fitHeight="130.0" fitWidth="166.0" layoutX="256.0" layoutY="424.0" onMouseClicked="#signUpPage" pickOnBounds="true">
          <image>
-            <Image url="@../../../Potential%20login%20screen.png" />
+            <Image url="@../../../sign%20Up%20cartoon.png" />
          </image>
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="signUpBoard" fitHeight="130.0" fitWidth="166.0" layoutX="256.0" layoutY="424.0" onMouseClicked="#signUpPage" pickOnBounds="true">
+      <ImageView fx:id="logInBoard" fitHeight="130.0" fitWidth="166.0" layoutX="256.0" layoutY="424.0" onMouseClicked="#logInPage" pickOnBounds="true">
          <image>
-            <Image url="@../../../sign%20Up%20cartoon.png" />
+            <Image url="@../../../Potential%20login%20screen.png" />
          </image>
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
@@ -40,10 +40,13 @@
             <Image url="@../../../box_noinside.png" />
          </image>
       </ImageView>
-      <Text fill="#fff600" layoutX="433.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up" wrappingWidth="118.13677978515625">
+      <Text fill="#fff600" layoutX="433.0" layoutY="389.0" onMouseClicked="#signUpPage" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up" wrappingWidth="118.13677978515625">
          <font>
             <Font size="21.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Text>
       <Text fx:id="logInText" fill="#fff600" layoutX="152.0" layoutY="388.0" onMouseClicked="#logInPage" strokeType="OUTSIDE" strokeWidth="0.0" text="Log In" wrappingWidth="62.936767578125">
          <font>

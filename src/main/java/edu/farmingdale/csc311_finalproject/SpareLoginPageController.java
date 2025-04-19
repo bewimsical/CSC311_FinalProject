@@ -2,8 +2,10 @@ package edu.farmingdale.csc311_finalproject;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -22,6 +24,12 @@ public class SpareLoginPageController {
     private Text forgotPasswordField;
 
     @FXML
+    private Text emailText;
+
+    @FXML
+    private Text passwordText;
+
+    @FXML
     private TextField emailTextField;
 
     @FXML
@@ -32,10 +40,13 @@ public class SpareLoginPageController {
 
     @FXML
     private ImageView loginBoardGame;
-
+    //Ending location should be 69, 78
+    //Starting 235,301
+    double originalWidth = 148;
+    double originalHeight = 73;
     public void initialize() {
-        loginBoardGame.setScaleX(1.5f);
-        loginBoardGame.setScaleY(1.5f);
+        loginBoardGame.setScaleX(1.48f);
+        loginBoardGame.setScaleY(1.42f);
 
         // Initially set opacity of all elements to 0
         createAccountText.setOpacity(0);
@@ -43,12 +54,20 @@ public class SpareLoginPageController {
         emailTextField.setOpacity(0);
         passwordTextField.setOpacity(0);
         signInButton.setOpacity(0);
+        emailText.setOpacity(0);
+        passwordText.setOpacity(0);
 
         // Scale transition for loginBoardGame
         ScaleTransition st = new ScaleTransition(Duration.seconds(4), loginBoardGame);
         st.setToX(1);
         st.setToY(1);
         st.setCycleCount(1);
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(2), loginBoardGame);
+        tt.setToY(12);
+        tt.setCycleCount(1);
+        tt.setAutoReverse(false);
+        tt.play();
+
 
         // After scale transition ends, fade in the other elements
         st.setOnFinished(e -> fadeInElements());
@@ -78,12 +97,22 @@ public class SpareLoginPageController {
         fadeSignInButton.setFromValue(0);
         fadeSignInButton.setToValue(1);
 
+        FadeTransition fadeEmailText = new FadeTransition(Duration.seconds(2), emailText);
+        fadeEmailText.setFromValue(0);
+        fadeEmailText.setToValue(1);
+
+        FadeTransition fadePasswordText = new FadeTransition(Duration.seconds(2), passwordText);
+        fadePasswordText.setFromValue(0);
+        fadePasswordText.setToValue(1);
+
         // Play all fade transitions in parallel
         fadeCreateAccount.play();
         fadeForgotPassword.play();
         fadeEmailTextField.play();
         fadePasswordTextField.play();
         fadeSignInButton.play();
+        fadeEmailText.play();
+        fadePasswordText.play();
     }
 
     @FXML
@@ -116,16 +145,13 @@ public class SpareLoginPageController {
     @FXML
     void createAccountHandler(MouseEvent event) {
         try {
-            FXMLLoader fxmlCreateAccountLoader = new FXMLLoader(HelloApplication.class.getResource("CreateAccountPage.fxml"));
-            Scene createAccountScene = new Scene(fxmlCreateAccountLoader.load(), 600, 400);
+            FXMLLoader fxmlCreateAccountLoader = new FXMLLoader(HelloApplication.class.getResource("SpareCreateAccountPage.fxml"));
+            Parent root = fxmlCreateAccountLoader.load();
+            Stage stage = (Stage) createAccountText.getScene().getWindow();
+            Scene scene = new Scene(root, 650, 600);
+            stage.setScene(scene);
+            stage.show();
 
-            Stage createAccountStage = new Stage();
-            createAccountStage.setTitle("Create Account Page");
-            createAccountStage.setScene(createAccountScene);
-            createAccountStage.show();
-
-            Stage currentStage = (Stage) createAccountText.getScene().getWindow();
-            currentStage.close();
         } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -9,3 +9,4 @@ public class ForgotPasswordPageController {
     private Label welcomeText;
 
 }
+

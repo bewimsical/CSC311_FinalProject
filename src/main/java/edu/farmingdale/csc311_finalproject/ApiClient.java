@@ -145,77 +145,111 @@ public final class ApiClient {
         return responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_NO_CONTENT;
     }
 
-    /**
-     * GET Request
-     * @param gameId
-     * @return
-     */
-    public static String searchGameUrl(int gameId){
-        return String.format("%s/search/%s",BASE_API_URL,gameId);
+    //Methods for generating the URLs.
+    //for GET and POST: TypeReference<R> responseType param is: new TypeReference<[return type]>() {}
+    //for POST T requestBody is an object
+
+    //===========GAME URLS===========//
+
+    //GET Request returns a game object
+    public static String getGameUrl(int gameId){
+        return String.format("%s/games/%d",BASE_API_URL,gameId);
     }
 
-    /**
-     * POST
-     * @param gameName
-     * @return
-     */
+    //GET returns a list of game objects
     public static String searchGameUrl(String gameName){
         return String.format("%s/search/%s",BASE_API_URL,gameName);
     }
 
-    /**
-     * GET
-     * @param userId
-     * @return
-     */
-    public static String getUserUrl(int userId) {
+    //===========USER URLS===========//
+
+    //GET - returns user object
+    public static String getUserUrl(long userId) {
         return String.format("%s/users/%d", BASE_API_URL, userId);
     }
 
-    /**
-     * Post
-     * @return
-     */
+    //POST - request body is a User object, returns user object
     public static String createUserUrl() {
         return String.format("%s/users/create", BASE_API_URL);
     }
 
-    /**
-     * POST
-     * @param userId
-     * @param gameId
-     * @return
-     */
-    public static String addGameToUser(int userId, int gameId){
+    //POST request body is null, returns null
+    public static String addGameToUser(long userId, int gameId){
         return String.format("%s/users/addgame?user=%d&game=%d", BASE_API_URL,userId,gameId);
     }
-    public static String addFriendToUser(int userId, int friendId){
+
+    //POST request body is null, returns null
+    public static String addFriendToUser(long userId, int friendId){
         return String.format("%s/users/addfriend?user=%d&friend=%d", BASE_API_URL,userId,friendId);
     }
 
-    /**
-     * GET
-     * @param userId
-     * @return
-     */
-    public static String getUserGames(int userId){
+    //GET returns a set of game objects
+    public static String getUserGames(long userId){
         return String.format("%s/users/%d/games", BASE_API_URL,userId);
     }
-    public static String getUserFriends(int userId){
+
+    //GET returns a set of user objects
+    public static String getUserFriends(long userId){
         return String.format("%s/users/%d/friends", BASE_API_URL,userId);
     }
-    public static String getUserParties(int userId){
+
+    //GET returns a set of party objects - NOTE: this endpoint is under construction
+    public static String getUserParties(long userId){
         return String.format("%s/users/%d/parties", BASE_API_URL,userId);
     }
-    public static String getUserHostedParties(int userId){
+
+    //GET returns a set of game objects - NOTE: this endpoint is under construction
+    public static String getUserHostedParties(long userId){
         return String.format("%s/users/%d/hosted", BASE_API_URL,userId);
     }
-    public static String deleteGameFromUser(int userId, int gameId){
+
+    //DELETE returns nothing
+    public static String deleteGameFromUser(long userId, int gameId){
         return String.format("%s/users/deletegame?user=%d&game=%d", BASE_API_URL,userId,gameId);
     }
-    public static String deleteFriendFromUser(int userId, int friendId){
+    //DELETE returns nothing
+    public static String deleteFriendFromUser(long userId, long friendId){
         return String.format("%s/users/deletegame?user=%d&friend=%d", BASE_API_URL,userId,friendId);
     }
+
+    //===========PARTY URLS===========//
+
+    //POST request body is a Party object, returns a party object
+    public static String createParty(long userId){
+        return String.format("%s/parties/create/%d", BASE_API_URL,userId);
+    }
+    //GET  returns a party object
+    public static String getParty(long partyId){
+        return String.format("%s/parties/create/%d", BASE_API_URL,partyId);
+    }
+    //DELETE
+    public static String deleteParty(long partyId){
+        return String.format("%s/parties/delete/%d", BASE_API_URL,partyId);
+    }
+    //GET  returns a list of user objects
+    public static String getPartyUsers(long partyId){
+        return String.format("%s/parties/%d/users", BASE_API_URL,partyId);
+    }
+    //GET  returns a list of user objects
+    public static String getPartyHosts(long partyId){
+        return String.format("%s/parties/%d/hosts", BASE_API_URL,partyId);
+    }
+    //POST  request body is null, returns null
+    public static String addUserToParty(long userId, long partyId, boolean isHost){
+        return String.format("%s/parties/adduser?user=%d&party=%d&host=%b", BASE_API_URL,userId,partyId,isHost);
+    }
+    //POST  request body is null, returns null
+    public static String editUserInParty(long userId, long partyId, boolean isHost){
+        return String.format("%s/parties/edit/user?user=%d&party=%d&host=%b", BASE_API_URL,userId,partyId,isHost);
+    }
+    //DELETE
+    public static String deleteUserFromParty(long userId, long partyId){
+        return String.format("%s/parties/delete/user?user=%d&party=%d", BASE_API_URL,userId,partyId);
+    }
+
+
+
+
 
 
 

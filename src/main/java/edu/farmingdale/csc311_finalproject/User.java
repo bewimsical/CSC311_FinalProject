@@ -11,25 +11,28 @@ public class User {
     private String lName;
     private String email;
     private String profilePicUrl;
+    private String userPassword;
 
     public User() {
     }
 
-    public User(Long id, String username, String fName, String lName, String email, String profilePicUrl) {
+    public User(Long id, String username, String fName, String lName, String email, String profilePicUrl, String password) {
         this.id = id;
         this.username = username;
         this.fName = fName;
         this.lName = lName;
         this.email = email;
         this.profilePicUrl = profilePicUrl;
+        this.userPassword = password;
     }
 
-    public User(String username, String fName, String lName, String email, String profilePicUrl) {
+    public User(String username, String fName, String lName, String email, String profilePicUrl,String password) {
         this.username = username;
         this.fName = fName;
         this.lName = lName;
         this.email = email;
         this.profilePicUrl = profilePicUrl;
+        this.userPassword = password;
     }
 
 
@@ -79,6 +82,14 @@ public class User {
 
     public void setProfilePicUrl(String profilePicUrl) {
         this.profilePicUrl = profilePicUrl;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     @Override

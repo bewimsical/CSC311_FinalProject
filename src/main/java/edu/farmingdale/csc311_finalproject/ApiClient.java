@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -96,6 +97,8 @@ public final class ApiClient {
         con.setRequestProperty("Accept", "application/json");
 
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
         // Only send body if not null
         if (requestBody != null) {
@@ -214,7 +217,7 @@ public final class ApiClient {
     }
     //DELETE returns nothing
     public static String deleteFriendFromUser(long userId, long friendId){
-        return String.format("%s/users/deletegame?user=%d&friend=%d", BASE_API_URL,userId,friendId);
+        return String.format("%s/users/deletefriend?user=%d&friend=%d", BASE_API_URL,userId,friendId);
     }
 
     //===========PARTY URLS===========//
@@ -225,7 +228,7 @@ public final class ApiClient {
     }
     //GET  returns a party object
     public static String getParty(long partyId){
-        return String.format("%s/parties/create/%d", BASE_API_URL,partyId);
+        return String.format("%s/parties/%d", BASE_API_URL,partyId);
     }
     //DELETE
     public static String deleteParty(long partyId){
@@ -263,9 +266,9 @@ public final class ApiClient {
 //        }
 //
 //        System.out.println(sendGET(getGameUrl(13), new TypeReference<Game>() {}));
-
+//
 //        sendPOST(createUserUrl(),
-//                new User("TeddySpaghetti", "Teddy", "Spaghetti", "spaghetticat@gmail.com", "/images/wizard_cat.PNG", "samims"),
+//                new User("TeddySpaghetti", "Teddy", "Spaghetti", "spaghetticat@gmail.com", "/images/wizard_cat.PNG", "snacksplz"),
 //                new TypeReference<User>() {
 //                });
 //
@@ -273,24 +276,45 @@ public final class ApiClient {
 //        });
 //        sendPOST(addFriendToUser(1, 2), null, new TypeReference<Void>() {
 //        });
-
+//
 //        List<Game> games =sendGET(getUserGames(1), new TypeReference<List<Game>>() {
 //        });
 //        for (Game g : games){
 //            System.out.println(g.toString());
 //        }
-
+//
 //        List<User> friends =sendGET(getUserFriends(1), new TypeReference<List<User>>() {
 //        });
 //        for (User f : friends){
 //            System.out.println(f.toString());
 //        }
-
+//
 //        List<Party> parties =sendGET(getUserHostedParties(1), new TypeReference<List<Party>>() {
 //        });
 //        for (Party g : parties){
 //            System.out.println(g.toString());
 //        }
+//        sendDELETE(deleteGameFromUser(1,2));
+//        sendDELETE(deleteFriendFromUser(1,2));
+//        sendPOST(createParty(2),
+//                new Party("Salmon Party", LocalDateTime.now(), "Teddy's House"),
+//                new TypeReference<Party>() {
+//                });
+//        System.out.println(sendGET(getParty(2), new TypeReference<Party>() {}));
+//        List<User> users = sendGET(getPartyUsers(1), new TypeReference<List<User>>() {
+//        });
+//        for(User u:users){
+//            System.out.println(u.toString());
+//        }
+//        List<User> users = sendGET(getPartyHosts(1), new TypeReference<List<User>>() {
+//        });
+//        for(User u:users){
+//            System.out.println(u.toString());
+//        }
+//        sendPOST(addUserToParty(1, 2, true), null, new TypeReference<Void>() {});
+//        sendPOST(editUserInParty(1, 2, false), null, new TypeReference<Void>() {});
+//        sendDELETE(deleteUserFromParty(1,2));
+
 
 
 

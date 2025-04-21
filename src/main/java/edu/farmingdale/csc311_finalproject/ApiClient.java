@@ -2,10 +2,13 @@ package edu.farmingdale.csc311_finalproject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 
 public final class ApiClient {
@@ -39,6 +42,8 @@ public final class ApiClient {
             in.close();
 
             ObjectMapper mapper = new ObjectMapper();
+            mapper.registerModule(new JavaTimeModule());
+            mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
             return mapper.readValue(response.toString(), typeReference);
         } else {
             System.out.println("GET request did not work.");
@@ -156,7 +161,7 @@ public final class ApiClient {
         return String.format("%s/games/%d",BASE_API_URL,gameId);
     }
 
-    //GET returns a list of game objects
+    //GET returns a list of search game objects
     public static String searchGameUrl(String gameName){
         return String.format("%s/search/%s",BASE_API_URL,gameName);
     }
@@ -247,6 +252,49 @@ public final class ApiClient {
         return String.format("%s/parties/delete/user?user=%d&party=%d", BASE_API_URL,userId,partyId);
     }
 
+    //=============EXAMPLE USAGE=============//
+    public static void main(String[] args) throws IOException {
+//        User hazel = sendGET(getUserUrl(1), new TypeReference<User>() {});
+//        System.out.println(hazel.toString());
+//
+//        List<SearchGame> games = sendGET(searchGameUrl("clue"), new TypeReference<List<SearchGame>>() {});
+//        for(SearchGame game: games){
+//            System.out.println(game.toString());
+//        }
+//
+//        System.out.println(sendGET(getGameUrl(13), new TypeReference<Game>() {}));
+
+//        sendPOST(createUserUrl(),
+//                new User("TeddySpaghetti", "Teddy", "Spaghetti", "spaghetticat@gmail.com", "/images/wizard_cat.PNG", "samims"),
+//                new TypeReference<User>() {
+//                });
+//
+//        sendPOST(addGameToUser(1, 5), null, new TypeReference<Void>() {
+//        });
+//        sendPOST(addFriendToUser(1, 2), null, new TypeReference<Void>() {
+//        });
+
+//        List<Game> games =sendGET(getUserGames(1), new TypeReference<List<Game>>() {
+//        });
+//        for (Game g : games){
+//            System.out.println(g.toString());
+//        }
+
+//        List<User> friends =sendGET(getUserFriends(1), new TypeReference<List<User>>() {
+//        });
+//        for (User f : friends){
+//            System.out.println(f.toString());
+//        }
+
+//        List<Party> parties =sendGET(getUserHostedParties(1), new TypeReference<List<Party>>() {
+//        });
+//        for (Party g : parties){
+//            System.out.println(g.toString());
+//        }
+
+
+
+    }
 
 
 

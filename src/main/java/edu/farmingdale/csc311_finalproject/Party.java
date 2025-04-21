@@ -1,5 +1,7 @@
 package edu.farmingdale.csc311_finalproject;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDateTime;
 
 public class Party {
@@ -12,7 +14,9 @@ public class Party {
     }
 
     private Long id;
+    @JsonProperty("party_name")
     private String partyName;
+    @JsonProperty("party_date")
     private LocalDateTime partyDate;
     private String location;
 
@@ -55,5 +59,15 @@ public class Party {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    @Override
+    public String toString() {
+        return "Party{" +
+                "id=" + id +
+                ", partyName='" + partyName + '\'' +
+                ", partyDate=" + partyDate +
+                ", location='" + location + '\'' +
+                '}';
     }
 }

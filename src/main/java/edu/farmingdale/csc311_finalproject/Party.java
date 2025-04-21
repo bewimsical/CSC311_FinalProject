@@ -5,21 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
 
 public class Party {
-    public Long getId() {
-        return id;
-    }
+    private Long partyId;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    private Long id;
     @JsonProperty("party_name")
     private String partyName;
     @JsonProperty("party_date")
     private LocalDateTime partyDate;
     private String location;
-
     public Party() {
     }
 
@@ -30,12 +22,20 @@ public class Party {
     }
 
     public Party(Long id, String partyName, LocalDateTime partyDate, String location) {
-        this.id = id;
+        this.partyId = id;
         this.partyName = partyName;
         this.partyDate = partyDate;
         this.location = location;
     }
 
+
+    public Long getPartyId() {
+        return partyId;
+    }
+
+    public void setPartyId(Long partyId) {
+        this.partyId = partyId;
+    }
 
     public String getPartyName() {
         return partyName;
@@ -64,7 +64,7 @@ public class Party {
     @Override
     public String toString() {
         return "Party{" +
-                "id=" + id +
+                "id=" + partyId +
                 ", partyName='" + partyName + '\'' +
                 ", partyDate=" + partyDate +
                 ", location='" + location + '\'' +

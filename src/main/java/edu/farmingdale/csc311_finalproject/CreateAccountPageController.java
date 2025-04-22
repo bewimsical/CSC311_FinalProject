@@ -3,15 +3,13 @@ package edu.farmingdale.csc311_finalproject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+
 
 public class CreateAccountPageController {
 
@@ -39,13 +37,13 @@ public class CreateAccountPageController {
                     !createAccountPasswordTextFIeld.getText().isEmpty() &&
                     !createAccountConfirmPasswordTextField.getText().isEmpty();
 
-            // If all fields are filled, enable the button and make it fully opaque
+
             if (fieldsFilled) {
-                createAccountButton.setOpacity(1); // Set opacity to 1 (fully visible)
-                createAccountButton.setDisable(false); // Enable the button
+                createAccountButton.setOpacity(1);
+                createAccountButton.setDisable(false);
             } else {
-                createAccountButton.setOpacity(0.3); // Keep opacity at 0.3 when disabled
-                createAccountButton.setDisable(true); // Keep the button disabled
+                createAccountButton.setOpacity(0.3);
+                createAccountButton.setDisable(true);
             }
 
 

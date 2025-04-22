@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/Raleway-Regular.ttf');
+}
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('../fonts/CormorantGaramond-Medium.ttf');
+}
+
+.root {
+    -fx-background-color: #d4ae6c;
+}
+
+.container{
+    -fx-border-color: #87632d;
+    -fx-border-width: 3px;
+    -fx-border-radius: 5px;
+}
+
+.left-pane{
+    -fx-border-color: transparent #87632d transparent transparent;
+    -fx-border-width: 3px;
+    -fx-padding: 10px;
+}
+
+.heading{
+    -fx-font-family: "Cormorant Garamond", Serif;
+    -fx-text-fill: #513310;
+    -fx-font-size: 30px;
+    /*-fx-alignment: center;*/
+    -fx-max-width: 154px;
+    -fx-wrap-text: true;
+}
+
+.info-text{
+    -fx-font-family: Raleway, SansSerif;
+    -fx-text-fill: #513310;
+    -fx-font-size: 15px;
+
+}

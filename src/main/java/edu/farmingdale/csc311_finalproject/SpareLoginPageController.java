@@ -1,5 +1,7 @@
 package edu.farmingdale.csc311_finalproject;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.google.gson.Gson;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
@@ -15,6 +17,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class SpareLoginPageController {
     @FXML
@@ -127,6 +134,7 @@ public class SpareLoginPageController {
     }
 **/
     }
+    /**
     @FXML
     private void handleSignIn() {
         if (!emailTextField.getText().isEmpty() && !passwordTextField.getText().isEmpty()) {
@@ -152,6 +160,120 @@ public class SpareLoginPageController {
                 alert.showAndWait();
             }
         }
+    }
+**/
+/**
+    @FXML
+    private void handleSignIn() {
+        if (!emailTextField.getText().isEmpty() && !passwordTextField.getText().isEmpty()) {
+            try {
+                String email = emailTextField.getText();
+                String password = passwordTextField.getText();
+
+                URL url = new URL("http://localhost:8080/users/login?email=" + email + "&password=" + password);
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod("POST");
+                con.setDoOutput(true);
+
+                int responseCode = con.getResponseCode();
+
+                if (responseCode == 200) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    reader.close();
+
+                    Gson gson = new Gson();
+                    User loggedInUser = gson.fromJson(response.toString(), User.class);
+
+                    Session.getInstance().setUser(loggedInUser);
+
+                    FXMLLoader fxmlProfileLoader = new FXMLLoader(HelloApplication.class.getResource("ProfilePage.fxml"));
+                    Scene profileScene = new Scene(fxmlProfileLoader.load(), 650, 600);
+                    Stage profileStage = new Stage();
+                    profileStage.setTitle("Profile Page");
+                    profileStage.setScene(profileScene);
+                    profileStage.show();
+
+                    Stage currentStage = (Stage) signInButton.getScene().getWindow();
+                    currentStage.close();
+
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Login Failed");
+                    alert.setHeaderText("Invalid Credentials");
+                    alert.setContentText("Please check your email and password.");
+                    alert.showAndWait();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Login Failed");
+                alert.setContentText("An error occurred during login.");
+                alert.showAndWait();
+            }
+        }
+    }
+**/
+
+    @FXML
+    private void handleSignIn() {
+
+        if (!emailTextField.getText().isEmpty() && !passwordTextField.getText().isEmpty()) {
+            try {
+                String email = emailTextField.getText();
+                String password = passwordTextField.getText();
+
+                // Create a User object with the email and password
+                User loginUser = new User(email, password);
+
+                // Call the API to authenticate the user
+                User loggedInUser = ApiClient.sendPOST(
+                        "http://localhost:8080/users/login",
+                        loginUser,
+                        new TypeReference<User>() {}
+                );
+
+
+                if (loggedInUser != null) {
+                    // Store the logged-in user in the session
+                    Session.getInstance().setUser(loggedInUser);
+
+                    // Load the profile page
+                    FXMLLoader fxmlProfileLoader = new FXMLLoader(HelloApplication.class.getResource("ProfilePage.fxml"));
+                    Scene profileScene = new Scene(fxmlProfileLoader.load(), 650, 600);
+                    Stage profileStage = new Stage();
+                    profileStage.setTitle("Profile Page");
+                    profileStage.setScene(profileScene);
+                    profileStage.show();
+
+                    // Close the current stage
+                    Stage currentStage = (Stage) signInButton.getScene().getWindow();
+                    currentStage.close();
+                } else {
+                    showLoginError("Invalid credentials. Please check your email and password.");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                showLoginError("An error occurred during login.");
+            }
+        } else {
+            showLoginError("Please fill in both email and password.");
+        }
+    }
+
+    private void showLoginError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Login Failed");
+        alert.setHeaderText("Login Failed");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @FXML

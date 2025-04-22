@@ -1,5 +1,6 @@
 package edu.farmingdale.csc311_finalproject;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
@@ -18,12 +19,14 @@ import javafx.util.Duration;
 
 public class SpareCreateAccountPageController {
 
+    @FXML
+    private TextField FirstNameTextField;
 
     @FXML
     private Button createAccountButton;
 
     @FXML
-    private TextField createAccountConfirmPasswordTextField;
+    private PasswordField createAccountConfirmPasswordTextField;
 
     @FXML
     private TextField createAccountEmailTextField;
@@ -32,19 +35,13 @@ public class SpareCreateAccountPageController {
     private PasswordField createAccountPasswordTextFIeld;
 
     @FXML
-    private Text emailAddressText;
-
-    @FXML
-    private Text passwordText;
-
+    private TextField lastNameTextField;
 
     @FXML
     private ImageView signUpBoard;
 
     @FXML
-    private PasswordField reconfirmPasswordText;
-
-
+    private TextField userNameTextField;
     public void initialize() {
         signUpBoard.setScaleX(4.1f);
         signUpBoard.setScaleY(5f);
@@ -177,6 +174,65 @@ public class SpareCreateAccountPageController {
         }
 
     }
+    /**
+@FXML
+void createAccountHandler(ActionEvent event) {
+    if (!createAccountConfirmPasswordTextField.getText().equals(createAccountPasswordTextFIeld.getText())) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Passwords do not match");
+        alert.setContentText("Your passwords do not match");
+        alert.showAndWait();
+    } else {
+        try {
+            // Create a User object
+            User newUser = new User(
+                    createAccountEmailTextField.getText().split("@")[0], // temp username
+                    FirstNameTextField.getText(),  // Use the first name from the input field
+                    lastNameTextField.getText(),   // Use the last name from the input field
+                    createAccountEmailTextField.getText(),
+                    "",       // Assuming no profile pic URL is provided
+                    createAccountPasswordTextFIeld.getText()
+            );
 
+            // Use ApiClient to send the POST request
+            User createdUser = ApiClient.sendPOST(ApiClient.createUserUrl(), newUser, new TypeReference<User>() {});
+
+            if (createdUser != null) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Success!");
+                alert.setHeaderText("Account Created");
+                alert.setContentText("Your account has been created successfully!");
+                alert.showAndWait();
+
+                // Close the current stage and load the Login page
+                Stage currentStage = (Stage) createAccountButton.getScene().getWindow();
+                currentStage.close();
+
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("spareLoginPage.fxml"));
+                Scene loginScene = new Scene(fxmlLoader.load(), 650, 600);
+                Stage loginStage = new Stage();
+                loginStage.setScene(loginScene);
+                loginStage.show();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Account Creation Failed");
+                alert.setContentText("Server responded with an error.");
+                alert.showAndWait();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to create account");
+            alert.setContentText("Something went wrong!");
+            alert.showAndWait();
+        }
+    }
+}
+
+**/
 
 }

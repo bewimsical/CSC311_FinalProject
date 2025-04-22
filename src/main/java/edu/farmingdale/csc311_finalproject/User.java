@@ -21,7 +21,10 @@ public class User {
         this.profilePicUrl = profilePicUrl;
         this.userPassword = password;
     }
-
+    public User(String email, String password) {
+        this.email = email;
+        this.userPassword = password;
+    }
     public User(String username, String fName, String lName, String email, String profilePicUrl,String password) {
         this.username = username;
         this.fName = fName;
@@ -30,6 +33,7 @@ public class User {
         this.profilePicUrl = profilePicUrl;
         this.userPassword = password;
     }
+
 
 
     public Long getUserId() {

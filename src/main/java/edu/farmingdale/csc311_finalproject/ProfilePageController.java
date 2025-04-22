@@ -38,10 +38,7 @@ private User user;
     @FXML
     private Label usernameLabel; // or Text if you used that!
 
-
-
-
-
+    private final ObservableList<Game> gameData = FXCollections.observableArrayList();
 
 
     @FXML
@@ -54,7 +51,7 @@ private User user;
 
             if (user != null) {
                 usernameLabel.setText(user.getUsername());
-                final ObservableList<Game> gameData = FXCollections.observableArrayList();
+                // final ObservableList<Game> gameData = FXCollections.observableArrayList();
                 List<Game> games = sendGET(getUserGames(1), new TypeReference<List<Game>>() {});
                 gameData.addAll(games);
                 String imagePath = "/edu/farmingdale/csc311_finalproject/images"; // Folder where images are stored
@@ -80,5 +77,26 @@ private User user;
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
-    }}
+    }
+    /**
+    public void addGameToUser(long userId, int gameId) {
+        try {
+            // 1. Call the API to add the game
+            sendPOST(addGameToUser(userId, gameId), null, new TypeReference<Void>() {});
+
+            // 2. Fetch the full game info
+            Game newGame = sendGET(getGameUrl(gameId), new TypeReference<Game>() {});
+
+            // 3. Add to observable list if not already present
+            if (newGame != null && !gameData.contains(newGame)) {
+                gameData.add(newGame);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+**/
+
+}
 

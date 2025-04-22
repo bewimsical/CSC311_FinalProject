@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="503.0" prefWidth="535.0" spacing="20.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.LoginPageController">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="650.0" spacing="20.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.LoginPageController">
   <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
@@ -22,13 +22,13 @@
             </image>
          </ImageView>
          <Text fill="WHITE" layoutX="229.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In" />
-         <Text fill="#737373" layoutX="72.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address" />
-         <TextField fx:id="emailTextField" layoutX="72.0" layoutY="163.0" prefHeight="25.0" prefWidth="287.0" />
-         <Text fill="#737373" layoutX="72.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-         <TextField fx:id="passwordTextField" layoutX="72.0" layoutY="247.0" prefHeight="25.0" prefWidth="287.0" />
-         <Text fx:id="forgotPasswordField" fill="BLUE" layoutX="72.0" layoutY="313.0" onMouseClicked="#forgotPasswordHandler" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot Password?" />
-         <Button fx:id="signInButton" layoutX="72.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleSignIn" opacity="0.6" prefHeight="25.0" prefWidth="287.0" text="Sign In" />
-         <Text fx:id="createAccountText" fill="BLUE" layoutX="174.0" layoutY="399.0" onMouseClicked="#createAccountHandler" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Account" />
+         <Text fill="#737373" layoutX="112.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address" />
+         <TextField fx:id="emailTextField" layoutX="112.0" layoutY="155.0" prefHeight="25.0" prefWidth="287.0" />
+         <Text fill="#737373" layoutX="112.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+         <TextField fx:id="passwordTextField" layoutX="112.0" layoutY="243.0" prefHeight="25.0" prefWidth="287.0" />
+         <Text fx:id="forgotPasswordField" fill="BLUE" layoutX="30.0" layoutY="393.0" onMouseClicked="#forgotPasswordHandler" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: inknut antiqua;" text="Forgot Password?" />
+         <Button fx:id="signInButton" layoutX="112.0" layoutY="322.0" mnemonicParsing="false" onAction="#handleSignIn" opacity="0.6" prefHeight="25.0" prefWidth="287.0" text="Sign In" />
+         <Text fx:id="createAccountText" fill="BLUE" layoutX="358.0" layoutY="393.0" onMouseClicked="#createAccountHandler" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Account" />
       </children>
    </Pane>
 

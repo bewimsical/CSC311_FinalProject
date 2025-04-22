@@ -1,25 +1,62 @@
 package edu.farmingdale.csc311_finalproject;
+import javafx.scene.image.Image;
+
+import java.util.List;
 
 public class User {
-    private Long userId;
-    private String username;
+    private Long id;
+    private String username; //should we make this unique?
+    private String fName;
+    private String lName;
     private String email;
-    private String password;
+    private String profilePicUrl;
+    private String userPassword;
 
-    public Long getUserId() {
-        return userId;
+    public User() {
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
+    public User(Long id, String username, String fName, String lName, String email, String profilePicUrl, String password) {
+        this.id = id;
         this.username = username;
+        this.fName = fName;
+        this.lName = lName;
+        this.email = email;
+        this.profilePicUrl = profilePicUrl;
+        this.userPassword = password;
+    }
+
+    public User(String username, String fName, String lName, String email, String profilePicUrl,String password) {
+        this.username = username;
+        this.fName = fName;
+        this.lName = lName;
+        this.email = email;
+        this.profilePicUrl = profilePicUrl;
+        this.userPassword = password;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+  
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
     }
 
     public String getEmail() {
@@ -30,12 +67,31 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getProfilePicUrl() {
+        return profilePicUrl;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setProfilePicUrl(String profilePicUrl) {
+        this.profilePicUrl = profilePicUrl;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", fName='" + fName + '\'' +
+                ", lName='" + lName + '\'' +
+                ", email='" + email + '\'' +
+                ", profilePicUrl='" + profilePicUrl + '\'' +
+                '}';
     }
 }
-

@@ -1,0 +1,82 @@
+/* General Pane Styling */
+.root {
+    -fx-background-color: #2e3b4e; /* Dark background for the app */
+}
+
+/* Style for the container pane */
+.pane {
+    -fx-background-color: #3d4a5c; /* Light dark gray background */
+    -fx-background-radius: 15; /* Rounded corners for the pane */
+}
+
+/* Styling for the welcome text */
+#welcomeText {
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Styling for the email and password text fields */
+#emailTextField, #passwordTextField {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-padding: 10px;
+    -fx-text-fill: white;
+}
+
+/* Styling for the text fields' focused state */
+#emailTextField:focused, #passwordTextField:focused {
+    -fx-border-color: #7db9e8; /* Blue border when focused */
+}
+
+/* Styling for the Forgot Password text */
+#forgotPasswordField {
+    -fx-font-size: 14px;
+    -fx-fill: white;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+/* Styling for the Create Account text */
+#createAccountText {
+    -fx-font-size: 14px;
+    -fx-fill: white;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+/* Styling for the Sign In Button */
+#signInButton {
+    -fx-background-color: #7db9e8; /* Light blue background */
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 10px;
+    -fx-opacity: 1; /* Make sure opacity is set to 1 */
+}
+
+/* Button hover effect */
+#signInButton:hover {
+    -fx-background-color: #649cbf; /* Darker blue on hover */
+}
+
+/* Styling for the ImageView */
+#loginBoardGame {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 10, 0, 0, 4);
+}
+
+/* TextField and PasswordField border styling */
+#emailTextField, #passwordTextField {
+    -fx-border-radius: 5;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+}
+
+/* Forgot password and create account text clickable */
+#forgotPasswordField, #createAccountText {
+    -fx-cursor: hand;
+}

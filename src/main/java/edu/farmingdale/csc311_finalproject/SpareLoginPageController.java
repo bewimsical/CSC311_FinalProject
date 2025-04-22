@@ -196,4 +196,24 @@ public class SpareLoginPageController {
             alert.showAndWait();
         }
     }
-}
+    public void setStage(Stage stage) {
+        // Handle resize and fullscreen changes
+        stage.widthProperty().addListener((obs, oldVal, newVal) -> handleResize(stage));
+        stage.heightProperty().addListener((obs, oldVal, newVal) -> handleResize(stage));
+        stage.fullScreenProperty().addListener((obs, wasFullScreen, isFullScreen) -> handleResize(stage));
+    }
+
+    private void handleResize(Stage stage) {
+        double newWidth = stage.getWidth();
+        double newHeight = stage.getHeight();
+
+        // Example logic: resize the board image proportionally
+        loginBoardGame.setFitWidth(newWidth / 4); // Adjust these ratios to fit your design
+        loginBoardGame.setFitHeight(newHeight / 4);
+
+        // You can also reposition or resize other nodes here if needed
+    }
+
+    }
+
+

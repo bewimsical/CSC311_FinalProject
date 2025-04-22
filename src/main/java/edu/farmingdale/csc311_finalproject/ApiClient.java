@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -19,8 +21,6 @@ public final class ApiClient {
 
 
     private ApiClient(){}
-
-
 
     public static <T> T sendGET(String GET_URL, TypeReference<T> typeReference) throws IOException {
         URL obj = new URL(GET_URL);
@@ -51,42 +51,6 @@ public final class ApiClient {
             return null;
         }
     }
-    //TODO update for requests with no return?
-//    public static <T, R> R sendPOST(String POST_URL, T requestBody, TypeReference<R> responseType) throws IOException {
-//        URL url = new URL(POST_URL);
-//        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-//        con.setRequestMethod("POST");
-//        con.setRequestProperty("User-Agent", USER_AGENT);
-//        con.setRequestProperty("Content-Type", "application/json");
-//        con.setRequestProperty("Accept", "application/json");
-//        con.setDoOutput(true);
-//
-//        ObjectMapper mapper = new ObjectMapper();
-//
-//        // Serialize and write the request body
-//        try (OutputStream os = con.getOutputStream()) {
-//            byte[] input = mapper.writeValueAsBytes(requestBody);
-//            os.write(input);
-//            os.flush();
-//        }
-//
-//        int responseCode = con.getResponseCode();
-//        System.out.println("POST Response Code :: " + responseCode);
-//
-//        if (responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_CREATED) {
-//            try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
-//                StringBuilder response = new StringBuilder();
-//                String inputLine;
-//                while ((inputLine = in.readLine()) != null) {
-//                    response.append(inputLine);
-//                }
-//                return mapper.readValue(response.toString(), responseType);
-//            }
-//        } else {
-//            System.out.println("POST request failed.");
-//            return null;
-//        }
-//    }
     //TODO check this method
     public static <T, R> R sendPOST(String POST_URL, T requestBody, TypeReference<R> responseType) throws IOException {
         URL url = new URL(POST_URL);
@@ -277,8 +241,12 @@ public final class ApiClient {
 //        sendPOST(addFriendToUser(1, 2), null, new TypeReference<Void>() {
 //        });
 //
+//        set up an observable list in the profile page
+//        private final ObservableList<Game> gameData = FXCollections.observableArrayList();
+//        //in initialize-
 //        List<Game> games =sendGET(getUserGames(1), new TypeReference<List<Game>>() {
 //        });
+//        gameData.addAll(games);
 //        for (Game g : games){
 //            System.out.println(g.toString());
 //        }

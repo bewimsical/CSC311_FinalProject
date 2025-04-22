@@ -13,6 +13,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import com.google.gson.Gson;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class LoginPageController {
 
     @FXML
@@ -53,34 +61,62 @@ public class LoginPageController {
 
     @FXML
     private void handleSignIn() {
-
         if (!emailTextField.getText().isEmpty() && !passwordTextField.getText().isEmpty()) {
-
-            System.out.println("Sign In successful");
-
-
             try {
+                String email = emailTextField.getText();
+                String password = passwordTextField.getText();
 
-                FXMLLoader fxmlProfileLoader = new FXMLLoader(HelloApplication.class.getResource("ProfilePage.fxml"));
+                URL url = new URL("http://localhost:8080/users/login?email=" + email + "&password=" + password);
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod("POST");
+                con.setDoOutput(true);
 
-                Scene profileScene = new Scene(fxmlProfileLoader.load(), 650, 600);
+                int responseCode = con.getResponseCode();
 
-                Stage profileStage = new Stage();
-                profileStage.setTitle("Profile Page");
-                profileStage.setScene(profileScene);
-                profileStage.show();
+                if (responseCode == 200) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    reader.close();
 
+                    Gson gson = new Gson();
+                    User loggedInUser = gson.fromJson(response.toString(), User.class);
 
-                Stage currentStage = (Stage) signInButton.getScene().getWindow();
-                currentStage.close();
+                    Session.getInstance().setUser(loggedInUser);
+
+                    FXMLLoader fxmlProfileLoader = new FXMLLoader(HelloApplication.class.getResource("ProfilePage.fxml"));
+                    Scene profileScene = new Scene(fxmlProfileLoader.load(), 650, 600);
+                    Stage profileStage = new Stage();
+                    profileStage.setTitle("Profile Page");
+                    profileStage.setScene(profileScene);
+                    profileStage.show();
+
+                    Stage currentStage = (Stage) signInButton.getScene().getWindow();
+                    currentStage.close();
+
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Login Failed");
+                    alert.setHeaderText("Invalid Credentials");
+                    alert.setContentText("Please check your email and password.");
+                    alert.showAndWait();
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
-                alert.setHeaderText("Failed to load Profile Page");
-                alert.setContentText("An error occurred while trying to load the profile page.");
+                alert.setHeaderText("Login Failed");
+                alert.setContentText("An error occurred during login.");
                 alert.showAndWait();
-            }}}
+            }
+        }
+    }
+
+
     @FXML
     void createAccountHandler(MouseEvent event) {
         try {

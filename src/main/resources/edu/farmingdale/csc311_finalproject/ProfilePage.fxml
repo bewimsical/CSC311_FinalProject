@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="591.0" prefWidth="650.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.Label?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="591.0" prefWidth="650.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.ProfilePageController">
    <children>
       <ImageView fitHeight="71.0" fitWidth="178.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -26,7 +27,7 @@
                         <Image url="@../../../profile%20bird.jpg" />
                      </image>
                   </ImageView>
-                  <Text fill="WHITE" layoutX="122.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name" />
+                  <Label fx:id="usernameLabel" layoutX="122.0" layoutY="38.0" text="User Name" textFill="WHITE" />
                   <Text fill="WHITE" layoutX="193.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of games" />
                   <Text fill="WHITE" layoutX="222.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Games" />
                   <Text fill="WHITE" layoutX="313.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of friends" />
@@ -38,7 +39,8 @@
                   <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="6.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../Catan.jpg" />
-                     </image></ImageView>
+                     </image>
+                  </ImageView>
                   <Text fill="WHITE" layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent Activity" />
                   <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="100.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>

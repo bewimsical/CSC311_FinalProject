@@ -1,5 +1,4 @@
 package edu.farmingdale.csc311_finalproject;
-
 import javafx.scene.image.Image;
 
 import java.util.List;
@@ -43,15 +42,7 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
+  
     public String getfName() {
         return fName;
     }

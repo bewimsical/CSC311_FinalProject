@@ -1,7 +1,7 @@
 package edu.farmingdale.csc311_finalproject;
 
 public class User {
-    private Long id;
+    private Long userId;
     private String username; //should we make this unique?
     private String fName;
     private String lName;
@@ -13,7 +13,7 @@ public class User {
     }
 
     public User(Long userId, String username, String fName, String lName, String email, String profilePicUrl, String password) {
-        this.id = userId;
+        this.userId = userId;
         this.username = username;
         this.fName = fName;
         this.lName = lName;
@@ -32,12 +32,12 @@ public class User {
     }
 
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
   
     public String getfName() {
@@ -83,7 +83,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + userId +
                 ", username='" + username + '\'' +
                 ", fName='" + fName + '\'' +
                 ", lName='" + lName + '\'' +

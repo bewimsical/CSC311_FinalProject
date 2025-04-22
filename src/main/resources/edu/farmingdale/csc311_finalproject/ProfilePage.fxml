@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.Label?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="591.0" prefWidth="650.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.ProfilePageController">
    <children>
       <ImageView fitHeight="71.0" fitWidth="178.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -22,7 +22,7 @@
          <children>
             <Pane layoutX="15.0" layoutY="14.0" prefHeight="136.0" prefWidth="425.0" style="-fx-background-color: #5A5A5A;">
                <children>
-                  <ImageView fitHeight="92.0" fitWidth="94.0" layoutX="14.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="profilePic" fitHeight="92.0" fitWidth="94.0" layoutX="14.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../profile%20bird.jpg" />
                      </image>

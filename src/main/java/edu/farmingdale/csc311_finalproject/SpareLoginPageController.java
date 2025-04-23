@@ -1,5 +1,6 @@
 package edu.farmingdale.csc311_finalproject;
 
+import com.google.gson.Gson;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
@@ -15,6 +16,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class SpareLoginPageController {
     @FXML
@@ -130,29 +137,68 @@ public class SpareLoginPageController {
     @FXML
     private void handleSignIn() {
         if (!emailTextField.getText().isEmpty() && !passwordTextField.getText().isEmpty()) {
-            System.out.println("Sign In successful");
-
             try {
-                FXMLLoader fxmlProfileLoader = new FXMLLoader(HelloApplication.class.getResource("ProfilePage.fxml"));
-                Scene profileScene = new Scene(fxmlProfileLoader.load(), 650, 600);
+                String email = emailTextField.getText();
+                String password = passwordTextField.getText();
 
-                Stage profileStage = new Stage();
-                profileStage.setTitle("Profile Page");
-                profileStage.setScene(profileScene);
-                profileStage.show();
+                URL url = new URL("http://localhost:8080/users/login");
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod("POST");
+                con.setRequestProperty("Content-Type", "application/json");
+                con.setRequestProperty("Accept", "application/json");
+                con.setDoOutput(true);
 
-                Stage currentStage = (Stage) signInButton.getScene().getWindow();
-                currentStage.close();
+                String jsonInput = String.format("{\"email\":\"%s\",\"password\":\"%s\"}", email, password);
+                try (OutputStream os = con.getOutputStream()) {
+                    byte[] input = jsonInput.getBytes("utf-8");
+                    os.write(input, 0, input.length);
+                }
+
+                int responseCode = con.getResponseCode();
+
+                if (responseCode == 200) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    reader.close();
+
+                    Gson gson = new Gson();
+                    User loggedInUser = gson.fromJson(response.toString(), User.class);
+                    Session.getInstance().setUser(loggedInUser);
+
+                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ProfilePage.fxml"));
+                    Scene profileScene = new Scene(fxmlLoader.load(), 650, 600);
+                    Stage stage = new Stage();
+                    stage.setScene(profileScene);
+                    stage.setTitle("Profile Page");
+                    stage.show();
+
+                    Stage currentStage = (Stage) signInButton.getScene().getWindow();
+                    currentStage.close();
+                } else {
+                    showAlert("Login Failed", "Invalid email or password.");
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Failed to load Profile Page");
-                alert.setContentText("An error occurred while trying to load the profile page.");
-                alert.showAndWait();
+                showAlert("Login Error", "An error occurred during login.");
             }
+        } else {
+            showAlert("Missing Fields", "Please enter both email and password.");
         }
     }
+
+    private void showAlert(String header, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
     @FXML
     void createAccountHandler(MouseEvent event) {

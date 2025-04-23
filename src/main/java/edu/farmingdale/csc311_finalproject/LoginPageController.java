@@ -13,8 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import com.google.gson.Gson;
@@ -66,10 +65,19 @@ public class LoginPageController {
                 String email = emailTextField.getText();
                 String password = passwordTextField.getText();
 
-                URL url = new URL("http://localhost:8080/users/login?email=" + email + "&password=" + password);
+                URL url = new URL("http://localhost:8080/users/login");
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("POST");
+                con.setRequestProperty("Content-Type", "application/json");
+                con.setRequestProperty("Accept", "application/json");
                 con.setDoOutput(true);
+
+                String jsonInput = String.format("{\"email\":\"%s\",\"password\":\"%s\"}", email, password);
+
+                try (OutputStream os = con.getOutputStream()) {
+                    byte[] input = jsonInput.getBytes("utf-8");
+                    os.write(input, 0, input.length);
+                }
 
                 int responseCode = con.getResponseCode();
 
@@ -86,7 +94,6 @@ public class LoginPageController {
                     User loggedInUser = gson.fromJson(response.toString(), User.class);
 
                     Session.getInstance().setUser(loggedInUser);
-
                     FXMLLoader fxmlProfileLoader = new FXMLLoader(HelloApplication.class.getResource("ProfilePage.fxml"));
                     Scene profileScene = new Scene(fxmlProfileLoader.load(), 650, 600);
                     Stage profileStage = new Stage();
@@ -115,6 +122,7 @@ public class LoginPageController {
             }
         }
     }
+
 
 
     @FXML

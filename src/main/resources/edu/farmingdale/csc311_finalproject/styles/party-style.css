@@ -2,33 +2,81 @@
     font-family: 'Raleway';
     src: url('../fonts/Raleway-Regular.ttf');
 }
+
 @font-face {
-    font-family: 'Cormorant Garamond';
-    src: url('../fonts/CormorantGaramond-Medium.ttf');
+    font-family: 'Uncial Antiqua';
+    src: url('../fonts/UncialAntiqua-Regular.ttf');
+}
+@font-face {
+    font-family: 'IM Fell English SC';
+    src: url('../fonts/IMFellEnglishSC-Regular.ttf');
 }
 
 .root {
-    -fx-background-color: #d4ae6c;
+    /*-fx-background-color: #d4ae6c;*/
+    -fx-background-image: url("../images/tile.png");
 }
+.top-menu {
+    -fx-background-color: #87632d90;
+    -fx-background-radius: 5px;
+    -fx-padding: 0px 20px 0px 10px ;
+}
+
+.top-menu .label {
+    -fx-text-fill: white;
+    -fx-font-family: 'IM Fell English SC';
+    -fx-font-size: 20px;
+    -fx-padding: 10px;
+}
+
+.top-menu .menu-button {
+    -fx-background-color: transparent;
+}
+
+.top-menu .menu-button .label{
+    -fx-font-family: Raleway;
+    -fx-font-size: 12px;
+    -fx-padding: 5px;
+}
+
+.top-menu .menu-button .arrow {
+    -fx-background-color: -fx-mark-color, #FFFFFF;
+}
+
+.top-menu .menu-button .menu-item .label {
+    -fx-text-fill: black;
+}
+
+.top-menu .menu-button .menu-item:hover,
+.top-menu .menu-button .menu-item:focused {
+    -fx-background-color: #87632d;
+}
+
+.top-menu .menu-button .menu-item:hover .label,
+.top-menu .menu-button .menu-item:focused .label {
+    -fx-text-fill: white;
+}
+
 
 .container{
     -fx-border-color: #87632d;
-    -fx-border-width: 3px;
+    -fx-border-width: 2px;
     -fx-border-radius: 5px;
 }
 
 .left-pane{
+    -fx-background-color: #ffffff30;
     -fx-border-color: transparent #87632d transparent transparent;
-    -fx-border-width: 3px;
+    -fx-border-width: 2px;
     -fx-padding: 10px;
+
 }
 
 .heading{
-    -fx-font-family: "Cormorant Garamond", Serif;
+    -fx-font-family: 'IM Fell English SC', Serif;
     -fx-text-fill: #513310;
-    -fx-font-size: 30px;
-    /*-fx-alignment: center;*/
-    -fx-max-width: 154px;
+    -fx-font-size: 25px;
+    -fx-max-width: 275px;
     -fx-wrap-text: true;
 }
 
@@ -36,5 +84,25 @@
     -fx-font-family: Raleway, SansSerif;
     -fx-text-fill: #513310;
     -fx-font-size: 15px;
+}
+.scroll-pane {
+    -fx-background-color: transparent;
+}
 
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical, .scroll-bar:horizontal {
+    -fx-background-color: #d4ae6c;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #87632d;
+    -fx-background-radius: 5px;
+}
+
+#games-bottom{
+    -fx-border-color:  #87632d transparent transparent transparent;
+    -fx-border-width: 2px;
 }

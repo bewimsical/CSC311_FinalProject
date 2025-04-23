@@ -54,7 +54,7 @@ public class PartyController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-           party = sendGET(ApiClient.getParty(1), new TypeReference<Party>() {});
+           party = sendGET(ApiClient.getParty(2), new TypeReference<Party>() {});
         } catch (IOException e) {
            e.printStackTrace();
            party = new Party(-1L,"Party Name", null, "party loc");

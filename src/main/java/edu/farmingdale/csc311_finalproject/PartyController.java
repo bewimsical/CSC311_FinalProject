@@ -37,6 +37,9 @@ public class PartyController implements Initializable {
     private Label partyLoc;
 
     @FXML
+    private Label partyTime;
+
+    @FXML
     private Label partyNameLabel;
 
     @FXML
@@ -51,7 +54,7 @@ public class PartyController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-           party = sendGET(ApiClient.getParty(2), new TypeReference<Party>() {});
+           party = sendGET(ApiClient.getParty(1), new TypeReference<Party>() {});
         } catch (IOException e) {
            e.printStackTrace();
            party = new Party(-1L,"Party Name", null, "party loc");
@@ -61,6 +64,7 @@ public class PartyController implements Initializable {
         partyNameLabel.setPrefHeight(Region.USE_COMPUTED_SIZE);
         partyLoc.setText(party.getLocation());
         partyDate.setText(formatDate(party.getPartyDate()));
+        partyTime.setText(formatTime(party.getPartyDate()));
 
         try {
             guests.addAll(Objects.requireNonNull(sendGET(getPartyUsers(party.getPartyId()), new TypeReference<List<User>>() {
@@ -75,6 +79,8 @@ public class PartyController implements Initializable {
             ImageView profilePic = new ImageView(image);
             profilePic.setFitHeight(25);
             profilePic.setFitWidth(25);
+            profilePic.setPreserveRatio(true);
+            profilePic.setSmooth(true);
             Label guestName = new Label(u.getUsername());
             guestName.getStyleClass().add("info-text");
             HBox card = new HBox(10, profilePic, guestName);
@@ -87,10 +93,17 @@ public class PartyController implements Initializable {
 
     private String formatDate(LocalDateTime date){
         if (date != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
             return date.format(formatter);
         }
         return "no date";
+    }
+    private String formatTime(LocalDateTime date){
+        if (date != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+            return date.format(formatter);
+        }
+        return "no time";
     }
 
 

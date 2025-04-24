@@ -80,7 +80,7 @@
     -fx-wrap-text: true;
 }
 
-.info-text{
+.info-text, .game-name-text{
     -fx-font-family: Raleway, SansSerif;
     -fx-text-fill: #513310;
     -fx-font-size: 15px;
@@ -104,5 +104,47 @@
 
 #games-bottom{
     -fx-border-color:  #87632d transparent transparent transparent;
+    -fx-border-width: 2px;
+}
+
+/*.game-name-text {*/
+/*    -fx-font-size: 20px;*/
+/*    -fx-wrap-text: true;*/
+/*    -fx-text-alignment: left;*/
+/*    -fx-alignment: center-left;*/
+/*}*/
+.card {
+    -fx-background-color: #ffffff30;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 6, 0, 0, 2);
+    -fx-cursor: hand;
+    -fx-spacing: 10px;
+    -fx-alignment: center-left;
+}
+
+.card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.2, 0, 4);
+    -fx-background-color: #f9f9f930;
+    -fx-scale-x: 1.01;
+    -fx-scale-y: 1.01;
+}
+
+.card .info-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #444;
+}
+
+.game-name-text {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-wrap-text: true;
+    -fx-text-alignment: left;
+    -fx-alignment: center-left;
+}
+.profile-thumb-container{
+    -fx-border-color: white;
+    -fx-border-radius: 100px;
     -fx-border-width: 2px;
 }

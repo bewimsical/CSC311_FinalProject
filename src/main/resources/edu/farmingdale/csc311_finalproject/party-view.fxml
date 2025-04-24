@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
@@ -97,19 +98,19 @@
                   <VBox fx:id="guestList" prefHeight="200.0" prefWidth="100.0" />
                </children>
             </VBox>
-            <VBox prefHeight="462.0" prefWidth="667.0">
+            <VBox maxWidth="1.7976931348623157E308" prefHeight="462.0" prefWidth="667.0" HBox.hgrow="ALWAYS">
                <children>
-                  <HBox alignment="CENTER" prefHeight="29.0" prefWidth="609.0">
+                  <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="609.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Label styleClass="heading" text="Selected Games" />
                      </children>
                   </HBox>
-                  <ScrollPane prefHeight="138.0" prefWidth="609.0" styleClass="game-container">
+                  <ScrollPane maxWidth="1.7976931348623157E308" prefHeight="138.0" prefWidth="609.0" styleClass="game-container" VBox.vgrow="ALWAYS">
                      <content>
-                        <FlowPane prefHeight="200.0" prefWidth="200.0" />
+                        <FlowPane maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                   </ScrollPane>
-                  <HBox id="games-bottom" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="609.0">
+                  <HBox id="games-bottom" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="609.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Label styleClass="heading" text="Games" />
                      </children>
@@ -117,9 +118,13 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </HBox>
-                  <ScrollPane layoutX="10.0" layoutY="10.0" prefHeight="271.0" prefWidth="609.0" styleClass="game-container">
+                  <ScrollPane fx:id="gamesListContainer" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="271.0" prefWidth="609.0" styleClass="game-container" VBox.vgrow="ALWAYS">
                      <content>
-                        <FlowPane prefHeight="200.0" prefWidth="200.0" />
+                        <FlowPane fx:id="gamesList" hgap="5.0" maxWidth="1.7976931348623157E308" prefWidth="605.0" prefWrapLength="0.0" vgap="5.0">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </FlowPane>
                      </content>
                   </ScrollPane>
                </children></VBox>
@@ -160,10 +165,16 @@
                   <Insets left="20.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="281.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="281.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Circle fx:id="circle_view" fill="#c0c8d0" layoutX="703.0" layoutY="25.0" radius="19.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
-                  <MenuButton layoutX="722.0" layoutY="14.0" mnemonicParsing="false" text="username">
+                  <StackPane fx:id="profileContainer" maxHeight="20.0" maxWidth="20.0" prefHeight="20.0" prefWidth="20.0" styleClass="profile-thumb-container">
+                     <children>
+                        <Circle fx:id="circle_view" fill="#c0c8d0" radius="19.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                        <!-- ImageView will be added here dynamically -->
+                     </children>
+                  </StackPane>
+
+                  <MenuButton fx:id="usernameLabel" layoutX="722.0" layoutY="14.0" mnemonicParsing="false" text="username">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Settings" />
                         <MenuItem mnemonicParsing="false" text="Logout" />

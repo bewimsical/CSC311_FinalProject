@@ -1,5 +1,7 @@
 package edu.farmingdale.csc311_finalproject;
 
+import java.util.Objects;
+
 public class Game {
 
     private int gameId;
@@ -114,5 +116,16 @@ public class Game {
         this.bggId = bggId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+        return gameId == game.gameId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(gameId);
+    }
 }
 

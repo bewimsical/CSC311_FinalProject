@@ -8,9 +8,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.File;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class CreateAccountPageController {
@@ -50,6 +53,24 @@ public class CreateAccountPageController {
 
 
     }
+    String getRandomProfilePicUrl() {
+        try {
+            String imagePath = "/edu/farmingdale/csc311_finalproject/images";
+            File imageFolder = new File(getClass().getResource(imagePath).toURI());
+            File[] imageFiles = imageFolder.listFiles((dir, name) ->
+                    name.toLowerCase().endsWith(".png") || name.toLowerCase().endsWith(".jpg") || name.toLowerCase().endsWith(".jpeg")
+            );
+
+            if (imageFiles != null && imageFiles.length > 0) {
+                Random rand = new Random();
+                File randomImage = imageFiles[rand.nextInt(imageFiles.length)];
+                return randomImage.toURI().toString(); // Use this as the image URL
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Log issue
+        }
+        return ""; // fallback if something goes wrong
+    }
 
     @FXML
     void createAccountHandler(ActionEvent event) {
@@ -64,12 +85,21 @@ public class CreateAccountPageController {
             try {
                 //creates JSON
                 String jsonInputString = String.format(
+                        "{\"username\":\"%s\", \"fName\":\"First\", \"lName\":\"Last\", \"email\":\"%s\", \"password\":\"%s\", \"profilePicUrl\":\"%s\"}",
+                        createAccountEmailTextField.getText().split("@")[0],
+                        createAccountEmailTextField.getText(),
+                        createAccountPasswordTextFIeld.getText(),
+                        getRandomProfilePicUrl()
+                );
+                /**
+                String jsonInputString = String.format(
                         "{\"username\":\"%s\", \"fName\":\"First\", \"lName\":\"Last\", \"email\":\"%s\", \"password\":\"%s\", \"profilePicUrl\":\"\"}",
                         createAccountEmailTextField.getText().split("@")[0], // temp username
                         createAccountEmailTextField.getText(),
                         createAccountPasswordTextFIeld.getText()
-                );
 
+                );
+**/
                 //send POST request
                 URL url = new URL("http://localhost:8080/users/create");
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -114,6 +144,7 @@ public class CreateAccountPageController {
                 alert.showAndWait();
             }
         }
+
 
 
     }

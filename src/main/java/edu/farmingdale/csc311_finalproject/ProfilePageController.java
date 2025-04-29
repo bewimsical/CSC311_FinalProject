@@ -19,7 +19,6 @@ public class ProfilePageController {
     private Label emailLabel;
 
 
-
     @FXML
     private Label usernameLabel; // or Text if you used that!
 

@@ -16,21 +16,21 @@
             <Image url="@../../../login%20screen%20improved.png" />
          </image>
       </ImageView>
-      <TextField fx:id="createAccountEmailTextField" layoutX="176.0" layoutY="201.0" prefHeight="40.0" prefWidth="348.0" style="-fx-background-radius: 8;" />
-      <PasswordField fx:id="createAccountPasswordTextFIeld" layoutX="190.0" layoutY="318.0" prefHeight="40.0" prefWidth="294.0" style="-fx-background-radius: 8;" />
-      <PasswordField fx:id="createAccountConfirmPasswordTextField" layoutX="190.0" layoutY="379.0" prefHeight="40.0" prefWidth="294.0" style="-fx-background-radius: 8;" />
-      <Button fx:id="createAccountButton" layoutX="243.0" layoutY="434.0" mnemonicParsing="false" onAction="#createAccountHandler" prefHeight="48.0" prefWidth="190.0" style="-fx-background-radius: 8;">
+      <TextField fx:id="createAccountEmailTextField" layoutX="176.0" layoutY="183.0" prefHeight="40.0" prefWidth="294.0" style="-fx-background-radius: 8;" />
+      <PasswordField fx:id="createAccountPasswordTextFIeld" layoutX="176.0" layoutY="297.0" prefHeight="40.0" prefWidth="294.0" style="-fx-background-radius: 8;" />
+      <PasswordField fx:id="createAccountConfirmPasswordTextField" layoutX="176.0" layoutY="354.0" prefHeight="40.0" prefWidth="294.0" style="-fx-background-radius: 8;" />
+      <Button fx:id="createAccountButton" layoutX="243.0" layoutY="434.0" mnemonicParsing="false" onAction="#createAccountHandler" prefHeight="48.0" prefWidth="190.0" style="-fx-background-radius: 8;" text="Create Account!">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <TextField fx:id="lastNameTextField" layoutX="176.0" layoutY="148.0" prefHeight="40.0" prefWidth="348.0" style="-fx-background-radius: 8;" />
-      <TextField fx:id="FirstNameTextField" layoutX="176.0" layoutY="91.0" prefHeight="40.0" prefWidth="348.0" style="-fx-background-radius: 8;" />
-      <TextField fx:id="userNameTextField" layoutX="176.0" layoutY="260.0" prefHeight="40.0" prefWidth="348.0" style="-fx-background-radius: 8;" />
-      <Text layoutX="98.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name" />
-      <Text layoutX="98.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
-      <Text layoutX="98.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name" />
-      <Text layoutX="111.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
-      <Text layoutX="98.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-      <Text layoutX="73.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reconfirm Password" />
+      <TextField fx:id="lastNameTextField" layoutX="176.0" layoutY="126.0" prefHeight="40.0" prefWidth="294.0" style="-fx-background-radius: 8;" />
+      <TextField fx:id="FirstNameTextField" layoutX="176.0" layoutY="69.0" prefHeight="40.0" prefWidth="294.0" style="-fx-background-radius: 8;" />
+      <TextField fx:id="userNameTextField" layoutX="176.0" layoutY="240.0" prefHeight="40.0" prefWidth="294.0" style="-fx-background-radius: 8;" />
+      <Text layoutX="175.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name" />
+      <Text layoutX="174.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
+      <Text layoutX="173.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name" />
+      <Text layoutX="175.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+      <Text layoutX="164.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+      <Text layoutX="135.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reconfirm Password" />
    </children>
 </Pane>

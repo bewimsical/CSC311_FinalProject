@@ -21,7 +21,7 @@
       </ImageView>
       <ImageView fx:id="signUpBoard" fitHeight="130.0" fitWidth="166.0" layoutX="256.0" layoutY="424.0" onMouseClicked="#signUpPage" pickOnBounds="true">
          <image>
-            <Image url="@../../../sign%20Up%20cartoon.png" />
+            <Image url="@../../../login%20screen%20improved.png" />
          </image>
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
@@ -29,7 +29,7 @@
       </ImageView>
       <ImageView fx:id="logInBoard" fitHeight="130.0" fitWidth="166.0" layoutX="256.0" layoutY="424.0" onMouseClicked="#logInPage" pickOnBounds="true">
          <image>
-            <Image url="@../../../Potential%20login%20screen.png" />
+            <Image url="@../../../login%20screen%20improved.png" />
          </image>
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />

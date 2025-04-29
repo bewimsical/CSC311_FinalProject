@@ -15,6 +15,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 
 public class SpareCreateAccountPageController {
 
@@ -134,49 +138,67 @@ public class SpareCreateAccountPageController {
 
     @FXML
     void createAccountHandler(ActionEvent event) {
-        if(!createAccountConfirmPasswordTextField.getText().equals(createAccountPasswordTextFIeld.getText())) {
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Passwords do not match");
-            alert.setContentText("Your passwords do not match");
-            alert.showAndWait();
+        if (!createAccountConfirmPasswordTextField.getText().equals(createAccountPasswordTextFIeld.getText())) {
+            showAlert("Passwords do not match", "Please make sure both password fields are identical.");
+            return;
         }
-        else{
-            try {
 
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Success!");
+        try {
+            String email = createAccountEmailTextField.getText();
+            String password = createAccountPasswordTextFIeld.getText();
+            String username = email.split("@")[0];
+
+            String jsonInput = String.format(
+                    "{\"username\":\"%s\",\"fName\":\"First\",\"lName\":\"Last\",\"email\":\"%s\",\"profilePicUrl\":\"\",\"userPassword\":\"%s\"}",
+                    username, email, password);
+
+            URL url = new URL("http://localhost:8080/users/create");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Content-Type", "application/json");
+            con.setDoOutput(true);
+
+            try (OutputStream os = con.getOutputStream()) {
+                byte[] input = jsonInput.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            int responseCode = con.getResponseCode();
+
+            if (responseCode == 200 || responseCode == 201) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
                 alert.setHeaderText("Account Created");
-                alert.setContentText("Your account has been created successfully.");
+                alert.setContentText("You may now log in with your new account.");
                 alert.showAndWait();
 
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("spareLoginPage.fxml"));
+                Scene loginScene = new Scene(fxmlLoader.load(), 650, 600);
+                Stage loginStage = new Stage();
+                loginStage.setScene(loginScene);
+                loginStage.setTitle("Login Page");
+                loginStage.show();
 
                 Stage currentStage = (Stage) createAccountButton.getScene().getWindow();
                 currentStage.close();
-                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("spareLoginPage.fxml"));
-
-                Scene loginScene = new Scene(fxmlLoader.load(), 650, 600);
-
-                Stage loginStage = new Stage();
-
-                loginStage.setScene(loginScene);
-                loginStage.show();
-
-
-                Stage currentAlertStage = (Stage) createAccountButton.getScene().getWindow();
-                currentAlertStage.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Failed to load Profile Page");
-                alert.setContentText("An error occurred while trying to load the profile page.");
-                alert.showAndWait();
+            } else {
+                showAlert("Account Creation Failed", "Server responded with code: " + responseCode);
             }
-        }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Error", "Something went wrong during account creation.");
+        }
     }
+
+    private void showAlert(String header, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
 
 }

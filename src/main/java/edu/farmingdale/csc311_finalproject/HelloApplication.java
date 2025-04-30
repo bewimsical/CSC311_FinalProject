@@ -14,6 +14,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 650, 600);
         stage.setScene(scene);
         stage.show();
+
     }
 
     public static void main(String[] args) {

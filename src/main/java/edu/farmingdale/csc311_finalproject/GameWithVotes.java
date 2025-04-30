@@ -1,40 +1,28 @@
 package edu.farmingdale.csc311_finalproject;
 
-import java.util.Objects;
+public class GameWithVotes {
 
-public class Game {
 
     private int gameId;
-    private int bggId;
     private String game_name;
     private int minPlayers;
     private int maxPlayers;
     private int playTime;
     private String imgUrl;
-    private String category;
+    private int votes;
 
     // Default Constructor
-    public Game() {
+    public GameWithVotes() {
     }
 
-    public Game(int gameId, int bggId, String game_name, int minPlayers, int maxPlayers, int playTime, String imgUrl, String category) {
+    public GameWithVotes(int gameId, String game_name, int minPlayers, int maxPlayers, int playTime, String imgUrl, int votes) {
         this.gameId = gameId;
-        this.bggId = bggId;
         this.game_name = game_name;
         this.minPlayers = minPlayers;
         this.maxPlayers = maxPlayers;
         this.playTime = playTime;
         this.imgUrl = imgUrl;
-        this.category = category;
-    }
-    public Game(int bggId, String game_name, int minPlayers, int maxPlayers, int playTime, String imgUrl, String category) {
-        this.bggId = bggId;
-        this.game_name = game_name;
-        this.minPlayers = minPlayers;
-        this.maxPlayers = maxPlayers;
-        this.playTime = playTime;
-        this.imgUrl = imgUrl;
-        this.category = category;
+        this.votes = votes;
     }
 
     // Getters and Setters
@@ -86,14 +74,6 @@ public class Game {
         this.imgUrl = imgUrl;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     // toString Method
     @Override
     public String toString() {
@@ -104,28 +84,14 @@ public class Game {
                 ", maxPlayers='" + maxPlayers + '\'' +
                 ", playTime='" + playTime + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
-                ", category='" + category + '\'' +
                 '}';
     }
 
-    public int getBggId() {
-        return bggId;
+    public int getVotes() {
+        return votes;
     }
 
-    public void setBggId(int bggId) {
-        this.bggId = bggId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Game game = (Game) o;
-        return gameId == game.gameId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(gameId);
+    public void setVotes(int votes) {
+        this.votes = votes;
     }
 }
-

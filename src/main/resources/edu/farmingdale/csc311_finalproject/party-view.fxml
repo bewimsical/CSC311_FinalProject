@@ -93,7 +93,22 @@
                         <Image url="@images/pen-to-square-solid.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="guestsLabel" layoutX="23.0" layoutY="23.0" maxWidth="243.0" prefHeight="35.0" prefWidth="243.0" styleClass="heading" text="Guests" textAlignment="CENTER" />
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label fx:id="guestsLabel" maxWidth="243.0" prefHeight="35.0" prefWidth="243.0" styleClass="heading" text="Guests" textAlignment="CENTER" />
+                        <ImageView id="addGuest" fitHeight="16.0" fitWidth="16.0" onMouseClicked="#addGuest" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/plus-solid.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </HBox>
                   <VBox fx:id="guestList" prefHeight="200.0" prefWidth="100.0" />
                </children>
             </VBox>

@@ -12,10 +12,11 @@
     src: url('../fonts/IMFellEnglishSC-Regular.ttf');
 }
 
-.root {
+.root, .friends-popup{
     /*-fx-background-color: #d4ae6c;*/
     -fx-background-image: url("../images/tile.png");
 }
+/*-------Nav Bar-------*/
 .top-menu {
     -fx-background-color: #87632d90;
     -fx-background-radius: 5px;
@@ -29,7 +30,8 @@
     -fx-padding: 10px;
 }
 
-.top-menu-item:hover{
+.top-menu-item:hover,
+#addGuest:hover{
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 4, 0, 0, 1);
 }
 
@@ -68,6 +70,8 @@
     -fx-border-radius: 5px;
 }
 
+/*-------Party and guest info -------*/
+
 .left-pane{
     -fx-background-color: #ffffff30;
     -fx-border-color: transparent #87632d transparent transparent;
@@ -88,6 +92,50 @@
     -fx-font-size: 25px;
     -fx-max-width: 275px;
     -fx-wrap-text: true;
+}
+
+.friends-popup{
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 2, 2);
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px;
+    -fx-border-color: #87632d;
+    -fx-background-image: url("../images/tile.png");
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-padding: 0px, 0px, 10px, 0px;
+}
+.friends-popup-list{
+    -fx-padding: 10;
+
+    -fx-background-radius: 5px;
+}
+
+.friend-card{
+    -fx-alignment: center-left;
+}
+.friend-card:hover{
+    -fx-background-color: #ffffff30;
+}
+
+.selected-friend{
+    -fx-background-color: #87632d50;
+}
+.selected-friend:hover{
+    -fx-background-color: #87632d80;
+}
+
+
+.friends-popup-button{
+    -fx-background-radius: 100px;
+    -fx-background-color: #51331080;
+    -fx-text-fill: white;
+    -fx-font-family: Raleway;
+    -fx-pref-width: 70px;
+    -fx-cursor: hand;
+
+}
+.friends-popup-button:hover{
+    -fx-background-color: #513310;
 }
 
 .game-heading{

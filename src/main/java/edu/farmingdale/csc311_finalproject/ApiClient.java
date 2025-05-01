@@ -222,14 +222,19 @@ public final class ApiClient {
     public static String getSelectedGames(Long partyId){
         return String.format("%s/parties/%d/games", BASE_API_URL, partyId);
     }
+    //GET returns a list of user objects
+    public static String getUserSelectedGames(Long partyId, Long userId){
+        return String.format("%s/parties/%d/games/selected/%d", BASE_API_URL, partyId, userId);
+    }
     //POST request body is null, returns void
-    public static String selectGame(Long partyId, int gameId){
-        return String.format("%s/parties/%d/games/%d", BASE_API_URL, partyId, gameId);
+    public static String selectGame(Long partyId, int gameId, Long userId){
+        return String.format("%s/parties/%d/games/%d/%d", BASE_API_URL, partyId, gameId, userId);
     }
     //DELETE request body is null, returns void
-    public static String deselectGame(Long partyId, int gameId){
-        return String.format("%s/parties/%d/games/%d", BASE_API_URL, partyId, gameId);
+    public static String deselectGame(Long partyId, int gameId, Long userId){
+        return String.format("%s/parties/%d/games/%d/%d", BASE_API_URL, partyId, gameId, userId);
     }
+
 
 
     //=============EXAMPLE USAGE=============//

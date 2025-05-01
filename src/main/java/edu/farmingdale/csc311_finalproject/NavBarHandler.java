@@ -15,7 +15,7 @@ public class NavBarHandler {
 
     public static void setupNav(Label home, Label games, Label friends, Label parties){
         home.setOnMouseClicked(e -> switchScene(e.getSource(), "ProfilePage.fxml"));
-        games.setOnMouseClicked(e -> switchScene(e.getSource(), "ProfilePage.fxml"));
+        games.setOnMouseClicked(e -> switchScene(e.getSource(), "games-view.fxml"));
         friends.setOnMouseClicked(e -> switchScene(e.getSource(), "ProfilePage.fxml"));
         parties.setOnMouseClicked(e -> switchScene(e.getSource(), "ProfilePage.fxml"));
     }

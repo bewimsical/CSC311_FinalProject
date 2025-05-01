@@ -38,6 +38,14 @@ import static edu.farmingdale.csc311_finalproject.ApiClient.*;
 public class PartyController implements Initializable {
 
     @FXML
+    private Label homeBtn;
+    @FXML
+    private Label partiesBtn;
+    @FXML
+    private Label friendsBtn;
+    @FXML
+    private Label gamesBtn;
+    @FXML
     private Circle circle_view;
     @FXML
     private FlowPane gamesList;
@@ -91,6 +99,9 @@ public class PartyController implements Initializable {
 
         //create popup for adding guests
         guestPopup = new Popup();
+
+        //navbar handler
+        NavBarHandler.setupNav(homeBtn, gamesBtn,friendsBtn,partiesBtn);
 
         //todo switch to session user
         try {

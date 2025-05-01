@@ -69,6 +69,12 @@
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
 }
+.page-heading{
+    -fx-font-family: 'IM Fell English SC', Serif;
+    -fx-text-fill: #513310;
+    -fx-font-size: 35px;
+    -fx-alignment: center-left;
+}
 
 /*-------Party and guest info -------*/
 

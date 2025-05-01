@@ -1,99 +1,161 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<?import javafx.scene.control.Label?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="591.0" prefWidth="650.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.ProfilePageController">
-   <children>
-      <ImageView fitHeight="71.0" fitWidth="178.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Gamenight%20lil%20logo.png" />
-         </image>
-      </ImageView>
-      <Text fill="WHITE" layoutX="151.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game " wrappingWidth="38.53009033203125" />
-      <Text fill="WHITE" layoutX="151.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Night" />
-      <Text fill="WHITE" layoutX="414.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile" />
-      <Text fill="WHITE" layoutX="348.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Party" />
-      <Text fill="WHITE" layoutX="473.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chat" />
-      <Pane layoutX="125.0" layoutY="85.0" prefHeight="500.0" prefWidth="450.0" style="-fx-background-color: #514f4f;">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="850.0" stylesheets="@styles/party-style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.PartyController">
+   <center>
+      <HBox styleClass="container" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
          <children>
-            <Pane layoutX="15.0" layoutY="14.0" prefHeight="136.0" prefWidth="425.0" style="-fx-background-color: #5A5A5A;">
+            <VBox prefHeight="464.0" prefWidth="235.0" styleClass="left-pane">
                <children>
-                  <ImageView fitHeight="92.0" fitWidth="94.0" layoutX="14.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../profile%20bird.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="usernameLabel" layoutX="122.0" layoutY="38.0" text="User Name" textFill="WHITE" />
-                  <Text fill="WHITE" layoutX="193.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of games" />
-                  <Text fill="WHITE" layoutX="222.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Games" />
-                  <Text fill="WHITE" layoutX="313.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of friends" />
-                  <Text fill="WHITE" layoutX="342.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Friends" />
+                  <HBox alignment="CENTER">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Circle fx:id="circle_view1" fill="#c0c8d0" radius="60.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="154.0">
+                     <padding>
+                        <Insets left="11.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="154.0">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label fx:id="friendsLabel" maxWidth="243.0" prefHeight="35.0" prefWidth="243.0" styleClass="heading" text="Friends" textAlignment="CENTER" />
+                        <ImageView id="addGuest" fitHeight="16.0" fitWidth="16.0" onMouseClicked="#addGuest" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/plus-solid.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <VBox fx:id="friendList" prefHeight="200.0" prefWidth="100.0" />
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label fx:id="gamesLabel1" maxWidth="243.0" prefHeight="35.0" prefWidth="243.0" styleClass="heading" text="Games " textAlignment="CENTER" />
+                        <ImageView id="addGuest" fitHeight="16.0" fitWidth="16.0" onMouseClicked="#addGuest" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/plus-solid.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <VBox fx:id="gamesList1" prefHeight="200.0" prefWidth="100.0" />
                </children>
-            </Pane>
-            <Pane layoutX="15.0" layoutY="163.0" prefHeight="102.0" prefWidth="425.0" style="-fx-background-color: #5A5A5A;">
+            </VBox>
+            <VBox fx:id="gamesContainer" maxWidth="1.7976931348623157E308" prefHeight="464.0" prefWidth="235.0" styleClass="games-container" HBox.hgrow="ALWAYS">
                <children>
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="6.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../Catan.jpg" />
-                     </image>
-                  </ImageView>
-                  <Text fill="WHITE" layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent Activity" />
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="100.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../better%20uno.jpg" />
-                     </image></ImageView>
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="213.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../Twlight%20imperium.jpg" />
-                     </image></ImageView>
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="307.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../Gloomhaven.jpg" />
-                     </image></ImageView>
+                  <Label fx:id="gamesLabel" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" text="Games Owned" VBox.vgrow="ALWAYS">
+                     <styleClass>
+                        <String fx:value="heading" />
+                        <String fx:value="game-heading" />
+                     </styleClass>
+                  </Label>
+                  <ScrollPane fx:id="gamesListContainer" maxWidth="1.7976931348623157E308" prefHeight="425.0" prefWidth="239.0" styleClass="game-container" VBox.vgrow="ALWAYS">
+                     <content>
+                        <FlowPane fx:id="gamesList" hgap="5.0" maxWidth="1.7976931348623157E308" prefWidth="270.0" prefWrapLength="0.0" vgap="5.0">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </FlowPane>
+                     </content>
+                  </ScrollPane>
                </children>
-            </Pane>
-            <Pane layoutX="13.0" layoutY="287.0" prefHeight="193.0" prefWidth="425.0" style="-fx-background-color: #5A5A5A;">
-               <children>
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="6.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../Haunted%20house.jpg" />
-                     </image></ImageView>
-                  <Text fill="WHITE" layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Games Owned" />
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="100.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../monoploy.jpg" />
-                     </image></ImageView>
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="213.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../warhammer.jpg" />
-                     </image></ImageView>
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="307.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../red%20dragon.jpg" />
-                     </image></ImageView>
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="6.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../Cards%20against%20humanity.jpg" />
-                     </image></ImageView>
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="100.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../dark%20souls%20board%20game.jpg" />
-                     </image></ImageView>
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="213.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../connect%20four.jpg" />
-                     </image></ImageView>
-                  <ImageView fitHeight="71.0" fitWidth="94.0" layoutX="307.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../marvel%20board%20game.jpg" />
-                     </image></ImageView>
-               </children>
-            </Pane>
+            </VBox>
          </children>
-      </Pane>
-   </children>
-</Pane>
+      </HBox>
+   </center>
+   <top>
+      <HBox prefHeight="62.0" prefWidth="850.0" styleClass="top-menu" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/d20_logo.PNG" />
+               </image>
+            </ImageView>
+            <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="505.0">
+               <children>
+                  <Label styleClass="top-menu-item" text="Home">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="19.0" styleClass="top-menu-item" text="Games">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label layoutX="53.0" layoutY="19.0" styleClass="top-menu-item" text="Friends">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label layoutX="156.0" layoutY="19.0" styleClass="top-menu-item" text="Parties">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="281.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <StackPane fx:id="profileContainer" maxHeight="20.0" maxWidth="20.0" prefHeight="20.0" prefWidth="20.0" styleClass="profile-thumb-container">
+                     <children>
+                        <Circle fx:id="circle_view" fill="#c0c8d0" radius="19.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                     </children>
+                  </StackPane>
+                  <MenuButton fx:id="usernameLabel" layoutX="722.0" layoutY="14.0" mnemonicParsing="false" text="username">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Settings" />
+                        <MenuItem mnemonicParsing="false" text="Logout" />
+                     </items>
+                  </MenuButton>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

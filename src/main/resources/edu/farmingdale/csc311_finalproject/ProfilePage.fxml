@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="850.0" stylesheets="@styles/party-style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.PartyController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="850.0" stylesheets="@styles/party-style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.ProfilePageController">
    <center>
       <HBox styleClass="container" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -30,7 +30,7 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </HBox>
-                  <Circle fx:id="circle_view1" fill="#c0c8d0" radius="60.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                  <Circle fx:id="circle_view2" fill="#c0c8d0" radius="60.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
                   <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="154.0">
                      <padding>
                         <Insets left="11.0" />
@@ -63,7 +63,7 @@
                   <VBox fx:id="friendList" prefHeight="200.0" prefWidth="100.0" />
                   <HBox alignment="CENTER_LEFT">
                      <children>
-                        <Label fx:id="gamesLabel1" maxWidth="243.0" prefHeight="35.0" prefWidth="243.0" styleClass="heading" text="Games " textAlignment="CENTER" />
+                        <Label fx:id="gamesLabel" maxWidth="243.0" prefHeight="35.0" prefWidth="243.0" styleClass="heading" text="Games " textAlignment="CENTER" />
                         <ImageView id="addGuest" fitHeight="16.0" fitWidth="16.0" onMouseClicked="#addGuest" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/plus-solid.png" />
@@ -77,20 +77,20 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <VBox fx:id="gamesList1" prefHeight="200.0" prefWidth="100.0" />
+                  <VBox fx:id="gamesList" prefHeight="200.0" prefWidth="100.0" />
                </children>
             </VBox>
-            <VBox fx:id="gamesContainer" maxWidth="1.7976931348623157E308" prefHeight="464.0" prefWidth="235.0" styleClass="games-container" HBox.hgrow="ALWAYS">
+            <VBox fx:id="gamesOwnedContainer" maxWidth="1.7976931348623157E308" prefHeight="464.0" prefWidth="235.0" styleClass="games-container" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="gamesLabel" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" text="Games Owned" VBox.vgrow="ALWAYS">
+                  <Label fx:id="gamesOwnedLabel" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" text="Owned Games" VBox.vgrow="ALWAYS">
                      <styleClass>
                         <String fx:value="heading" />
                         <String fx:value="game-heading" />
                      </styleClass>
                   </Label>
-                  <ScrollPane fx:id="gamesListContainer" maxWidth="1.7976931348623157E308" prefHeight="425.0" prefWidth="239.0" styleClass="game-container" VBox.vgrow="ALWAYS">
+                  <ScrollPane fx:id="gamesOwnedListContainer" maxWidth="1.7976931348623157E308" prefHeight="425.0" prefWidth="239.0" styleClass="game-container" VBox.vgrow="ALWAYS">
                      <content>
-                        <FlowPane fx:id="gamesList" hgap="5.0" maxWidth="1.7976931348623157E308" prefWidth="270.0" prefWrapLength="0.0" vgap="5.0">
+                        <FlowPane fx:id="gamesOwnedList" hgap="5.0" maxWidth="1.7976931348623157E308" prefWidth="270.0" prefWrapLength="0.0" vgap="5.0">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>

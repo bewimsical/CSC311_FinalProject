@@ -74,8 +74,9 @@ public class PartyController implements Initializable {
     private final ObservableList<User> guests =  FXCollections.observableArrayList();
     private final ObservableSet<Game> games =  FXCollections.observableSet();
     private final ObservableList<GameWithVotes> selectedGames =  FXCollections.observableArrayList();
+    private final List<Game> userSelectedGames = new ArrayList<>();
     //popup variables
-    private List <User> friends = new ArrayList<>();
+    private final List <User> friends = new ArrayList<>();
     private Popup guestPopup;
     private User selectedGuest;
     private Node selectedCard;
@@ -110,9 +111,11 @@ public class PartyController implements Initializable {
             usernameLabel.setText(currentUser.getUsername());
             try {
                 friends.addAll(Objects.requireNonNull(sendGET(getUserFriends(currentUser.getUserId()), new TypeReference<ArrayList<User>>() {})));
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
 
         } catch (IOException e) {
             currentUser = null;//TODO FIX THIS!!!!!!!
@@ -148,6 +151,7 @@ public class PartyController implements Initializable {
             try {
                 games.addAll(Objects.requireNonNull(sendGET(getUserGames(u.getUserId()), new TypeReference<List<Game>>() {
                 })));
+                userSelectedGames.addAll(Objects.requireNonNull(sendGET(getUserSelectedGames(party.getPartyId(),currentUser.getUserId()), new TypeReference<ArrayList<Game>>() {})));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -157,10 +161,7 @@ public class PartyController implements Initializable {
             HBox card = createGameCard(g);
             gamesList.getChildren().add(card);
         }
-
         updateSelectedGames();
-
-
     }
 
     private void updateSelectedGames(){
@@ -291,7 +292,7 @@ public class PartyController implements Initializable {
             if (styleClasses.contains("selected")) {
                 styleClasses.remove("selected");
                 try {
-                    sendDELETE(deselectGame(party.getPartyId(), id));
+                    sendDELETE(deselectGame(party.getPartyId(), id, currentUser.getUserId()));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -301,7 +302,7 @@ public class PartyController implements Initializable {
             } else {
                 styleClasses.add("selected");
                 try {
-                    sendPOST(selectGame(party.getPartyId(), id), null, new TypeReference<Void>() {
+                    sendPOST(selectGame(party.getPartyId(), id, currentUser.getUserId()), null, new TypeReference<Void>() {
                     });
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -311,6 +312,9 @@ public class PartyController implements Initializable {
 
             }
         });
+        if(userSelectedGames.contains(g)){
+            card.getStyleClass().add("selected");
+        }
 
         FlowPane.setMargin(card, new Insets(10, 5, 0, 5));
         return card;
@@ -350,10 +354,6 @@ public class PartyController implements Initializable {
             Button add = new Button("add");
 
             add.setOnAction(e->{
-                for(User g: guests){
-                    System.out.println(g.getUsername());
-                }
-                System.out.println(selectedGuest==null);
                 if (selectedGuest != null && !guests.contains(selectedGuest)){
                     guests.add(selectedGuest);
                     guestList.getChildren().add(createGuestCard(selectedGuest));
@@ -363,23 +363,23 @@ public class PartyController implements Initializable {
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
-
                     try {
                         List<Game> friendGames = sendGET(getUserGames(selectedGuest.getUserId()), new TypeReference<List<Game>>() {});
                         for(Game g:friendGames){
-                            gamesList.getChildren().add(createGameCard(g));
+                            if(!games.contains(g)) {
+                                games.add(g);
+                                gamesList.getChildren().add(createGameCard(g));
+                            }
                         }
                     } catch (IOException | NullPointerException  ex ) {
                         ex.printStackTrace();
                     }
-
-
                 }
-//                selectedGuest = null;
-//                if (selectedCard != null) {
-//                    selectedCard.getStyleClass().remove("selected-card");
-//                    selectedCard = null;
-//                }
+                selectedGuest = null;
+                if (selectedCard != null) {
+                    selectedCard.getStyleClass().remove("selected-card");
+                    selectedCard = null;
+                }
                 guestPopup.hide();
             });
             cancel.getStyleClass().add("friends-popup-button");
@@ -390,34 +390,31 @@ public class PartyController implements Initializable {
             popup.setMargin(buttonContainer, new Insets(10, 0, 20, 0));
             popup.getStyleClass().add("friends-popup");
             for (User g : friends) {
-                HBox card = createGuestCard(g);
-                card.getStyleClass().add("friend-card");
-                card.setUserData(g.getUserId());
-                //add event listener
-                card.setOnMouseClicked(e -> {
-                    long id = (Long) card.getUserData();
-                    selectedGuest = friends.stream()
-                            .filter(f -> f.getUserId() == id)
-                            .findFirst()
-                            .orElse(null);
+                if(!guests.contains(g)) {
+                    HBox card = createGuestCard(g);
+                    card.getStyleClass().add("friend-card");
+                    card.setUserData(g.getUserId());
+                    //add event listener
+                    card.setOnMouseClicked(e -> {
+                        long id = (Long) card.getUserData();
+                        selectedGuest = friends.stream()
+                                .filter(f -> f.getUserId() == id)
+                                .findFirst()
+                                .orElse(null);
 
-
-                    if (selectedCard != null){
+                        if (selectedCard != null) {
+                            selectedCard.getStyleClass().add("selected-friend");
+                        }
+                        selectedCard = card;
                         selectedCard.getStyleClass().add("selected-friend");
-                    }
-                    selectedCard = card;
-                    selectedCard.getStyleClass().add("selected-friend");
-                    System.out.println(selectedCard == null);
-                    if (selectedCard != null){
-                        System.out.println(selectedCard.getStyleClass() );
-                    }
-
-                });
-                friendsList.getChildren().add(card);
-
-
+                        System.out.println(selectedCard == null);
+                        if (selectedCard != null) {
+                            System.out.println(selectedCard.getStyleClass());
+                        }
+                    });
+                    friendsList.getChildren().add(card);
+                }
             }
-
             guestPopup.getContent().add(popup);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

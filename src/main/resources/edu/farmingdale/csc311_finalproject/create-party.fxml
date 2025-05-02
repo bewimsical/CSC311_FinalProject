@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            fx:controller="edu.farmingdale.csc311_finalproject.CreatePartyController"
+            prefWidth="400" prefHeight="300"
+            stylesheets="@styles/party-style.css">
+
+    <children>
+        <VBox spacing="10" alignment="CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
+            <children>
+                <Label text="Create Party" styleClass="heading" />
+                <TextField fx:id="partyNameField" promptText="Party Name" />
+                <DatePicker fx:id="datePicker" />
+
+                <HBox spacing="10" alignment="CENTER">
+                    <ComboBox fx:id="hourComboBox" prefWidth="60" />
+                    <ComboBox fx:id="minuteComboBox" prefWidth="60" />
+                    <ComboBox fx:id="amPmComboBox" prefWidth="80" />
+                </HBox>
+
+                <TextField fx:id="locationField" promptText="Location" />
+                <Button fx:id="createPartyButton" text="Create Party" onAction="#handleCreateParty" />
+            </children>
+            <padding>
+                <Insets top="20" left="20" right="20" bottom="20" />
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>

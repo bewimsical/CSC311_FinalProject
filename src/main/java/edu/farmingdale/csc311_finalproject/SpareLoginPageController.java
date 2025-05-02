@@ -1,9 +1,7 @@
 package edu.farmingdale.csc311_finalproject;
 
 import com.google.gson.Gson;
-import javafx.animation.FadeTransition;
-import javafx.animation.ScaleTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,6 +24,16 @@ import java.net.URL;
 public class SpareLoginPageController {
     @FXML
     private Text createAccountText;
+
+    @FXML
+    private Text emailPrompt;
+
+
+    @FXML
+    private ImageView logoImage;
+
+    @FXML
+    private Text passwordPrompt;
 
     @FXML
     private Text forgotPasswordField;
@@ -56,83 +64,41 @@ public class SpareLoginPageController {
         loginBoardGame.setScaleY(5f);
         loginBoardGame.setX(-13);
         loginBoardGame.setY(-195);
-        /**
-        TranslateTransition tt = new TranslateTransition(Duration.millis(1), loginBoardGame);
-        tt.setToY(-195);
-        tt.setToX(-13);
-        tt.setCycleCount(1);
-        tt.play();
-         /**
-       /** loginBoardGame.setScaleX(1.48f);
-        loginBoardGame.setScaleY(1.42f);
-
-        // Initially set opacity of all elements to 0
+        // Set initial opacity to 0 for all elements
         createAccountText.setOpacity(0);
-        forgotPasswordField.setOpacity(0);
-        emailTextField.setOpacity(1);
+        emailPrompt.setOpacity(0);
+        emailTextField.setOpacity(0);
+        logoImage.setOpacity(0);
+        passwordPrompt.setOpacity(0);
         passwordTextField.setOpacity(0);
         signInButton.setOpacity(0);
-        emailText.setOpacity(0);
-        passwordText.setOpacity(0);
 
-        // Scale transition for loginBoardGame
-        ScaleTransition st = new ScaleTransition(Duration.seconds(4), loginBoardGame);
-        st.setToX(1);
-        st.setToY(1);
-        st.setCycleCount(1);
-        TranslateTransition tt = new TranslateTransition(Duration.seconds(2), loginBoardGame);
-        tt.setToY(12);
-        tt.setCycleCount(1);
-        tt.setAutoReverse(false);
-        tt.play();
+        // Create fade transitions for each node (duration: 1 second)
+        FadeTransition fade1 = createFade(createAccountText);
+        FadeTransition fade2 = createFade(emailPrompt);
+        FadeTransition fade3 = createFade(emailTextField);
+        FadeTransition fade4 = createFade(logoImage);
+        FadeTransition fade5 = createFade(passwordPrompt);
+        FadeTransition fade6 = createFade(passwordTextField);
+        FadeTransition fade7 = createFade(signInButton);
 
+        // Combine all fades into a parallel transition
+        ParallelTransition fadeAll = new ParallelTransition(fade1, fade2, fade3, fade4, fade5, fade6, fade7);
 
-        // After scale transition ends, fade in the other elements
-        st.setOnFinished(e -> fadeInElements());
+        // Add a 1-second delay before the fade starts
+        PauseTransition delay = new PauseTransition(Duration.seconds(1));
 
-        st.play();
+        // Play the delay and then the fades
+        SequentialTransition sequence = new SequentialTransition(delay, fadeAll);
+        sequence.play();
     }
 
-    private void fadeInElements() {
-        // Create fade transitions for each element
-        FadeTransition fadeCreateAccount = new FadeTransition(Duration.seconds(2), createAccountText);
-        fadeCreateAccount.setFromValue(0);
-        fadeCreateAccount.setToValue(1);
+    private FadeTransition createFade(javafx.scene.Node node) {
+        FadeTransition fade = new FadeTransition(Duration.seconds(1), node);
+        fade.setFromValue(0);
+        fade.setToValue(1);
+        return fade;
 
-        FadeTransition fadeForgotPassword = new FadeTransition(Duration.seconds(2), forgotPasswordField);
-        fadeForgotPassword.setFromValue(0);
-        fadeForgotPassword.setToValue(1);
-
-        FadeTransition fadeEmailTextField = new FadeTransition(Duration.seconds(2), emailTextField);
-        fadeEmailTextField.setFromValue(0);
-        fadeEmailTextField.setToValue(1);
-
-        FadeTransition fadePasswordTextField = new FadeTransition(Duration.seconds(2), passwordTextField);
-        fadePasswordTextField.setFromValue(0);
-        fadePasswordTextField.setToValue(1);
-
-        FadeTransition fadeSignInButton = new FadeTransition(Duration.seconds(2), signInButton);
-        fadeSignInButton.setFromValue(0);
-        fadeSignInButton.setToValue(1);
-
-        FadeTransition fadeEmailText = new FadeTransition(Duration.seconds(2), emailText);
-        fadeEmailText.setFromValue(0);
-        fadeEmailText.setToValue(1);
-
-        FadeTransition fadePasswordText = new FadeTransition(Duration.seconds(2), passwordText);
-        fadePasswordText.setFromValue(0);
-        fadePasswordText.setToValue(1);
-
-        // Play all fade transitions in parallel
-        fadeCreateAccount.play();
-        fadeForgotPassword.play();
-        fadeEmailTextField.play();
-        fadePasswordTextField.play();
-        fadeSignInButton.play();
-        fadeEmailText.play();
-        fadePasswordText.play();
-    }
-**/
     }
     @FXML
     private void handleSignIn() {
@@ -199,7 +165,7 @@ public class SpareLoginPageController {
         alert.showAndWait();
     }
 
-
+/**
     @FXML
     void createAccountHandler(MouseEvent event) {
         try {
@@ -219,6 +185,62 @@ public class SpareLoginPageController {
             alert.showAndWait();
         }
     }
+**/
+@FXML
+void createAccountHandler(MouseEvent event) {
+    ParallelTransition fadeAndShake = new ParallelTransition();
+
+    for (javafx.scene.Node node : new javafx.scene.Node[]{
+            createAccountText, emailPrompt, emailTextField, passwordPrompt,
+            passwordTextField, signInButton, emailText, passwordText, forgotPasswordField, logoImage
+    }) {
+        if (node != null) {
+            fadeAndShake.getChildren().add(createFadeOut(node));
+        } else {
+            //System.out.println("Warning: One of the nodes is null and will be skipped.");
+        }
+    }
+
+    // Shake animation for loginBoardGame
+    TranslateTransition shake = new TranslateTransition(Duration.millis(100), loginBoardGame); // Match fade duration
+    shake.setByX(10);
+    shake.setCycleCount(8);
+    shake.setAutoReverse(true);
+    fadeAndShake.getChildren().add(shake); // Add shake to parallel transition
+
+    fadeAndShake.setOnFinished(e -> {
+        try {
+            FXMLLoader fxmlCreateAccountLoader = new FXMLLoader(HelloApplication.class.getResource("SpareCreateAccountPage.fxml"));
+            Parent root = fxmlCreateAccountLoader.load();
+            Stage stage = (Stage) createAccountText.getScene().getWindow();
+            Scene scene = new Scene(root, 650, 600);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to load Create Account Page");
+            alert.setContentText("An error occurred while trying to load the create account page.");
+            alert.showAndWait();
+        }
+    });
+
+    fadeAndShake.play();
+}
+
+
+
+    private FadeTransition createFadeOut(javafx.scene.Node node) {
+        FadeTransition fade = new FadeTransition(Duration.seconds(1));
+        if (node != null) {
+            fade.setNode(node);
+            fade.setFromValue(1);
+            fade.setToValue(0);
+        }
+        return fade;
+    }
+
 
     @FXML
     void forgotPasswordHandler(MouseEvent event) {

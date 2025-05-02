@@ -63,19 +63,24 @@ public class ProfilePageController implements Initializable {
     @FXML
     private FlowPane gamesOwnedList;
 
+    private final ObservableList<User> friends = FXCollections.observableArrayList();
+    private final ObservableList<Game> ownedGames = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Match PartyController resizing logic
+        gamesOwnedLabel.maxWidthProperty().bind(gamesOwnedContainer.widthProperty());
+        gamesLabel.maxWidthProperty().bind(gamesList.widthProperty());
+        friendsLabel.maxWidthProperty().bind(friendList.widthProperty());
+
         gamesOwnedListContainer.setFitToWidth(true);
         gamesOwnedList.prefWidthProperty().bind(gamesOwnedListContainer.widthProperty());
-        gamesLabel.maxWidthProperty().bind(gamesList.widthProperty());
-        gamesOwnedLabel.maxWidthProperty().bind(gamesOwnedContainer.widthProperty());
 
+        // Load current user
         User user = Session.getInstance().getUser();
         if (user != null) {
             usernameLabel.setText(user.getUsername());
 
-            // Load profile picture into both circles
             try {
                 File imageFile = new File(new URI(user.getProfilePicUrl()));
                 if (imageFile.exists()) {
@@ -88,23 +93,23 @@ public class ProfilePageController implements Initializable {
                 e.printStackTrace();
             }
 
-            // Populate friends list
+            // Load friends
             try {
-                List<User> friends = sendGET(getUserFriends(user.getUserId()), new TypeReference<>() {
-                });
+                friends.addAll((User) sendGET(getUserFriends(user.getUserId()), new TypeReference<>() {}));
                 for (User friend : friends) {
-                    friendList.getChildren().add(createUserCard(friend));
+                    HBox friendCard = createUserCard(friend);
+                    friendList.getChildren().add(friendCard);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            // Populate games list
+            // Load games
             try {
-                List<Game> games = sendGET(getUserGames(user.getUserId()), new TypeReference<>() {
-                });
-                for (Game g : games) {
-                    gamesOwnedList.getChildren().add(createGameCard(g));
+                ownedGames.addAll((Game) sendGET(getUserGames(user.getUserId()), new TypeReference<>() {}));
+                for (Game g : ownedGames) {
+                    HBox gameCard = createGameCard(g);
+                    gamesOwnedList.getChildren().add(gameCard);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -120,9 +125,11 @@ public class ProfilePageController implements Initializable {
         profilePic.setFitWidth(25);
         profilePic.setPreserveRatio(true);
         profilePic.setSmooth(true);
-        Label name = new Label(u.getUsername());
-        name.getStyleClass().add("info-text");
-        HBox card = new HBox(10, profilePic, name);
+
+        Label guestName = new Label(u.getUsername());
+        guestName.getStyleClass().add("info-text");
+
+        HBox card = new HBox(10, profilePic, guestName);
         VBox.setMargin(card, new Insets(5, 0, 0, 0));
         return card;
     }

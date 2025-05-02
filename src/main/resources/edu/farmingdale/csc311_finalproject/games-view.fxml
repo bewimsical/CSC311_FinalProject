@@ -82,23 +82,29 @@
                   <Insets left="20.0" />
                </padding>
                   </Label>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="search-bar">
+            <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="826.0" styleClass="search-bar">
                <children>
-                  <TextField promptText="search games" styleClass="search-field" />
-                  <Button mnemonicParsing="false" styleClass="search-button" text="Button" />
+                  <TextField fx:id="searchField" prefHeight="25.0" prefWidth="186.0" promptText="search games" styleClass="search-field" />
+                  <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="search-button">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Button>
                </children>
                <padding>
                   <Insets left="20.0" />
                </padding>
             </HBox>
-                  <ScrollPane fx:id="gamesListContainer" maxWidth="1.7976931348623157E308" prefHeight="425.0" prefWidth="239.0" styleClass="game-container" VBox.vgrow="ALWAYS">
+                  <ScrollPane fx:id="gamesListContainer" maxWidth="1.7976931348623157E308" prefHeight="425.0" prefWidth="826.0" styleClass="game-container" VBox.vgrow="ALWAYS">
                       <content>
-                          <FlowPane fx:id="gamesList" hgap="5.0" maxWidth="1.7976931348623157E308" prefWidth="270.0" prefWrapLength="0.0" vgap="5.0">
+                          <FlowPane fx:id="gamesList" hgap="5.0" maxWidth="1.7976931348623157E308" prefWidth="820.0" prefWrapLength="0.0" vgap="5.0">
                               <padding>
                                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                               </padding>
                           </FlowPane>
                       </content>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
                   </ScrollPane>
               </children>
          <BorderPane.margin>

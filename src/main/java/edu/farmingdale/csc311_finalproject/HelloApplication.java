@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
 //        stage.show();
 
         //OPENS PARTY PAGE DIRECTLY
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("party-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("games-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 850, 560);
         //link stylesheet
         scene.getStylesheets().add(getClass().getResource("styles/party-style.css").toExternalForm());

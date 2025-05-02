@@ -66,31 +66,99 @@ public class ProfilePageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //keep things centered when app size changes
-       /* gamesLabel.maxWidthProperty().bind(gamesContainer.widthProperty());
-        selectedGamesLabel.maxWidthProperty().bind(selectedGamesContainer.widthProperty());
-        gamesListContainer.setFitToWidth(true);
-        gamesList.prefWidthProperty().bind(gamesListContainer.widthProperty());
+        gamesOwnedListContainer.setFitToWidth(true);
+        gamesOwnedList.prefWidthProperty().bind(gamesOwnedListContainer.widthProperty());
+        gamesLabel.maxWidthProperty().bind(gamesList.widthProperty());
+        gamesOwnedLabel.maxWidthProperty().bind(gamesOwnedContainer.widthProperty());
 
-        */
         User user = Session.getInstance().getUser();
         if (user != null) {
             usernameLabel.setText(user.getUsername());
-            //  emailLabel.setText(user.getEmail());
-            // welcomeText.setText("Welcome, " + user.getUsername());
 
-            // Load and set the profile picture
+            // Load profile picture into both circles
             try {
                 File imageFile = new File(new URI(user.getProfilePicUrl()));
                 if (imageFile.exists()) {
                     Image image = new Image(imageFile.toURI().toString(), true);
-                    circle_view.setFill(new ImagePattern(image));
-                    circle_view2.setFill(new ImagePattern(image));
+                    ImagePattern pattern = new ImagePattern(image);
+                    circle_view.setFill(pattern);
+                    circle_view2.setFill(pattern);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            // Populate friends list
+            try {
+                List<User> friends = sendGET(getUserFriends(user.getUserId()), new TypeReference<>() {
+                });
+                for (User friend : friends) {
+                    friendList.getChildren().add(createUserCard(friend));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // Populate games list
+            try {
+                List<Game> games = sendGET(getUserGames(user.getUserId()), new TypeReference<>() {
+                });
+                for (Game g : games) {
+                    gamesOwnedList.getChildren().add(createGameCard(g));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
-}
 
+    private HBox createUserCard(User u) {
+        String img = u.getProfilePicUrl() != null ? u.getProfilePicUrl() : "images/wizard_cat.PNG";
+        Image image = new Image(getClass().getResource(img).toExternalForm());
+        ImageView profilePic = new ImageView(image);
+        profilePic.setFitHeight(25);
+        profilePic.setFitWidth(25);
+        profilePic.setPreserveRatio(true);
+        profilePic.setSmooth(true);
+        Label name = new Label(u.getUsername());
+        name.getStyleClass().add("info-text");
+        HBox card = new HBox(10, profilePic, name);
+        VBox.setMargin(card, new Insets(5, 0, 0, 0));
+        return card;
+    }
+
+    private HBox createGameCard(Game g) {
+        Image gameImage = new Image(g.getImgUrl(), true);
+        ImageView gamePic = new ImageView(gameImage);
+        gamePic.setFitHeight(75);
+        gamePic.setFitWidth(75);
+        gamePic.setPreserveRatio(true);
+        gamePic.setSmooth(true);
+
+        StackPane imageContainer = new StackPane(gamePic);
+        imageContainer.setPrefSize(75, 75);
+
+        Label gameName = new Label(g.getGame_name());
+        gameName.setWrapText(true);
+        gameName.setMaxWidth(140);
+        gameName.setTextAlignment(TextAlignment.LEFT);
+        gameName.setAlignment(Pos.CENTER_LEFT);
+        gameName.getStyleClass().add("game-name-text");
+
+        Label gamePlayers = new Label(g.getMinPlayers() + "-" + g.getMaxPlayers() + " players");
+        Label gameTime = new Label(g.getPlayTime() + " min");
+        gamePlayers.getStyleClass().add("info-text");
+        gameTime.getStyleClass().add("info-text");
+
+        VBox textBox = new VBox(5, gameName, gamePlayers, gameTime);
+        textBox.setAlignment(Pos.CENTER_LEFT);
+
+        HBox card = new HBox(10, imageContainer, textBox);
+        card.setAlignment(Pos.CENTER_LEFT);
+        card.getStyleClass().add("card");
+        card.setMaxWidth(230);
+        card.setMinWidth(230);
+        FlowPane.setMargin(card, new Insets(10, 5, 0, 5));
+        return card;
+    }
+}

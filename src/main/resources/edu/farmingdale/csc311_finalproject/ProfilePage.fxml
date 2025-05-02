@@ -47,7 +47,7 @@
                   <HBox alignment="CENTER_LEFT">
                      <children>
                         <Label fx:id="friendsLabel" maxWidth="243.0" prefHeight="35.0" prefWidth="243.0" styleClass="heading" text="Friends" textAlignment="CENTER" />
-                        <ImageView id="addGuest" fitHeight="16.0" fitWidth="16.0" onMouseClicked="#addGuest" pickOnBounds="true" preserveRatio="true">
+                        <ImageView id="addGuest" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/plus-solid.png" />
                            </image>
@@ -64,7 +64,7 @@
                   <HBox alignment="CENTER_LEFT">
                      <children>
                         <Label fx:id="gamesLabel" maxWidth="243.0" prefHeight="35.0" prefWidth="243.0" styleClass="heading" text="Games " textAlignment="CENTER" />
-                        <ImageView id="addGuest" fitHeight="16.0" fitWidth="16.0" onMouseClicked="#addGuest" pickOnBounds="true" preserveRatio="true">
+                        <ImageView id="addGuest" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/plus-solid.png" />
                            </image>

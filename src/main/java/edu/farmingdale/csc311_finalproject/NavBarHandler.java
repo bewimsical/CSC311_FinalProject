@@ -17,7 +17,7 @@ public class NavBarHandler {
         home.setOnMouseClicked(e -> switchScene(e.getSource(), "ProfilePage.fxml"));
         games.setOnMouseClicked(e -> switchScene(e.getSource(), "games-view.fxml"));
         friends.setOnMouseClicked(e -> switchScene(e.getSource(), "friends-view.fxml"));
-        parties.setOnMouseClicked(e -> switchScene(e.getSource(), "ProfilePage.fxml"));
+        parties.setOnMouseClicked(e -> switchScene(e.getSource(), "all-parties-view.fxml"));
     }
 
     private static void switchScene(Object source, String fxmlFile) {

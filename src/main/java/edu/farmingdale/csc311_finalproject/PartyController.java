@@ -89,6 +89,10 @@ public class PartyController implements Initializable {
     private User selectedGuest;
     private Node selectedCard;
 
+    public PartyController(Party party){
+        this.party = party;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //keep things centered when app size changes
@@ -105,7 +109,7 @@ public class PartyController implements Initializable {
 
         //todo switch to session user
         try {
-            currentUser = sendGET(getUserUrl(1), new TypeReference<User>() {});
+            currentUser = sendGET(getUserUrl(2), new TypeReference<User>() {});
             String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
             Image image;
 
@@ -140,12 +144,12 @@ public class PartyController implements Initializable {
 
 
         //todo move to a different initialize method that gets called with the party from the user page or a page that displays all parties
-        try {
-           party = sendGET(ApiClient.getParty(1), new TypeReference<Party>() {});
-        } catch (IOException e) {
-           e.printStackTrace();
-           party = new Party(-1L,"Party Name", null, "party loc");
-        }
+//        try {
+//           party = sendGET(ApiClient.getParty(1), new TypeReference<Party>() {});
+//        } catch (IOException e) {
+//           e.printStackTrace();
+//           party = new Party(-1L,"Party Name", null, "party loc");
+//        }
 
         partyNameLabel.setText(party.getPartyName());
         partyNameLabel.setPrefHeight(Region.USE_COMPUTED_SIZE);
@@ -206,8 +210,6 @@ public class PartyController implements Initializable {
             votesContainer.setAlignment(Pos.CENTER);
             votesContainer.setMaxWidth(40);
             votesContainer.setMinWidth(40);
-//            votesContainer.getStyleClass().add("card");
-
 
             String gameImg = g.getImgUrl();
             Image gameImage = new Image(gameImg, true);

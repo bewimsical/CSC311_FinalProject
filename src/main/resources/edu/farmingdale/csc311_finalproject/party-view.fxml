@@ -25,11 +25,6 @@
          <children>
             <VBox prefHeight="464.0" prefWidth="235.0" styleClass="left-pane">
                <children>
-                  <HBox alignment="CENTER">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </HBox>
                   <Label fx:id="partyNameLabel" maxWidth="218.0" prefHeight="35.0" prefWidth="218.0" styleClass="heading" text="Party Name" />
                   <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="154.0">
                      <children>
@@ -160,19 +155,19 @@
             </ImageView>
             <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="505.0">
                <children>
-                  <Label styleClass="top-menu-item" text="Home">
+                  <Label fx:id="homeBtn" styleClass="top-menu-item" text="Home">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Label>
-                  <Label layoutX="10.0" layoutY="19.0" styleClass="top-menu-item" text="Games">
+                  <Label fx:id="gamesBtn" layoutX="10.0" layoutY="19.0" styleClass="top-menu-item" text="Games">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Label>
-                  <Label layoutX="53.0" layoutY="19.0" styleClass="top-menu-item" text="Friends">
+                  <Label fx:id="friendsBtn" layoutX="53.0" layoutY="19.0" styleClass="top-menu-item" text="Friends">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Label>
-                  <Label layoutX="156.0" layoutY="19.0" styleClass="top-menu-item" text="Parties">
+                  <Label fx:id="partiesBtn" layoutX="156.0" layoutY="19.0" styleClass="top-menu-item" text="Parties">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Label>

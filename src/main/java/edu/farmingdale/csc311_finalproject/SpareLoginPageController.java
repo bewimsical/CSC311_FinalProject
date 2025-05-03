@@ -135,8 +135,9 @@ public class SpareLoginPageController {
                     User loggedInUser = gson.fromJson(response.toString(), User.class);
                     Session.getInstance().setUser(loggedInUser);
 
-                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ProfilePage.fxml"));
-                    Scene profileScene = new Scene(fxmlLoader.load(), 650, 600);
+//                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ProfilePage.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("all-parties-view.fxml"));
+                    Scene profileScene = new Scene(fxmlLoader.load(), 850, 560);
                     Stage stage = new Stage();
                     stage.setScene(profileScene);
                     stage.setTitle("Profile Page");

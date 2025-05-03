@@ -38,6 +38,14 @@ import static edu.farmingdale.csc311_finalproject.ApiClient.*;
 public class PartyController implements Initializable {
 
     @FXML
+    private Label homeBtn;
+    @FXML
+    private Label partiesBtn;
+    @FXML
+    private Label friendsBtn;
+    @FXML
+    private Label gamesBtn;
+    @FXML
     private Circle circle_view;
     @FXML
     private FlowPane gamesList;
@@ -69,7 +77,7 @@ public class PartyController implements Initializable {
     private Label selectedGamesLabel;
     @FXML
     private FlowPane selectedGamesList;
-    private User currentUser;
+    private User currentUser = Session.getInstance().getUser();
     private Party party;
     private final ObservableList<User> guests =  FXCollections.observableArrayList();
     private final ObservableSet<Game> games =  FXCollections.observableSet();
@@ -80,6 +88,10 @@ public class PartyController implements Initializable {
     private Popup guestPopup;
     private User selectedGuest;
     private Node selectedCard;
+
+    public PartyController(Party party){
+        this.party = party;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -92,44 +104,53 @@ public class PartyController implements Initializable {
         //create popup for adding guests
         guestPopup = new Popup();
 
-        //todo switch to session user
+        //navbar handler
+        NavBarHandler.setupNav(homeBtn, gamesBtn,friendsBtn,partiesBtn);
+
+//        //todo switch to session user
+//        try {
+//            currentUser = sendGET(getUserUrl(2), new TypeReference<User>() {});
+//
+//
+//
+//        } catch (IOException e) {
+//            currentUser = null;//TODO FIX THIS!!!!!!!
+//            e.printStackTrace();
+//        }
+        String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
+        Image image;
+
+        // Load and resize image for nav bar
         try {
-            currentUser = sendGET(getUserUrl(1), new TypeReference<User>() {});
-            String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
+            image = new Image(Objects.requireNonNull(getClass().getResource(img)).toExternalForm());
+        }catch (Exception e){
+            image = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
+        }
+        ImageView profilePic = new ImageView(image);
+        profilePic.setFitWidth(circle_view.getRadius() * 2);
+        profilePic.setFitHeight(circle_view.getRadius() * 2);
+        profilePic.setClip(new Circle(circle_view.getRadius(), circle_view.getRadius(), circle_view.getRadius()));
 
-            // Load and resize image for nav bar
-            Image image = new Image(getClass().getResource(img).toExternalForm());
-            ImageView profilePic = new ImageView(image);
-            profilePic.setFitWidth(circle_view.getRadius() * 2);
-            profilePic.setFitHeight(circle_view.getRadius() * 2);
-            profilePic.setClip(new Circle(circle_view.getRadius(), circle_view.getRadius(), circle_view.getRadius()));
+        // Add to StackPane (on top of the Circle)
+        profileContainer.getChildren().add(profilePic);
 
-            // Add to StackPane (on top of the Circle)
-            profileContainer.getChildren().add(profilePic);
-
-            // Set username
-            usernameLabel.setText(currentUser.getUsername());
-            try {
-                friends.addAll(Objects.requireNonNull(sendGET(getUserFriends(currentUser.getUserId()), new TypeReference<ArrayList<User>>() {})));
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
+        // Set username
+        usernameLabel.setText(currentUser.getUsername());
+        try {
+            friends.addAll(Objects.requireNonNull(sendGET(getUserFriends(currentUser.getUserId()), new TypeReference<ArrayList<User>>() {})));
 
         } catch (IOException e) {
-            currentUser = null;//TODO FIX THIS!!!!!!!
             e.printStackTrace();
         }
 
 
         //todo move to a different initialize method that gets called with the party from the user page or a page that displays all parties
-        try {
-           party = sendGET(ApiClient.getParty(1), new TypeReference<Party>() {});
-        } catch (IOException e) {
-           e.printStackTrace();
-           party = new Party(-1L,"Party Name", null, "party loc");
-        }
+//        try {
+//           party = sendGET(ApiClient.getParty(1), new TypeReference<Party>() {});
+//        } catch (IOException e) {
+//           e.printStackTrace();
+//           party = new Party(-1L,"Party Name", null, "party loc");
+//        }
 
         partyNameLabel.setText(party.getPartyName());
         partyNameLabel.setPrefHeight(Region.USE_COMPUTED_SIZE);
@@ -190,11 +211,14 @@ public class PartyController implements Initializable {
             votesContainer.setAlignment(Pos.CENTER);
             votesContainer.setMaxWidth(40);
             votesContainer.setMinWidth(40);
-//            votesContainer.getStyleClass().add("card");
-
 
             String gameImg = g.getImgUrl();
-            Image gameImage = new Image(gameImg, true);
+            Image gameImage;
+            try {
+                gameImage = new Image(gameImg, true);
+            }catch (Exception e){
+                gameImage = new Image(Objects.requireNonNull(getClass().getResource("images/d20_logo_sky.PNG")).toExternalForm());
+            }
             ImageView gamePic = new ImageView(gameImage);
             gamePic.setFitHeight(75);
             gamePic.setFitWidth(75);
@@ -254,7 +278,12 @@ public class PartyController implements Initializable {
 
     public HBox createGameCard(Game g){
         String gameImg = g.getImgUrl();
-        Image gameImage = new Image(gameImg, true);
+        Image gameImage;
+        try {
+            gameImage = new Image(gameImg, true);
+        }catch (Exception e){
+            gameImage = new Image(Objects.requireNonNull(getClass().getResource("images/d20_logo_sky.PNG")).toExternalForm());
+        }
         ImageView gamePic = new ImageView(gameImage);
         gamePic.setFitHeight(75);
         gamePic.setFitWidth(75);

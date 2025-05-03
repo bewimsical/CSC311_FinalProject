@@ -79,47 +79,44 @@
         </HBox>
     </top>
     <center>
-        <VBox fx:id="gamesContainer" maxWidth="1.7976931348623157E308" prefHeight="464.0" prefWidth="235.0" styleClass="container" BorderPane.alignment="CENTER">
-            <children>
-            <HBox VBox.vgrow="ALWAYS">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
+      <HBox styleClass="container">
+         <children>
+            <VBox>
                <children>
-                  <VBox>
-                     <children>
-                            <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-                                <children>
-                                    <Label fx:id="partiesLabel" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" styleClass="page-heading" text="Your Parties">
-                                        <padding>
-                                            <Insets left="20.0" />
-                                        </padding>
-                                    </Label>
-                                    <Button maxHeight="25.0" maxWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="add-button">
-                                        <HBox.margin>
-                                            <Insets left="10.0" />
-                                        </HBox.margin>
-                                    </Button>
-                                </children>
-                            </HBox>
-                            <ScrollPane fx:id="partiesListContainer" maxWidth="1.7976931348623157E308" prefHeight="425.0" prefWidth="550.0" styleClass="game-container">
-                                <content>
-                              <VBox fx:id="partiesList" />
-                                </content>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                            </ScrollPane>
-                     </children>
-                  </VBox>
-                  <VBox alignment="TOP_CENTER" prefHeight="409.0" prefWidth="275.0" styleClass="parties-right-pane">
+                      <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+                          <children>
+                              <Label fx:id="partiesLabel" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" styleClass="page-heading" text="Your Parties">
+                                  <padding>
+                                      <Insets left="20.0" />
+                                  </padding>
+                              </Label>
+                              <Button maxHeight="25.0" maxWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="add-button">
+                                  <HBox.margin>
+                                      <Insets left="10.0" />
+                                  </HBox.margin>
+                              </Button>
+                          </children>
+                      </HBox>
+                      <ScrollPane fx:id="partiesListContainer" maxWidth="1.7976931348623157E308" prefHeight="425.0" prefWidth="550.0" styleClass="game-container">
+                          <content>
+                        <VBox fx:id="partiesList" />
+                          </content>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                      </ScrollPane>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="409.0" prefWidth="275.0" styleClass="parties-right-pane">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="calendar-container">
                      <children>
                         <HBox>
                            <children>
                               <Label fx:id="monthLabel" prefHeight="17.0" prefWidth="304.0" text="May 2025" />
                               <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="122.0">
                                  <children>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="prevMonth" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                        <HBox.margin>
                                           <Insets right="15.0" />
                                        </HBox.margin>
@@ -127,7 +124,7 @@
                                           <Image url="@images/arrow-left-solid.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="nextMonth" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                        <HBox.margin>
                                           <Insets right="10.0" />
                                        </HBox.margin>
@@ -142,7 +139,7 @@
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <GridPane fx:id="calendarGrid">
+                        <GridPane fx:id="calendarGrid" gridLinesVisible="true">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -164,46 +161,56 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </GridPane>
-                        <Accordion prefHeight="231.0" prefWidth="322.0">
-                          <panes>
-                            <TitledPane animated="false" text="Selected Day">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <ScrollPane prefHeight="202.0" prefWidth="267.0">
-                                             <content>
-                                                <VBox fx:id="selectedDayList" prefHeight="200.0" prefWidth="100.0" />
-                                             </content>
-                                          </ScrollPane>
-                                       </children>
-                                    </AnchorPane>
-                              </content>
-                            </TitledPane>
-                            <TitledPane animated="false" text="Past Parties">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <ScrollPane prefHeight="202.0" prefWidth="267.0">
-                                             <content>
-                                                <VBox fx:id="pastPartiesList" prefHeight="200.0" prefWidth="100.0" />
-                                             </content>
-                                          </ScrollPane>
-                                       </children>
-                                    </AnchorPane>
-                              </content>
-                            </TitledPane>
-                          </panes>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Accordion>
-                     </children></VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="11.0" right="8.0" top="5.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                  </VBox>
+                  <Accordion fx:id="accordianPane" prefHeight="231.0" prefWidth="322.0">
+                    <panes>
+                      <TitledPane fx:id="selectedDayPane" animated="false" text="Selected Day">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <ScrollPane prefHeight="202.0" prefWidth="267.0">
+                                       <content>
+                                          <VBox fx:id="selectedDayList" prefHeight="200.0" prefWidth="100.0">
+                                             <padding>
+                                                <Insets left="5.0" />
+                                             </padding></VBox>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </TitledPane>
+                      <TitledPane fx:id="pastPartiesPane" animated="false" text="Past Parties">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <ScrollPane prefHeight="202.0" prefWidth="267.0">
+                                       <content>
+                                          <VBox fx:id="pastPartiesList" prefHeight="200.0" prefWidth="100.0" />
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </TitledPane>
+                    </panes>
+                     <VBox.margin>
+                        <Insets left="-1.0" right="-4.0" top="10.0" />
+                     </VBox.margin>
+                  </Accordion>
                </children>
-            </HBox>
-            </children>
-            <BorderPane.margin>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-            </BorderPane.margin>
-        </VBox>
+            </VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </HBox>
     </center>
 </BorderPane>

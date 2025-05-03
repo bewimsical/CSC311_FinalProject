@@ -156,7 +156,9 @@
 .games-game-name-text,
 .friend-game-name-text,
 .party-info-text,
-.party-name-text{
+.party-name-text,
+.past-party-info-text,
+.past-party-name-text{
     -fx-font-family: Raleway, SansSerif;
     -fx-text-fill: #513310;
     -fx-font-size: 15px;
@@ -300,10 +302,17 @@
     -fx-text-fill: #513310;
 }
 .month-label{
-    -fx-font-family: Raleway;
+    -fx-font-family: 'IM Fell English SC';
     -fx-font-size: 20px;
     -fx-text-fill: #513310;
 }
+
+.month-text, .month-label {
+    -fx-padding: 0;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
 .profile-thumb-container{
     -fx-border-color: white;
     -fx-border-radius: 100px;
@@ -394,3 +403,75 @@
 .titled-pane > .title > .arrow-button > .arrow {
     -fx-background-color: #513310;
 }
+
+.calendar-header{
+    -fx-font-family: Raleway;
+    -fx-font-size: 15px;
+    -fx-text-fill: #513310;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+.calendar-container{
+    -fx-background-color: #ffffff30;
+    -fx-background-radius: 10px;
+}
+
+.calendar-highlight{
+    -fx-fill: transparent;
+}
+.day-cell:hover .calendar-highlight{
+    -fx-fill: #87632d80;
+}
+
+.day-cell.selected .calendar-highlight{
+    -fx-fill: #87632d80;
+}
+
+.day-cell.selected{
+    -fx-background-color: transparent;
+}
+
+.selected-party-time-text{
+    -fx-font-family: 'IM Fell English SC';
+    -fx-font-size: 20px;
+    -fx-text-fill: #513310;
+    -fx-alignment: center-left;
+}
+.selected-party-info-text{
+    -fx-font-family: Raleway;
+    -fx-font-size: 15px;
+    -fx-text-fill: #513310;
+    -fx-alignment: center-left;
+}
+
+.past-month-text{
+    -fx-font-size: 20px;
+    -fx-font-family: 'IM Fell English SC';
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-text-fill: #513310;
+}
+.past-month-label{
+    -fx-font-family: 'IM Fell English SC';
+    -fx-font-size: 15px;
+    -fx-text-fill: #513310;
+}
+
+.past-month-text, .past-month-label {
+    -fx-padding: 0;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+.past-party-name-text{
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-wrap-text: true;
+}
+
+.card .past-party-info-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #444;
+}
+

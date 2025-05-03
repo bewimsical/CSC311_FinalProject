@@ -171,7 +171,7 @@ public class SpareLoginPageController {
 
 //                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ProfilePage.fxml"));
                     FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("all-parties-view.fxml"));
-                    Scene profileScene = new Scene(fxmlLoader.load(), 650, 600);
+                    Scene profileScene = new Scene(fxmlLoader.load(), 850, 560);
                     Stage stage = new Stage();
                     stage.setScene(profileScene);
                     stage.setTitle("Profile Page");

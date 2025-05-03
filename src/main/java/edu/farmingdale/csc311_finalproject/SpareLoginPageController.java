@@ -86,10 +86,10 @@ public class SpareLoginPageController {
         ParallelTransition fadeAll = new ParallelTransition(fade1, fade2, fade3, fade4, fade5, fade6, fade7);
 
         // Add a 1-second delay before the fade starts
-        PauseTransition delay = new PauseTransition(Duration.seconds(1));
+       // PauseTransition delay = new PauseTransition(Duration.seconds(1));
 
         // Play the delay and then the fades
-        SequentialTransition sequence = new SequentialTransition(delay, fadeAll);
+        SequentialTransition sequence = new SequentialTransition(fadeAll);
         sequence.play();
     }
 

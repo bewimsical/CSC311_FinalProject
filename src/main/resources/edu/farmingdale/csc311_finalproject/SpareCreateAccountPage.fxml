@@ -32,5 +32,10 @@
       <Text fx:id="emailAddressText" layoutX="174.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
       <Text fx:id="passwordText" layoutX="163.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
       <Text fx:id="reconfirmPasswordText" layoutX="134.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reconfirm Password" />
+      <Text fx:id="returnToLoginText" fill="WHITE" layoutX="298.0" layoutY="509.0" onMouseClicked="#returnToLogin" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to login">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Text>
    </children>
 </Pane>

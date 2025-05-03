@@ -209,4 +209,22 @@ public class AllPartiesController implements Initializable {
         }
         return "no time";
     }
+
+
+    @FXML
+    private void handleCreateParty() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/create-party-view.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Create Party");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }

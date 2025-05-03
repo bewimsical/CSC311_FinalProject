@@ -25,11 +25,6 @@
          <children>
             <VBox prefHeight="464.0" prefWidth="235.0" styleClass="left-pane">
                <children>
-                  <HBox alignment="CENTER">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </HBox>
                   <Label fx:id="partyNameLabel" maxWidth="218.0" prefHeight="35.0" prefWidth="218.0" styleClass="heading" text="Party Name" />
                   <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="154.0">
                      <children>

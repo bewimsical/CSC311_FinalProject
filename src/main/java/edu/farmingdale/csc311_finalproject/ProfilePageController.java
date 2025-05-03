@@ -16,6 +16,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
@@ -66,6 +67,12 @@ public class ProfilePageController implements Initializable {
     private final ObservableList<User> friends = FXCollections.observableArrayList();
     private final ObservableList<Game> ownedGames = FXCollections.observableArrayList();
 
+    private List <User> friend = new ArrayList<>();
+    private User selectedFriend;
+    private Node selectedCard;
+    private Popup friendPopup;
+    private ContextMenuEvent event;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Match PartyController resizing logic
@@ -95,7 +102,8 @@ public class ProfilePageController implements Initializable {
 
             // Load friends
             try {
-                friends.addAll((User) sendGET(getUserFriends(user.getUserId()), new TypeReference<>() {}));
+                friends.addAll(Objects.requireNonNull(sendGET(getUserFriends(user.getUserId()), new TypeReference<List<User>>() {
+                })));
                 for (User friend : friends) {
                     HBox friendCard = createUserCard(friend);
                     friendList.getChildren().add(friendCard);
@@ -106,7 +114,8 @@ public class ProfilePageController implements Initializable {
 
             // Load games
             try {
-                ownedGames.addAll((Game) sendGET(getUserGames(user.getUserId()), new TypeReference<>() {}));
+                ownedGames.addAll(Objects.requireNonNull(sendGET(getUserGames(user.getUserId()), new TypeReference<List<Game>>() {
+                })));
                 for (Game g : ownedGames) {
                     HBox gameCard = createGameCard(g);
                     gamesOwnedList.getChildren().add(gameCard);
@@ -167,5 +176,99 @@ public class ProfilePageController implements Initializable {
         card.setMinWidth(230);
         FlowPane.setMargin(card, new Insets(10, 5, 0, 5));
         return card;
+    }
+
+    public HBox createFriendCard(User u) {
+        String img = u.getProfilePicUrl() != null ? u.getProfilePicUrl() : "images/wizard_cat.PNG";
+        Image image = new Image(getClass().getResource(img).toExternalForm());
+        ImageView profilePic = new ImageView(image);
+        profilePic.setFitHeight(25);
+        profilePic.setFitWidth(25);
+        profilePic.setPreserveRatio(true);
+        profilePic.setSmooth(true);
+
+        Label name = new Label(u.getUsername());
+        name.getStyleClass().add("info-text");
+
+        HBox card = new HBox(10, profilePic, name);
+        VBox.setMargin(card, new Insets(5, 0, 0, 0));
+        return card;
+    }
+
+    public void addGuest(MouseEvent mouseEvent) {
+        if (friendPopup == null) {
+            friendPopup = new Popup();
+        }
+
+        if (!friendPopup.isShowing()) {
+            VBox friendsList = new VBox();
+            ScrollPane friendsListContainer = new ScrollPane(friendsList);
+            friendsList.getStyleClass().add("friends-popup-list");
+            friendsListContainer.setPrefSize(200, 200);
+            friendsList.setPrefWidth(194);
+            friendsList.setMaxWidth(194);
+
+            Button cancel = new Button("Cancel");
+            Button add = new Button("Add");
+            cancel.setOnAction(e -> friendPopup.hide());
+
+            add.setOnAction(e -> {
+                if (selectedFriend != null && !this.friends.contains(selectedFriend)) {
+                    this.friends.add(selectedFriend);
+                    friendList.getChildren().add(createFriendCard(selectedFriend));
+                    // Optional: Send POST request to save new friend relationship
+                    try {
+                        sendPOST(addGuest(currentUser.getUserId(), selectedFriend.getUserId()), null, new TypeReference<Void>() {});
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+                friendPopup.hide();
+            });
+
+            cancel.getStyleClass().add("friends-popup-button");
+            add.getStyleClass().add("friends-popup-button");
+
+            HBox buttonContainer = new HBox(20, cancel, add);
+            buttonContainer.setAlignment(Pos.CENTER);
+            VBox popup = new VBox(10, friendsListContainer, buttonContainer);
+            popup.setMargin(buttonContainer, new Insets(10, 0, 20, 0));
+            popup.getStyleClass().add("friends-popup");
+
+            try {
+                List<User> allUsers = sendGET(getAllUsers(), new TypeReference<List<User>>() {});
+                for (User u : allUsers) {
+                    if (!u.getUserId().equals(currentUser.getUserId()) && !friends.contains(u)) {
+                        HBox card = createFriendCard(u);
+                        card.getStyleClass().add("friend-card");
+                        card.setUserData(u.getUserId());
+
+                        card.setOnMouseClicked(e -> {
+                            long id = (Long) card.getUserData();
+                            selectedFriend = allUsers.stream()
+                                    .filter(user -> user.getUserId() == id)
+                                    .findFirst().orElse(null);
+
+                            if (selectedCard != null) {
+                                selectedCard.getStyleClass().remove("selected-friend");
+                            }
+                            selectedCard = card;
+                            selectedCard.getStyleClass().add("selected-friend");
+                        });
+
+                        friendsList.getChildren().add(card);
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            friendPopup.getContent().add(popup);
+
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            friendPopup.show(stage, event.getScreenX(), event.getScreenY());
+        }
+
     }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="edu.farmingdale.csc311_finalproject.CreatePartyController" prefWidth="400" prefHeight="300" styleClass="friends-popup">
+    <VBox spacing="10" alignment="CENTER" layoutX="50" layoutY="20">
+        <Label text="Create Party" styleClass="page-heading"/>
+        <TextField fx:id="partyNameField" promptText="Party Name" />
+        <DatePicker fx:id="partyDatePicker" />
+        <TextField fx:id="partyTimeField" promptText="Time (e.g. 06:00 PM)" />
+        <TextField fx:id="locationField" promptText="Location" />
+        <Button text="Create" onAction="#handleSubmitParty" styleClass="friends-popup-button"/>
+    </VBox>
+</AnchorPane>

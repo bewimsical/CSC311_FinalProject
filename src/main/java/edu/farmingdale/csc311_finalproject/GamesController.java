@@ -70,9 +70,15 @@ public class GamesController implements Initializable {
         try {
             currentUser = sendGET(getUserUrl(1), new TypeReference<User>() {});
             String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
-
+            Image image;
             // Load and resize image for nav bar
-            Image image = new Image(getClass().getResource(img).toExternalForm());
+            try {
+                image = new Image(Objects.requireNonNull(getClass().getResource(img)).toExternalForm());
+            }catch (Exception e){
+                image = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
+            }
+
+
             ImageView profilePic = new ImageView(image);
             profilePic.setFitWidth(circle_view.getRadius() * 2);
             profilePic.setFitHeight(circle_view.getRadius() * 2);
@@ -94,15 +100,16 @@ public class GamesController implements Initializable {
         try {
             games.addAll(Objects.requireNonNull(sendGET(getUserGames(currentUser.getUserId()), new TypeReference<List<Game>>() {
             })));
+            for (Game g : games) {
+                HBox card = createGameCard(g);
+                gamesList.getChildren().add(card);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
-        for (Game g : games) {
-            HBox card = createGameCard(g);
-            gamesList.getChildren().add(card);
-        }
+
 
     }
 

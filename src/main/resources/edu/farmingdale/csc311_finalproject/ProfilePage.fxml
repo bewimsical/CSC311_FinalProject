@@ -6,6 +6,8 @@
 <?import javafx.scene.text.Text?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="591.0" prefWidth="650.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.ProfilePageController">
    <children>
       <ImageView fitHeight="71.0" fitWidth="178.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -16,7 +18,12 @@
       <Text fill="WHITE" layoutX="151.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game " wrappingWidth="38.53009033203125" />
       <Text fill="WHITE" layoutX="151.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Night" />
       <Text fill="WHITE" layoutX="414.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile" />
-      <Text fill="WHITE" layoutX="348.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Party" />
+      <MenuButton text="Party" layoutX="348.0" layoutY="33.0" mnemonicParsing="false">
+         <items>
+            <MenuItem text="View Parties" onAction="#goToPartyPage" />
+            <MenuItem text="Create Party" onAction="#openCreatePartyPopup" />
+         </items>
+      </MenuButton>
       <Text fill="WHITE" layoutX="473.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chat" />
       <Pane layoutX="125.0" layoutY="85.0" prefHeight="500.0" prefWidth="450.0" style="-fx-background-color: #514f4f;">
          <children>

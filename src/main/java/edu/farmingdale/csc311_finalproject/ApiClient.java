@@ -18,7 +18,12 @@ public final class ApiClient {
 
     private static final String USER_AGENT = "Mozilla/5.0";
     private static final String BASE_API_URL = "http://localhost:8080";
+    public static final String BASE_URL = "http://localhost:8080/api";
 
+
+    public static String getAllPartiesUrl() {
+        return BASE_URL + "/parties";
+    }
 
     private ApiClient(){}
 

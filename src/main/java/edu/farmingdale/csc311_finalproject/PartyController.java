@@ -213,7 +213,12 @@ public class PartyController implements Initializable {
             votesContainer.setMinWidth(40);
 
             String gameImg = g.getImgUrl();
-            Image gameImage = new Image(gameImg, true);
+            Image gameImage;
+            try {
+                gameImage = new Image(gameImg, true);
+            }catch (Exception e){
+                gameImage = new Image(Objects.requireNonNull(getClass().getResource("images/d20_logo_sky.PNG")).toExternalForm());
+            }
             ImageView gamePic = new ImageView(gameImage);
             gamePic.setFitHeight(75);
             gamePic.setFitWidth(75);
@@ -273,7 +278,12 @@ public class PartyController implements Initializable {
 
     public HBox createGameCard(Game g){
         String gameImg = g.getImgUrl();
-        Image gameImage = new Image(gameImg, true);
+        Image gameImage;
+        try {
+            gameImage = new Image(gameImg, true);
+        }catch (Exception e){
+            gameImage = new Image(Objects.requireNonNull(getClass().getResource("images/d20_logo_sky.PNG")).toExternalForm());
+        }
         ImageView gamePic = new ImageView(gameImage);
         gamePic.setFitHeight(75);
         gamePic.setFitWidth(75);

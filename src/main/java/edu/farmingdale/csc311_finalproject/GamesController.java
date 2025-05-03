@@ -116,7 +116,13 @@ public class GamesController implements Initializable {
 
     public HBox createGameCard(Game g){
         String gameImg = g.getImgUrl();
-        Image gameImage = new Image(gameImg, true);
+        Image gameImage;
+        try {
+            gameImage = new Image(gameImg, true);
+        }catch (Exception e){
+            gameImage = new Image(Objects.requireNonNull(getClass().getResource("images/d20_logo_sky.PNG")).toExternalForm());
+        }
+
         ImageView gamePic = new ImageView(gameImage);
         double gamePicSize = 125;
         gamePic.setFitHeight(gamePicSize);

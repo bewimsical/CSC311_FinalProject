@@ -79,6 +79,11 @@
 
 /*-------Party and guest info -------*/
 
+.parties-right-pane{
+    -fx-border-color: transparent transparent transparent #87632d;
+    -fx-border-width: 2px;
+}
+
 .left-pane{
     -fx-background-color: #ffffff30;
     -fx-border-color: transparent #87632d transparent transparent;
@@ -86,6 +91,8 @@
     -fx-padding: 10px;
 
 }
+
+
 .left-pane, .games-container{
     -fx-border-color: transparent #87632d transparent transparent;
     -fx-border-width: 2px;
@@ -343,3 +350,47 @@
     -fx-scale-y: 1.01;
 }
 
+#monthLabel{
+    -fx-font-size: 22px;
+    -fx-font-family: 'IM Fell English SC';
+    /*-fx-text-alignment: center-left;*/
+    /*-fx-alignment: center-left;*/
+    -fx-text-fill: #513310;
+
+}
+
+/* Global accordion and text styles */
+.accordion {
+    -fx-font-family: "Raleway";
+    -fx-text-fill: #513310;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+}
+
+/* Title bar of each TitledPane */
+.titled-pane > .title {
+    -fx-background-color: #87632d90;
+    -fx-text-fill: #513310;
+    -fx-border-color: transparent;
+}
+
+/* Remove borders around content */
+.titled-pane > .content {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Change text color inside title and content */
+.titled-pane > .title > .text,
+.titled-pane > .content {
+    -fx-fill: #513310;
+    -fx-text-fill: #513310;
+}
+
+/* Style the arrow (disclosure node) */
+.titled-pane > .title > .arrow-button > .arrow {
+    -fx-background-color: #513310;
+}

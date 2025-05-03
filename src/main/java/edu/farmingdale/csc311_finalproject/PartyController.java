@@ -107,16 +107,6 @@ public class PartyController implements Initializable {
         //navbar handler
         NavBarHandler.setupNav(homeBtn, gamesBtn,friendsBtn,partiesBtn);
 
-//        //todo switch to session user
-//        try {
-//            currentUser = sendGET(getUserUrl(2), new TypeReference<User>() {});
-//
-//
-//
-//        } catch (IOException e) {
-//            currentUser = null;//TODO FIX THIS!!!!!!!
-//            e.printStackTrace();
-//        }
         String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
         Image image;
 

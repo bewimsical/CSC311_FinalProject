@@ -62,7 +62,7 @@ public class AllPartiesController implements Initializable {
     @FXML
     private MenuButton usernameLabel;
 
-    private User currentUser;
+    private User currentUser = Session.getInstance().getUser();
     private final ObservableSet<Party> parties =  FXCollections.observableSet();
 
     @Override
@@ -70,36 +70,37 @@ public class AllPartiesController implements Initializable {
         //navbar handler
         NavBarHandler.setupNav(homeBtn, gamesBtn, friendsBtn, partiesBtn);
 
-        //todo switch to session user
+//        //todo switch to session user
+//        try {
+////            currentUser = sendGET(getUserUrl(2), new TypeReference<User>() {
+////            });
+//
+//
+//
+//        } catch (IOException e) {
+//            currentUser = null;//TODO FIX THIS!!!!!!!
+//            e.printStackTrace();
+//        }
+        String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
+        Image image;
+        // Load and resize image for nav bar
         try {
-            currentUser = sendGET(getUserUrl(2), new TypeReference<User>() {
-            });
-            String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
-            Image image;
-            // Load and resize image for nav bar
-            try {
-                image = new Image(Objects.requireNonNull(getClass().getResource(img)).toExternalForm());
-            } catch (Exception e) {
-                image = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
-            }
-
-
-            ImageView profilePic = new ImageView(image);
-            profilePic.setFitWidth(circle_view.getRadius() * 2);
-            profilePic.setFitHeight(circle_view.getRadius() * 2);
-            profilePic.setClip(new Circle(circle_view.getRadius(), circle_view.getRadius(), circle_view.getRadius()));
-
-            // Add to StackPane (on top of the Circle)
-            profileContainer.getChildren().add(profilePic);
-
-            // Set username
-            usernameLabel.setText(currentUser.getUsername());
-
-
-        } catch (IOException e) {
-            currentUser = null;//TODO FIX THIS!!!!!!!
-            e.printStackTrace();
+            image = new Image(Objects.requireNonNull(getClass().getResource(img)).toExternalForm());
+        } catch (Exception e) {
+            image = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
         }
+
+
+        ImageView profilePic = new ImageView(image);
+        profilePic.setFitWidth(circle_view.getRadius() * 2);
+        profilePic.setFitHeight(circle_view.getRadius() * 2);
+        profilePic.setClip(new Circle(circle_view.getRadius(), circle_view.getRadius(), circle_view.getRadius()));
+
+        // Add to StackPane (on top of the Circle)
+        profileContainer.getChildren().add(profilePic);
+
+        // Set username
+        usernameLabel.setText(currentUser.getUsername());
 
         try {
             parties.addAll(Objects.requireNonNull(sendGET(getUserParties(currentUser.getUserId()), new TypeReference<List<Party>>() {

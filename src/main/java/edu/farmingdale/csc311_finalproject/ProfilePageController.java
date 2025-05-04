@@ -41,6 +41,14 @@ import static edu.farmingdale.csc311_finalproject.ApiClient.*;
 public class ProfilePageController implements Initializable {
 
     @FXML
+    private Label homeBtn;
+    @FXML
+    private Label partiesBtn;
+    @FXML
+    private Label friendsBtn;
+    @FXML
+    private Label gamesBtn;
+    @FXML
     private Circle circle_view;
     @FXML
     private MenuButton usernameLabel;
@@ -77,6 +85,8 @@ public class ProfilePageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        NavBarHandler.setupNav(homeBtn, gamesBtn,friendsBtn,partiesBtn);
+
         // Match PartyController resizing logic
         gamesOwnedLabel.maxWidthProperty().bind(gamesOwnedContainer.widthProperty());
         gamesLabel.maxWidthProperty().bind(gamesList.widthProperty());

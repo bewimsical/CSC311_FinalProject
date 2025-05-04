@@ -1,15 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.geometry.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="edu.farmingdale.csc311_finalproject.CreatePartyController" prefWidth="400" prefHeight="300" styleClass="friends-popup">
-    <VBox spacing="10" alignment="CENTER" layoutX="50" layoutY="20">
-        <Label text="Create Party" styleClass="page-heading"/>
-        <TextField fx:id="partyNameField" promptText="Party Name" />
-        <DatePicker fx:id="partyDatePicker" />
-        <TextField fx:id="partyTimeField" promptText="Time (e.g. 06:00 PM)" />
-        <TextField fx:id="locationField" promptText="Location" />
-        <Button text="Create" onAction="#handleSubmitParty" styleClass="friends-popup-button"/>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="edu.farmingdale.csc311_finalproject.CreatePartyController"
+            prefWidth="400" prefHeight="450"
+            styleClass="friends-popup">
+
+    <VBox spacing="10.0" alignment="CENTER"
+          layoutX="20" layoutY="20"
+          AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20"
+          AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
+
+        <Label text="Create New Party" styleClass="page-heading"/>
+
+        <VBox spacing="5.0" maxWidth="300">
+            <Label text="Party Name:" styleClass="info-text"/>
+            <TextField fx:id="partyNameField" promptText="Enter party name"/>
+        </VBox>
+
+        <VBox spacing="5.0" maxWidth="300">
+            <Label text="Date:" styleClass="info-text"/>
+            <DatePicker fx:id="datePicker"/>
+        </VBox>
+
+        <VBox spacing="5.0" maxWidth="300">
+            <Label text="Time:" styleClass="info-text"/>
+            <HBox spacing="5.0">
+                <ComboBox fx:id="hourBox" prefWidth="60"/>
+                <Label text=":"/>
+                <ComboBox fx:id="minuteBox" prefWidth="60"/>
+                <ComboBox fx:id="amPmBox" prefWidth="70"/>
+            </HBox>
+        </VBox>
+
+        <VBox spacing="5.0" maxWidth="300">
+            <Label text="Location:" styleClass="info-text"/>
+            <TextField fx:id="locationField" promptText="Enter location"/>
+        </VBox>
+
+        <Button fx:id="createBtn" text="Create Party"
+                styleClass="friends-popup-button"
+                onAction="#handleCreateParty"/>
     </VBox>
+
 </AnchorPane>

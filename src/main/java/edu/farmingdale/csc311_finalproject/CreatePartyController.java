@@ -84,11 +84,14 @@ public class CreatePartyController {
 
             int code = conn.getResponseCode();
             if (code == 200 || code == 201) {
+                Party newParty = new Party(name, fullDateTime, location);
+                PartyStore.addParty(newParty);
+
                 showAlert("Party created successfully!");
+
                 ((Stage) createBtn.getScene().getWindow()).close();
-            } else {
-                showAlert("Failed to create party. Server responded with: " + code);
             }
+
 
         } catch (Exception e) {
             e.printStackTrace();

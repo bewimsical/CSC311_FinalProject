@@ -25,6 +25,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static edu.farmingdale.csc311_finalproject.ApiClient.*;
 
@@ -71,14 +73,15 @@ public class FriendsController implements Initializable {
 //            currentUser = null;//TODO FIX THIS!!!!!!!
 //            e.printStackTrace();
 //        }
-        String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
-        Image image;
-        // Load and resize image for nav bar
-        try {
-            image = new Image(Objects.requireNonNull(getClass().getResource(img)).toExternalForm());
-        } catch (Exception e) {
-            image = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
-        }
+//        String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
+//        Image image;
+//        // Load and resize image for nav bar
+//        try {
+//            image = new Image(Objects.requireNonNull(getClass().getResource(img)).toExternalForm());
+//        } catch (Exception e) {
+//            image = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
+//        }
+        Image image = NavBarHandler.setupNavImage();
 
 
         ImageView profilePic = new ImageView(image);
@@ -108,10 +111,18 @@ public class FriendsController implements Initializable {
     public VBox createFriendCard(User g){
         String friendImg = g.getProfilePicUrl();
         Image friendImage;
-        try {
-            friendImage = new Image(Objects.requireNonNull(getClass().getResource(friendImg)).toExternalForm());
-        } catch (Exception e) {
-            friendImage = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
+        if( checkImage(friendImg)) {
+            try {
+                friendImage = new Image(Objects.requireNonNull(getClass().getResource(friendImg)).toExternalForm());
+            } catch (Exception e) {
+                friendImage = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
+            }
+        }else{
+            try {
+                friendImage = new Image(friendImg, true);
+            } catch (Exception e) {
+                friendImage = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
+            }
         }
 
         ImageView friendPic = new ImageView(friendImage);
@@ -146,5 +157,12 @@ public class FriendsController implements Initializable {
         FlowPane.setMargin(card, new Insets(10, 6, 0, 6));
         return card;
 
+    }
+
+    public boolean checkImage(String imgUrl){
+        String pattern = "^images";
+        Pattern p = Pattern.compile(pattern);
+        Matcher m = p.matcher(imgUrl);
+        return m.lookingAt();
     }
 }

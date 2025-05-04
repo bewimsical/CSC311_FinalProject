@@ -78,7 +78,7 @@
     -fx-background-color: transparent;
 }
 .top-menu .menu-button .label {
-    -fx-font-family: Raleway;
+    -fx-font-family: Montserrat;
     -fx-font-size: 12px;
     -fx-padding: 5px;
 }
@@ -123,7 +123,7 @@
 }
 
 .votes-label {
-    -fx-font-family: Raleway;
+    -fx-font-family: Montserrat;
     -fx-font-size: 14px;
     -fx-text-fill: #444;
 }
@@ -161,7 +161,7 @@
     -fx-background-radius: 100px;
     -fx-background-color: #51331080;
     -fx-text-fill: white;
-    -fx-font-family: Raleway;
+    -fx-font-family: Montserrat;
     -fx-pref-width: 70px;
     -fx-cursor: hand;
 }
@@ -208,7 +208,7 @@
 .card .games-info-text,
 .games-game-name-text,
 .friend-name-text{
-    -fx-font-family: Raleway, SansSerif;
+    -fx-font-family: Montserrat, SansSerif;
     -fx-text-fill: #513310;
     -fx-font-size: 15px;
 }
@@ -263,7 +263,7 @@
 .search-field {
     -fx-background-color: #ffffff70;
     -fx-background-radius: 20px;
-    -fx-font-family: Raleway;
+    -fx-font-family: Montserrat;
     -fx-prompt-text-fill: #87632d;
 }
 

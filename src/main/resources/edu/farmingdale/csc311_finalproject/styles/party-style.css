@@ -12,6 +12,10 @@
     font-family: 'IM Fell English SC';
     src: url('../fonts/IMFellEnglishSC-Regular.ttf');
 }
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-Regular.ttf');
+}
 
 .root, .friends-popup{
     /*-fx-background-color: #d4ae6c;*/
@@ -405,7 +409,7 @@
 }
 
 .calendar-header{
-    -fx-font-family: Raleway;
+    -fx-font-family: Montserrat;
     -fx-font-size: 15px;
     -fx-text-fill: #513310;
     -fx-text-alignment: center;
@@ -473,5 +477,12 @@
 .card .past-party-info-text {
     -fx-font-size: 12px;
     -fx-text-fill: #444;
+}
+
+.has-event{
+    -fx-fill: #44444450;
+}
+.today{
+    -fx-fill: #87632d50;
 }
 

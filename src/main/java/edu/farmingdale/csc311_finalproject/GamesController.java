@@ -77,14 +77,15 @@ public class GamesController implements Initializable {
 //            currentUser = null;//TODO FIX THIS!!!!!!!
 //            e.printStackTrace();
 //        }
-        String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
-        Image image;
-        // Load and resize image for nav bar
-        try {
-            image = new Image(Objects.requireNonNull(getClass().getResource(img)).toExternalForm());
-        }catch (Exception e){
-            image = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
-        }
+//        String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
+//        Image image;
+//        // Load and resize image for nav bar
+//        try {
+//            image = new Image(Objects.requireNonNull(getClass().getResource(img)).toExternalForm());
+//        }catch (Exception e){
+//            image = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
+//        }
+        Image image = NavBarHandler.setupNavImage();
 
 
         ImageView profilePic = new ImageView(image);

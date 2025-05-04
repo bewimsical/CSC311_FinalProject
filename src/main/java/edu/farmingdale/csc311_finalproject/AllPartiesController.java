@@ -30,6 +30,9 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static edu.farmingdale.csc311_finalproject.ApiClient.*;
 
@@ -81,6 +84,7 @@ public class AllPartiesController implements Initializable {
     private final ObservableList<Party> upcomingParties = FXCollections.observableArrayList();
     private final ObservableList<Party> pastParties = FXCollections.observableArrayList();
     private final List<Party> selectedDayParties = new ArrayList<>();
+    private Map<LocalDate, List<Party>> partiesByDate = new TreeMap<>();
     private StackPane selectedDay = null;
     YearMonth currentMonth;
 
@@ -89,14 +93,15 @@ public class AllPartiesController implements Initializable {
         //navbar handler
         NavBarHandler.setupNav(homeBtn, gamesBtn, friendsBtn, partiesBtn);
 
-        String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
-        Image image;
-        // Load and resize image for nav bar
-        try {
-            image = new Image(Objects.requireNonNull(getClass().getResource(img)).toExternalForm());
-        } catch (Exception e) {
-            image = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
-        }
+//        String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
+//        Image image;
+//        // Load and resize image for nav bar
+//        try {
+//            image = new Image(Objects.requireNonNull(getClass().getResource(img)).toExternalForm());
+//        } catch (Exception e) {
+//            image = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
+//        }
+        Image image = NavBarHandler.setupNavImage();
 
         ImageView profilePic = new ImageView(image);
         profilePic.setFitWidth(circle_view.getRadius() * 2);
@@ -129,6 +134,9 @@ public class AllPartiesController implements Initializable {
                 HBox card = createPastPartiesCard(p);
                 pastPartiesList.getChildren().add(card);
             }
+
+            partiesByDate.putAll( parties.stream()
+                    .collect(Collectors.groupingBy(p -> p.getPartyDate().toLocalDate())));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -300,6 +308,12 @@ public class AllPartiesController implements Initializable {
 
             Circle highlight = new Circle(12);
             highlight.getStyleClass().add("calendar-highlight");
+            if(partiesByDate.containsKey(date)){
+                highlight.getStyleClass().add("has-event");
+            }
+            if (date.equals(LocalDate.now())){
+                highlight.getStyleClass().add("today");
+            }
 
             StackPane daycell = new StackPane(highlight, dayLabel);
             daycell.setPrefSize(12, 12);
@@ -505,6 +519,8 @@ public class AllPartiesController implements Initializable {
     void addParty(ActionEvent event) {
 
     }
+
+
 
 
 

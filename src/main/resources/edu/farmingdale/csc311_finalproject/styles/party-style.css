@@ -79,6 +79,11 @@
 
 /*-------Party and guest info -------*/
 
+.parties-right-pane{
+    -fx-border-color: transparent transparent transparent #87632d;
+    -fx-border-width: 2px;
+}
+
 .left-pane{
     -fx-background-color: #ffffff30;
     -fx-border-color: transparent #87632d transparent transparent;
@@ -86,6 +91,8 @@
     -fx-padding: 10px;
 
 }
+
+
 .left-pane, .games-container{
     -fx-border-color: transparent #87632d transparent transparent;
     -fx-border-width: 2px;
@@ -147,9 +154,11 @@
 .info-text, .game-name-text,
 .card .games-info-text,
 .games-game-name-text,
-.friend-game-name-text,
+.friend-name-text,
 .party-info-text,
-.party-name-text{
+.party-name-text,
+.past-party-info-text,
+.past-party-name-text{
     -fx-font-family: Raleway, SansSerif;
     -fx-text-fill: #513310;
     -fx-font-size: 15px;
@@ -293,10 +302,17 @@
     -fx-text-fill: #513310;
 }
 .month-label{
-    -fx-font-family: Raleway;
+    -fx-font-family: 'IM Fell English SC';
     -fx-font-size: 20px;
     -fx-text-fill: #513310;
 }
+
+.month-text, .month-label {
+    -fx-padding: 0;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
 .profile-thumb-container{
     -fx-border-color: white;
     -fx-border-radius: 100px;
@@ -341,5 +357,121 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1);
     -fx-scale-x: 1.01;
     -fx-scale-y: 1.01;
+}
+
+#monthLabel{
+    -fx-font-size: 22px;
+    -fx-font-family: 'IM Fell English SC';
+    /*-fx-text-alignment: center-left;*/
+    /*-fx-alignment: center-left;*/
+    -fx-text-fill: #513310;
+
+}
+
+/* Global accordion and text styles */
+.accordion {
+    -fx-font-family: "Raleway";
+    -fx-text-fill: #513310;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+}
+
+/* Title bar of each TitledPane */
+.titled-pane > .title {
+    -fx-background-color: #87632d90;
+    -fx-text-fill: #513310;
+    -fx-border-color: transparent;
+}
+
+/* Remove borders around content */
+.titled-pane > .content {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Change text color inside title and content */
+.titled-pane > .title > .text,
+.titled-pane > .content {
+    -fx-fill: #513310;
+    -fx-text-fill: #513310;
+}
+
+/* Style the arrow (disclosure node) */
+.titled-pane > .title > .arrow-button > .arrow {
+    -fx-background-color: #513310;
+}
+
+.calendar-header{
+    -fx-font-family: Raleway;
+    -fx-font-size: 15px;
+    -fx-text-fill: #513310;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+.calendar-container{
+    -fx-background-color: #ffffff30;
+    -fx-background-radius: 10px;
+}
+
+.calendar-highlight{
+    -fx-fill: transparent;
+}
+.day-cell:hover .calendar-highlight{
+    -fx-fill: #87632d80;
+}
+
+.day-cell.selected .calendar-highlight{
+    -fx-fill: #87632d80;
+}
+
+.day-cell.selected{
+    -fx-background-color: transparent;
+}
+
+.selected-party-time-text{
+    -fx-font-family: 'IM Fell English SC';
+    -fx-font-size: 20px;
+    -fx-text-fill: #513310;
+    -fx-alignment: center-left;
+}
+.selected-party-info-text{
+    -fx-font-family: Raleway;
+    -fx-font-size: 15px;
+    -fx-text-fill: #513310;
+    -fx-alignment: center-left;
+}
+
+.past-month-text{
+    -fx-font-size: 20px;
+    -fx-font-family: 'IM Fell English SC';
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-text-fill: #513310;
+}
+.past-month-label{
+    -fx-font-family: 'IM Fell English SC';
+    -fx-font-size: 15px;
+    -fx-text-fill: #513310;
+}
+
+.past-month-text, .past-month-label {
+    -fx-padding: 0;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+.past-party-name-text{
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-wrap-text: true;
+}
+
+.card .past-party-info-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #444;
 }
 

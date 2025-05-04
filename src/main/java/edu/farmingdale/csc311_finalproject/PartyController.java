@@ -96,6 +96,7 @@ public class PartyController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Session.getInstance().setPartyController(this);
         //keep things centered when app size changes
         gamesLabel.maxWidthProperty().bind(gamesContainer.widthProperty());
         selectedGamesLabel.maxWidthProperty().bind(selectedGamesContainer.widthProperty());
@@ -467,6 +468,14 @@ public class PartyController implements Initializable {
         Matcher m = p.matcher(imgUrl);
         return m.lookingAt();
     }
+
+    public void addGameToPartyList(Game g) {
+        if (!games.contains(g)) {
+            games.add(g);
+            gamesList.getChildren().add(createGameCard(g));
+        }
+    }
+
 
 
 }

@@ -28,5 +28,16 @@ public class Session {
         currentUser = null;
         instance = null;
     }
+
+    private PartyController partyController;
+    public void setPartyController(PartyController controller) {
+        this.partyController = controller;
+    }
+    public PartyController getPartyController() {
+        return partyController;
+    }
+
+
+
 }
 

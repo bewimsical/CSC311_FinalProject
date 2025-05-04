@@ -216,10 +216,14 @@ public class AllPartiesController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("create-party-view.fxml"));
             Parent root = loader.load();
 
+            Scene scene = new Scene(root);
+
+            String css = Objects.requireNonNull(getClass().getResource("/edu/farmingdale/csc311_finalproject/styles/party-style.css")).toExternalForm();
+            scene.getStylesheets().add(css);
+
             Stage stage = new Stage();
             stage.setTitle("Create Party");
-            stage.setScene(new Scene(root));
-
+            stage.setScene(scene);
 
             stage.setOnHidden(e -> loadParties());
 
@@ -230,13 +234,14 @@ public class AllPartiesController implements Initializable {
     }
 
 
+
     public void loadParties() {
         partiesList.getChildren().clear();
 
         for (Party party : PartyStore.getAllParties()) {
             Label label = new Label(party.getPartyName() + " @ " + party.getPartyDate());
             label.getStyleClass().add("party-name-text");
-            label.setOnMouseClicked(e -> showPartyDetails(party)); // Only if you have this method!
+            label.setOnMouseClicked(e -> showPartyDetails(party));
 
             partiesList.getChildren().add(label);
         }
@@ -248,22 +253,26 @@ public class AllPartiesController implements Initializable {
 
     public void showPartyDetails(Party party) {
         try {
-
-            PartyController controller = new PartyController(party);
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("party-view.fxml"));
-            loader.setController(controller); // This is key!
+            loader.setController(new PartyController(party));
 
             Parent root = loader.load();
 
+
+            root.getStylesheets().add(
+                    Objects.requireNonNull(getClass().getResource("party-style.css")).toExternalForm()
+            );
+
             Stage stage = new Stage();
-            stage.setTitle("Party: " + party.getPartyName());
             stage.setScene(new Scene(root));
+            stage.setTitle(party.getPartyName());
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 
 
 

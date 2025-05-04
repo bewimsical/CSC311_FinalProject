@@ -165,6 +165,11 @@ public final class ApiClient {
         return String.format("%s/users/%d/friends", BASE_API_URL,userId);
     }
 
+    //GET returns a list of user objects
+    public static String searchFriendsByUsername(String username){
+        return String.format("%s/users/search/%s", BASE_API_URL,username);
+    }
+
     //GET returns a set of party objects - NOTE: this endpoint is under construction
     public static String getUserParties(long userId){
         return String.format("%s/users/%d/parties", BASE_API_URL,userId);

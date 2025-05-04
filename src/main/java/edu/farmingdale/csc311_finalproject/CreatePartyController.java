@@ -1,5 +1,9 @@
 package edu.farmingdale.csc311_finalproject;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -34,7 +38,7 @@ public class CreatePartyController {
     @FXML
     private Button createBtn;
 
-    private Long loggedInUserId = 1L; // replace this with the real logged-in user ID
+    private Long loggedInUserId = Session.getInstance().getUser().getUserId();
 
     @FXML
     private void initialize() {
@@ -84,13 +88,23 @@ public class CreatePartyController {
 
             int code = conn.getResponseCode();
             if (code == 200 || code == 201) {
-                Party newParty = new Party(name, fullDateTime, location);
-                PartyStore.addParty(newParty);
+                ObjectMapper mapper = new ObjectMapper();
+                mapper.registerModule(new JavaTimeModule());
+                mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-                showAlert("Party created successfully!");
+                Party createdParty = mapper.readValue(conn.getInputStream(), Party.class);
 
-                ((Stage) createBtn.getScene().getWindow()).close();
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Party Created");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Party created successfully!");
+                    alert.showAndWait();
+
+                    ((Stage) createBtn.getScene().getWindow()).close();
+                });
             }
+
 
 
         } catch (Exception e) {

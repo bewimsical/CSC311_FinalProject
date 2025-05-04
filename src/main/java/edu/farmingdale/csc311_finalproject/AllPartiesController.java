@@ -503,8 +503,9 @@ public class AllPartiesController implements Initializable {
     }
     @FXML
     void addParty(ActionEvent event) {
-
+        handleCreateParty();
     }
+
 
     public void handleCreateParty() {
         try {
@@ -529,16 +530,44 @@ public class AllPartiesController implements Initializable {
     }
 
     public void loadParties() {
-        partiesList.getChildren().clear();
+        try {
+            List<Party> updated = Objects.requireNonNull(sendGET(getUserParties(currentUser.getUserId()), new TypeReference<List<Party>>() {}));
 
-        for (Party party : PartyStore.getAllParties()) {
-            Label label = new Label(party.getPartyName() + " @ " + party.getPartyDate());
-            label.getStyleClass().add("party-name-text");
-            label.setOnMouseClicked(e -> showPartyDetails(party));
+            parties.clear();
+            parties.addAll(updated);
 
-            partiesList.getChildren().add(label);
+            pastParties.setAll(parties.stream()
+                    .filter(p -> p.getPartyDate().isBefore(LocalDateTime.now()))
+                    .sorted(Comparator.comparing(Party::getPartyDate).reversed())
+                    .toList());
+
+            upcomingParties.setAll(parties.stream()
+                    .filter(p -> p.getPartyDate().isAfter(LocalDateTime.now()))
+                    .sorted(Comparator.comparing(Party::getPartyDate))
+                    .toList());
+
+            partiesList.getChildren().clear();
+            for (Party p : upcomingParties) {
+                partiesList.getChildren().add(createPartyCard(p));
+            }
+
+            pastPartiesList.getChildren().clear();
+            for (Party p : pastParties) {
+                pastPartiesList.getChildren().add(createPastPartiesCard(p));
+            }
+
+            if (selectedDay != null) {
+                Label label = (Label) selectedDay.getChildren().get(1);
+                int selectedDayNum = Integer.parseInt(label.getText());
+                LocalDate selectedDate = currentMonth.atDay(selectedDayNum);
+                showEventsForDate(selectedDate);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
 
 
     public void showPartyDetails(Party party) {

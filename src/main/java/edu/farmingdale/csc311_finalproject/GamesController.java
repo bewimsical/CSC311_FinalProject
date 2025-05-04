@@ -1,5 +1,6 @@
 package edu.farmingdale.csc311_finalproject;
 
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
+import edu.farmingdale.csc311_finalproject.SearchGame;
 
 import java.io.IOException;
 import java.net.URL;
@@ -161,5 +165,81 @@ public class GamesController implements Initializable {
         return card;
 
     }
+
+    private Popup searchPopup = new Popup();
+    private SearchGame selectedSearchGame;
+
+
+    private void displaySearchResults(List<SearchGame> results) {
+        VBox resultBox = new VBox(5);
+        resultBox.setPadding(new Insets(10));
+
+        for (SearchGame game : results) {
+            Label resultLabel = new Label(game.getName() + " (" + game.getYear() + ")");
+            resultLabel.setOnMouseClicked(e -> {
+                selectedSearchGame = game;
+                try {
+                    Game fullGame = ApiClient.sendGET(
+                            ApiClient.getGameUrl(selectedSearchGame.getId()),
+                            new TypeReference<Game>() {}
+                    );
+                    ApiClient.sendPOST(
+                            ApiClient.addGameToUser(currentUser.getUserId(), fullGame.getGameId()),
+                            null,
+                            new TypeReference<Void>() {}
+                    );
+                    games.add(fullGame);
+                    gamesList.getChildren().add(createGameCard(fullGame));
+                    PartyController partyController = Session.getInstance().getPartyController();
+                    if (partyController != null) {
+                        partyController.addGameToPartyList(fullGame);
+                    }
+                    searchPopup.hide();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+
+            resultBox.getChildren().add(resultLabel);
+        }
+
+        ScrollPane scroll = new ScrollPane(resultBox);
+        scroll.setPrefSize(250, 200);
+        searchPopup.getContent().clear();
+        searchPopup.getContent().add(scroll);
+        searchPopup.setAutoHide(true);
+        Stage stage = (Stage) searchField.getScene().getWindow();
+        searchPopup.show(stage, searchField.localToScreen(0, 0).getX(), searchField.localToScreen(0, 0).getY() + 40);
+    }
+
+    public void addGameToPartyList(Game g) {
+        if (!games.contains(g)) {
+            games.add(g);
+            gamesList.getChildren().add(createGameCard(g));
+        }
+    }
+
+
+    @FXML
+    void searchGame() {
+        String query = searchField.getText().trim();
+        if (query.isEmpty()) return;
+
+        try {
+            List<SearchGame> results = ApiClient.sendGET(
+                    ApiClient.searchGameUrl(query),
+                    new TypeReference<List<SearchGame>>() {}
+            );
+
+            displaySearchResults(results);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 }
 

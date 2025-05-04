@@ -517,9 +517,93 @@ public class AllPartiesController implements Initializable {
     }
     @FXML
     void addParty(ActionEvent event) {
-
+        handleCreateParty();
     }
 
+
+    public void handleCreateParty() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("create-party-view.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+
+            String css = Objects.requireNonNull(getClass().getResource("/edu/farmingdale/csc311_finalproject/styles/party-style.css")).toExternalForm();
+            scene.getStylesheets().add(css);
+
+            Stage stage = new Stage();
+            stage.setTitle("Create Party");
+            stage.setScene(scene);
+
+            stage.setOnHidden(e -> loadParties());
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadParties() {
+        try {
+            List<Party> updated = Objects.requireNonNull(sendGET(getUserParties(currentUser.getUserId()), new TypeReference<List<Party>>() {}));
+
+            parties.clear();
+            parties.addAll(updated);
+
+            pastParties.setAll(parties.stream()
+                    .filter(p -> p.getPartyDate().isBefore(LocalDateTime.now()))
+                    .sorted(Comparator.comparing(Party::getPartyDate).reversed())
+                    .toList());
+
+            upcomingParties.setAll(parties.stream()
+                    .filter(p -> p.getPartyDate().isAfter(LocalDateTime.now()))
+                    .sorted(Comparator.comparing(Party::getPartyDate))
+                    .toList());
+
+            partiesList.getChildren().clear();
+            for (Party p : upcomingParties) {
+                partiesList.getChildren().add(createPartyCard(p));
+            }
+
+            pastPartiesList.getChildren().clear();
+            for (Party p : pastParties) {
+                pastPartiesList.getChildren().add(createPastPartiesCard(p));
+            }
+
+            if (selectedDay != null) {
+                Label label = (Label) selectedDay.getChildren().get(1);
+                int selectedDayNum = Integer.parseInt(label.getText());
+                LocalDate selectedDate = currentMonth.atDay(selectedDayNum);
+                showEventsForDate(selectedDate);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public void showPartyDetails(Party party) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("party-view.fxml"));
+            loader.setController(new PartyController(party));
+
+            Parent root = loader.load();
+
+
+            root.getStylesheets().add(
+                    Objects.requireNonNull(getClass().getResource("party-style.css")).toExternalForm()
+            );
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle(party.getPartyName());
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

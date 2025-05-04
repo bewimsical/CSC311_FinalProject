@@ -91,7 +91,7 @@
                               <Insets left="10.0" right="35.0" />
                            </padding>
                         </TextField>
-                        <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="search-button">
+                        <Button fx:id="searchGameBtn" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="search-button">
                            <StackPane.margin>
                               <Insets right="5.0" />
                            </StackPane.margin>

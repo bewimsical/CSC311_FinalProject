@@ -90,7 +90,7 @@
                                       <Insets left="20.0" />
                                   </padding>
                               </Label>
-                              <Button maxHeight="25.0" maxWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="add-button">
+                              <Button fx:id="addPartyBtn" maxHeight="25.0" maxWidth="25.0" mnemonicParsing="false" onAction="#addParty" prefHeight="25.0" prefWidth="25.0" styleClass="add-button">
                                   <HBox.margin>
                                       <Insets left="10.0" />
                                   </HBox.margin>

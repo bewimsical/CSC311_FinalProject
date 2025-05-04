@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -499,6 +500,10 @@ public class AllPartiesController implements Initializable {
         });
         VBox.setMargin(card, new Insets(10, 0, 0, 0));
         return card;
+    }
+    @FXML
+    void addParty(ActionEvent event) {
+
     }
 
 

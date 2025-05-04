@@ -127,15 +127,18 @@ public class SpareCreateAccountPageController {
         try {
             String email = createAccountEmailTextField.getText();
             String password = createAccountPasswordTextFIeld.getText();
-            String username = email.split("@")[0];
+            String username = userNameTextField.getText();
             String profilePicUrl = getRandomProfilePicUrl(); // <- get random image URL
+
+            String firstName = FirstNameTextField.getText();
+            String lastName = lastNameTextField.getText();
 
             // Debug log
             System.out.println("Profile Picture URL: " + profilePicUrl);
 
             String jsonInput = String.format(
-                    "{\"username\":\"%s\",\"fName\":\"First\",\"lName\":\"Last\",\"email\":\"%s\",\"profilePicUrl\":\"%s\",\"userPassword\":\"%s\"}",
-                    username, email, profilePicUrl, password);
+                    "{\"username\":\"%s\",\"fName\":\"%s\",\"lName\":\"%s\",\"email\":\"%s\",\"profilePicUrl\":\"%s\",\"userPassword\":\"%s\"}",
+                    username, firstName, lastName, email, profilePicUrl, password);
 
 
             URL url = new URL("http://localhost:8080/users/create");
@@ -187,23 +190,30 @@ public class SpareCreateAccountPageController {
 
     }
     private String getRandomProfilePicUrl() {
-        try {
-            // Adjust this to match your structure in src/main/resources
-            File imageFolder = new File(getClass().getResource("/edu/farmingdale/csc311_finalproject/images").toURI());
-            File[] imageFiles = imageFolder.listFiles((dir, name) ->
-                    name.toLowerCase().endsWith(".png") || name.toLowerCase().endsWith(".jpg") || name.toLowerCase().endsWith(".jpeg")
-            );
+        String[] allowedImages = {
+                "bard_dog.PNG",
+                "paladin_dog.PNG",
+                "rogue_cat.PNG",
+                "wizard_bird.PNG",
+                "wizard_cat.PNG"
+        };
 
-            if (imageFiles != null && imageFiles.length > 0) {
-                Random rand = new Random();
-                File randomImage = imageFiles[rand.nextInt(imageFiles.length)];
-                return randomImage.toURI().toString(); // Returns a URI like file:/.../image.jpg
-            }
+        try {
+            Random rand = new Random();
+            String selectedImage = allowedImages[rand.nextInt(allowedImages.length)];
+
+            // Optionally check if the resource actually exists
+            URL resource = getClass().getResource("/edu/farmingdale/csc311_finalproject/images/" + selectedImage);
+            if (resource == null) return "";
+
+            return "images/" + selectedImage;
         } catch (Exception e) {
-            e.printStackTrace(); // Log error
+            e.printStackTrace();
         }
-        return ""; // Fallback
+        return "";
     }
+
+
 
 
     private FadeTransition createFadeOut(javafx.scene.Node node) {

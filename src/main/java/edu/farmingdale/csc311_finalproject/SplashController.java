@@ -1,14 +1,15 @@
 package edu.farmingdale.csc311_finalproject;
 
-import javafx.animation.*;
+import javafx.animation.PauseTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -16,149 +17,138 @@ import java.io.IOException;
 
 public class SplashController {
 
-    double originalWidth = 148;
-    double originalHeight = 73;
-    double enlargedWidth = 180;
-    double enlargedHeight = 85;
+    @FXML
+    private ImageView insideBox;
 
     @FXML
-    private Button byebtn;
-
-    @FXML
-    private ImageView signUpBoard;
-
-    @FXML
-    private ImageView door;
-
-    @FXML
-    private ImageView door1;
+    private Text logInText;
 
     @FXML
     private ImageView logInBoard;
 
     @FXML
-    private Button hellobtn;
-
-    private PauseTransition pause = new PauseTransition(Duration.seconds(5));
-
-    public void initialize() {
-        TranslateTransition transition = new TranslateTransition(Duration.seconds(2), door);
-        transition.setByX(146);
-        transition.setCycleCount(1);
-        transition.setAutoReverse(true);
-        transition.play();
-
-        TranslateTransition transition1 = new TranslateTransition(Duration.seconds(2), door1);
-        door1.setX(0);
-        transition1.setFromX(0);
-        transition1.setFromY(0);
-        transition1.setByX(-145);
-        transition1.setCycleCount(1);
-        transition1.setAutoReverse(true);
-        transition1.play();
-
-        logInBoard.setOnMouseEntered(event -> {
-            logInBoard.setFitWidth(enlargedWidth);
-            logInBoard.setFitHeight(enlargedHeight);
-        });
-
-        logInBoard.setOnMouseExited(event -> {
-            logInBoard.setFitWidth(originalWidth);
-            logInBoard.setFitHeight(originalHeight);
-        });
-
-        signUpBoard.setOnMouseEntered(event -> {
-            signUpBoard.setFitWidth(enlargedWidth);
-            signUpBoard.setFitHeight(enlargedHeight);
-        });
-
-        signUpBoard.setOnMouseExited(event -> {
-            signUpBoard.setFitWidth(originalWidth);
-            signUpBoard.setFitHeight(originalHeight);
-        });
-    }
+    private ImageView signUpBoard;
+    @FXML
+    private ImageView gameNightChest;
 
     @FXML
-    void logInPage(MouseEvent event) throws IOException {
-        logInBoard.setDisable(true);
-        logInBoard.toFront();
+    void logInPage(MouseEvent event) {
+            logInBoard.setDisable(true);
 
-        TranslateTransition tt = new TranslateTransition(Duration.seconds(2), logInBoard);
-        ScaleTransition st = new ScaleTransition(Duration.seconds(4), logInBoard);
+            // 1. Shake animation for gameNightChest
+            TranslateTransition shake = new TranslateTransition(Duration.millis(100), gameNightChest);
+            shake.setByX(20);
+            shake.setCycleCount(6);
+            shake.setAutoReverse(true);
+        TranslateTransition shake1 = new TranslateTransition(Duration.millis(100), insideBox);
+        shake1.setByX(20);
+        shake1.setCycleCount(6);
+        shake1.setAutoReverse(true);
 
-        st.setByX(3.8f);
-        st.setByY(7.6f);
-        st.setCycleCount(1);
-        st.play();
+            // 2. After shake, continue with main logInBoard animations
+            shake.setOnFinished(event1 -> {
+                // Move the board
+                TranslateTransition tt = new TranslateTransition(Duration.seconds(2), logInBoard);
+                tt.setToY(-195);
+                tt.setToX(-13);
+                tt.setCycleCount(1);
+                tt.play();
 
-        tt.setToY(-50);
-        tt.setCycleCount(1);
-        tt.play();
 
-        // Print layout and size after scaling completes
-        st.setOnFinished(e -> {
-            double layoutX = logInBoard.getLayoutX();
-            double layoutY = logInBoard.getLayoutY();
-            double translateX = logInBoard.getTranslateX();
-            double translateY = logInBoard.getTranslateY();
-            double fitWidth = logInBoard.getFitWidth();
-            double fitHeight = logInBoard.getFitHeight();
+                // Bring to front after 1.3 seconds
+                PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                pause.setOnFinished(e -> logInBoard.toFront());
+                pause.play();
 
-            System.out.println("logInBoard LayoutX: " + layoutX);
-            System.out.println("logInBoard LayoutY: " + layoutY);
-            System.out.println("logInBoard TranslateX: " + translateX);
-            System.out.println("logInBoard TranslateY: " + translateY);
-            System.out.println("logInBoard FitWidth: " + fitWidth);
-            System.out.println("logInBoard FitHeight: " + fitHeight);
-        });
+                // After translation is done, do a scale transition
+                tt.setOnFinished(e -> {
+                    ScaleTransition st = new ScaleTransition(Duration.seconds(2), logInBoard);
+                    st.setToX(4.1);
+                    st.setToY(5);
+                    st.setCycleCount(1);
+                    st.setAutoReverse(false);
+                    st.play();
+                    st.setOnFinished(ev2 -> {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("spareLoginPage.fxml"));
+                            Parent root = loader.load();
+                            Stage stage = (Stage) logInBoard.getScene().getWindow();
+                            Scene scene = new Scene(root, 650, 600);
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+                });
+            });
 
-        pause.setOnFinished(e -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("spareLoginPage.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) logInBoard.getScene().getWindow();
-                Scene scene = new Scene(root, 650, 600);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
+            // Start the shake
+            shake.play();
+            shake1.play();
+        }
 
-        pause.play();
-    }
 
-    @FXML
+        @FXML
     void signUpPage(MouseEvent event) {
-        ScaleTransition st1 = new ScaleTransition(Duration.seconds(4), signUpBoard);
-        TranslateTransition tt = new TranslateTransition(Duration.seconds(2), signUpBoard);
-        PauseTransition pause = new PauseTransition(Duration.seconds(5));
+            signUpBoard.setDisable(true);
 
-        signUpBoard.setDisable(true);
-        signUpBoard.toFront();
+            // 1. Shake animation for gameNightChest
+            TranslateTransition shake = new TranslateTransition(Duration.millis(100), gameNightChest);
+            shake.setByX(20);
+            shake.setCycleCount(6);
+            shake.setAutoReverse(true);
+            TranslateTransition shake1 = new TranslateTransition(Duration.millis(100), insideBox);
+            shake1.setByX(20);
+            shake1.setCycleCount(6);
+            shake1.setAutoReverse(true);
 
-        st1.setByX(3.5f);
-        st1.setByY(8.0f);
-        st1.setCycleCount(1);
-        st1.play();
+            // 2. After shake, continue with main logInBoard animations
+            shake.setOnFinished(event1 -> {
+                // Move the board
+                TranslateTransition tt = new TranslateTransition(Duration.seconds(2), signUpBoard);
+                tt.setToY(-195);
+                tt.setToX(-13);
+                tt.setCycleCount(1);
+                tt.play();
 
-        tt.setToY(100);
-        tt.setCycleCount(1);
-        tt.play();
 
-        pause.setOnFinished(e -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("SpareCreateAccountPage.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) signUpBoard.getScene().getWindow();
-                Scene scene = new Scene(root, 650, 600);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
+                // Bring to front after 1.3 seconds
+                PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                pause.setOnFinished(e -> signUpBoard.toFront());
+                pause.play();
 
-        pause.play();
-    }
+                // After translation is done, do a scale transition
+                tt.setOnFinished(e -> {
+                    ScaleTransition st = new ScaleTransition(Duration.seconds(2), signUpBoard);
+                    st.setToX(4.1);
+                    st.setToY(5);
+                    st.setCycleCount(1);
+                    st.setAutoReverse(false);
+                    st.play();
+                    st.setOnFinished(ev2 -> {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("SpareCreateAccountPage.fxml"));
+                            Parent root = loader.load();
+                            Stage stage = (Stage) logInBoard.getScene().getWindow();
+                            Scene scene = new Scene(root, 650, 600);
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+                });
+            });
+
+            // Start the shake
+            shake.play();
+            shake1.play();
+        }
+
+
+
 }
+
+
+

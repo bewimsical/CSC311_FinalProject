@@ -184,6 +184,17 @@ public final class ApiClient {
         return String.format("%s/users/deletefriend?user=%d&friend=%d", BASE_API_URL,userId,friendId);
     }
 
+    // GET - Returns a list of all users
+    public static String getAllUsersUrl() {
+        return String.format("%s/users", BASE_API_URL);
+    }
+
+    // POST - Adds a friend to the user's friend list; request body is null, returns void
+    public static String addFriendUrl(long userId, long friendId) {
+        return String.format("%s/users/addfriend?user=%d&friend=%d", BASE_API_URL, userId, friendId);
+    }
+
+
     //===========PARTY URLS===========//
 
     //POST request body is a Party object, returns a party object

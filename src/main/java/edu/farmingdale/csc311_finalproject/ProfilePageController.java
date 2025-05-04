@@ -64,6 +64,7 @@ public class ProfilePageController implements Initializable {
     @FXML
     private FlowPane gamesOwnedList;
 
+    private User currentUser;
     private final ObservableList<User> friends = FXCollections.observableArrayList();
     private final ObservableList<Game> ownedGames = FXCollections.observableArrayList();
 
@@ -212,13 +213,14 @@ public class ProfilePageController implements Initializable {
             Button add = new Button("Add");
             cancel.setOnAction(e -> friendPopup.hide());
 
+
             add.setOnAction(e -> {
                 if (selectedFriend != null && !this.friends.contains(selectedFriend)) {
                     this.friends.add(selectedFriend);
                     friendList.getChildren().add(createFriendCard(selectedFriend));
                     // Optional: Send POST request to save new friend relationship
                     try {
-                        sendPOST(addGuest(currentUser.getUserId(), selectedFriend.getUserId()), null, new TypeReference<Void>() {});
+                        sendPOST(addFriendUrl(currentUser.getUserId(), selectedFriend.getUserId()), null, new TypeReference<Void>() {});
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -236,7 +238,7 @@ public class ProfilePageController implements Initializable {
             popup.getStyleClass().add("friends-popup");
 
             try {
-                List<User> allUsers = sendGET(getAllUsers(), new TypeReference<List<User>>() {});
+                List<User> allUsers = sendGET(getAllUsersUrl(), new TypeReference<List<User>>() {});
                 for (User u : allUsers) {
                     if (!u.getUserId().equals(currentUser.getUserId()) && !friends.contains(u)) {
                         HBox card = createFriendCard(u);
@@ -272,3 +274,4 @@ public class ProfilePageController implements Initializable {
 
     }
 }
+

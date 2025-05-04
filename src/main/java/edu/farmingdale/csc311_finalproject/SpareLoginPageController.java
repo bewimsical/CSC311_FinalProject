@@ -2,6 +2,7 @@ package edu.farmingdale.csc311_finalproject;
 
 import com.google.gson.Gson;
 import javafx.animation.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,6 +23,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class SpareLoginPageController {
+    @FXML
+    private Button addPartyBtn;
+
     @FXML
     private Text createAccountText;
 
@@ -140,7 +144,7 @@ public class SpareLoginPageController {
                     Scene profileScene = new Scene(fxmlLoader.load(), 850, 560);
                     Stage stage = new Stage();
                     stage.setScene(profileScene);
-                    stage.setTitle("Profile Page");
+                    stage.setTitle("");
                     stage.show();
 
                     Stage currentStage = (Stage) signInButton.getScene().getWindow();
@@ -282,6 +286,8 @@ void createAccountHandler(MouseEvent event) {
 
         // You can also reposition or resize other nodes here if needed
     }
+
+
 
     }
 

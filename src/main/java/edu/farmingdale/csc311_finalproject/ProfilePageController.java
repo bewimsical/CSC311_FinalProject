@@ -89,11 +89,13 @@ public class ProfilePageController implements Initializable {
         User user = Session.getInstance().getUser();
         if (user != null) {
             usernameLabel.setText(user.getUsername());
-
+//Fix the image formatting
             try {
                 File imageFile = new File(new URI(user.getProfilePicUrl()));
                 if (imageFile.exists()) {
-                    Image image = new Image(imageFile.toURI().toString(), true);
+                    Image image = new Image(imageFile.toURI().toString(), false);
+
+                    //Image image = new Image(imageFile.toURI().toString(), true);
                     ImagePattern pattern = new ImagePattern(image);
                     circle_view.setFill(pattern);
                     circle_view2.setFill(pattern);
@@ -276,5 +278,6 @@ public class ProfilePageController implements Initializable {
     }
 }*/
     }
+
 }
 

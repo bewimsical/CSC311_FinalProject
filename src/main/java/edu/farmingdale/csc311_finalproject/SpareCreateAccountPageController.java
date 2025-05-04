@@ -19,10 +19,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Random;
 
 
 public class SpareCreateAccountPageController {
@@ -126,10 +128,15 @@ public class SpareCreateAccountPageController {
             String email = createAccountEmailTextField.getText();
             String password = createAccountPasswordTextFIeld.getText();
             String username = email.split("@")[0];
+            String profilePicUrl = getRandomProfilePicUrl(); // <- get random image URL
+
+            // Debug log
+            System.out.println("Profile Picture URL: " + profilePicUrl);
 
             String jsonInput = String.format(
-                    "{\"username\":\"%s\",\"fName\":\"First\",\"lName\":\"Last\",\"email\":\"%s\",\"profilePicUrl\":\"\",\"userPassword\":\"%s\"}",
-                    username, email, password);
+                    "{\"username\":\"%s\",\"fName\":\"First\",\"lName\":\"Last\",\"email\":\"%s\",\"profilePicUrl\":\"%s\",\"userPassword\":\"%s\"}",
+                    username, email, profilePicUrl, password);
+
 
             URL url = new URL("http://localhost:8080/users/create");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -170,13 +177,34 @@ public class SpareCreateAccountPageController {
         }
     }
 
+
     private void showAlert(String header, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(header);
         alert.setContentText(message);
         alert.showAndWait();
+
     }
+    private String getRandomProfilePicUrl() {
+        try {
+            // Adjust this to match your structure in src/main/resources
+            File imageFolder = new File(getClass().getResource("/edu/farmingdale/csc311_finalproject/images").toURI());
+            File[] imageFiles = imageFolder.listFiles((dir, name) ->
+                    name.toLowerCase().endsWith(".png") || name.toLowerCase().endsWith(".jpg") || name.toLowerCase().endsWith(".jpeg")
+            );
+
+            if (imageFiles != null && imageFiles.length > 0) {
+                Random rand = new Random();
+                File randomImage = imageFiles[rand.nextInt(imageFiles.length)];
+                return randomImage.toURI().toString(); // Returns a URI like file:/.../image.jpg
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Log error
+        }
+        return ""; // Fallback
+    }
+
 
     private FadeTransition createFadeOut(javafx.scene.Node node) {
         FadeTransition fade = new FadeTransition(Duration.seconds(1));

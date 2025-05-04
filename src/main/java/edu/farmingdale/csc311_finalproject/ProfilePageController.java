@@ -198,7 +198,7 @@ public class ProfilePageController implements Initializable {
     }
 
     public void addGuest(MouseEvent mouseEvent) {
-        if (friendPopup == null) {
+      /**  if (friendPopup == null) {
             friendPopup = new Popup();
         }
 
@@ -273,6 +273,8 @@ public class ProfilePageController implements Initializable {
             friendPopup.show(stage, event.getScreenX(), event.getScreenY());
         }
 
+    }
+}*/
     }
 }
 

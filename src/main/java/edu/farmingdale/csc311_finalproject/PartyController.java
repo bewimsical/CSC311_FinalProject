@@ -1,6 +1,7 @@
 package edu.farmingdale.csc311_finalproject;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -103,19 +104,21 @@ public class PartyController implements Initializable {
 
         //create popup for adding guests
         guestPopup = new Popup();
+        guestPopup.setAutoHide(true);
 
         //navbar handler
         NavBarHandler.setupNav(homeBtn, gamesBtn,friendsBtn,partiesBtn);
 
-        String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
-        Image image;
-
-        // Load and resize image for nav bar
-        try {
-            image = new Image(Objects.requireNonNull(getClass().getResource(img)).toExternalForm());
-        }catch (Exception e){
-            image = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
-        }
+//        String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
+//        Image image;
+//
+//        // Load and resize image for nav bar
+//        try {
+//            image = new Image(Objects.requireNonNull(getClass().getResource(img)).toExternalForm());
+//        }catch (Exception e){
+//            image = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
+//        }
+        Image image = NavBarHandler.setupNavImage();
         ImageView profilePic = new ImageView(image);
         profilePic.setFitWidth(circle_view.getRadius() * 2);
         profilePic.setFitHeight(circle_view.getRadius() * 2);
@@ -173,6 +176,8 @@ public class PartyController implements Initializable {
             gamesList.getChildren().add(card);
         }
         updateSelectedGames();
+
+
     }
 
     private void updateSelectedGames(){
@@ -251,7 +256,21 @@ public class PartyController implements Initializable {
 
     public HBox createGuestCard(User u){
         String img = u.getProfilePicUrl() != null ? u.getProfilePicUrl() : "images/wizard_cat.PNG";
-        Image image = new Image(getClass().getResource(img).toExternalForm());
+        Image image;
+
+        if( checkImage(img)) {
+            try {
+                image = new Image(Objects.requireNonNull(NavBarHandler.class.getResource(img)).toExternalForm());
+            } catch (Exception e) {
+                image = new Image(Objects.requireNonNull(NavBarHandler.class.getResource("images/wizard_cat.PNG")).toExternalForm());
+            }
+        }else{
+            try {
+                image = new Image(img, true);
+            } catch (Exception e) {
+                image = new Image(Objects.requireNonNull(NavBarHandler.class.getResource("images/wizard_cat.PNG")).toExternalForm());
+            }
+        }
         ImageView profilePic = new ImageView(image);
         profilePic.setFitHeight(25);
         profilePic.setFitWidth(25);
@@ -362,7 +381,7 @@ public class PartyController implements Initializable {
             VBox friendsList = new VBox();
             ScrollPane friendsListContainer = new ScrollPane(friendsList);
             friendsList.getStyleClass().add("friends-popup-list");
-            friendsListContainer.setPrefSize(200, 200);
+            friendsListContainer.setPrefSize(210, 210);
             friendsList.setPrefWidth(194);
             friendsList.setMaxWidth(194);
             //guestList.prefHeightProperty().bind(guestListContainer.heightProperty());
@@ -440,6 +459,13 @@ public class PartyController implements Initializable {
             guestPopup.show(stage, event.getScreenX(), event.getScreenY());
         }
 
+    }
+
+    public boolean checkImage(String imgUrl){
+        String pattern = "^images";
+        Pattern p = Pattern.compile(pattern);
+        Matcher m = p.matcher(imgUrl);
+        return m.lookingAt();
     }
 
 

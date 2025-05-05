@@ -5,6 +5,7 @@ module edu.farmingdale.csc311_finalproject {
     requires java.sql;
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.datatype.jsr310;
+    requires java.net.http;
 
     opens edu.farmingdale.csc311_finalproject to javafx.fxml, com.google.gson;
 

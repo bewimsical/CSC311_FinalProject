@@ -16,6 +16,17 @@ public class Session {
         return instance;
     }
 
+    private static Long currentUserId;
+
+    public static void setCurrentUserId(Long userId) {
+        currentUserId = userId;
+    }
+
+    public static Long getCurrentUserId() {
+        return currentUserId;
+    }
+
+
     public void setUser(User user) {
         this.currentUser = user;
     }

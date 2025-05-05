@@ -430,7 +430,7 @@ public class PartyController implements Initializable {
             popup.getStyleClass().add("friends-popup");
             List<User> updatedFriends;
             try {
-                updatedFriends = sendGET(getUserFriends(Session.getCurrentUserId()), new TypeReference<List<User>>() {});
+                updatedFriends = sendGET(getUserFriends(currentUser.getUserId()), new TypeReference<List<User>>() {});
                 friends.clear();
                 friends.addAll(updatedFriends);
             } catch (IOException e) {

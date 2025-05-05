@@ -428,6 +428,15 @@ public class PartyController implements Initializable {
             VBox popup = new VBox(10, friendsListContainer, buttonContainer);
             popup.setMargin(buttonContainer, new Insets(10, 0, 20, 0));
             popup.getStyleClass().add("friends-popup");
+            List<User> updatedFriends;
+            try {
+                updatedFriends = sendGET(getUserFriends(Session.getCurrentUserId()), new TypeReference<List<User>>() {});
+                friends.clear();
+                friends.addAll(updatedFriends);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             for (User g : friends) {
                 if(!guests.contains(g)) {
                     HBox card = createGuestCard(g);

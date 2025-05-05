@@ -137,6 +137,9 @@ public class LoginPageController {
                     Gson gson = new Gson();
                     User loggedInUser = gson.fromJson(response.toString(), User.class);
                     Session.getInstance().setUser(loggedInUser);
+                    Session.getInstance().setCurrentUserId(loggedInUser.getUserId());
+
+                    //Session.getInstance().setUser(loggedInUser);
 
 //                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ProfilePage.fxml"));
                     FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("all-parties-view.fxml"));

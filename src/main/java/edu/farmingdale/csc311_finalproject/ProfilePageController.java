@@ -61,9 +61,9 @@ public class ProfilePageController implements Initializable {
     @FXML
     private VBox friendList;
     @FXML
-    private Label gamesLabel;
+    private Label partiesLabel;
     @FXML
-    private VBox gamesList;
+    private VBox partiesList;
     @FXML
     private VBox gamesOwnedContainer;
     @FXML
@@ -89,7 +89,7 @@ public class ProfilePageController implements Initializable {
 
         // Match PartyController resizing logic
         gamesOwnedLabel.maxWidthProperty().bind(gamesOwnedContainer.widthProperty());
-        gamesLabel.maxWidthProperty().bind(gamesList.widthProperty());
+        partiesLabel.maxWidthProperty().bind(partiesList.widthProperty());
         friendsLabel.maxWidthProperty().bind(friendList.widthProperty());
 
         gamesOwnedListContainer.setFitToWidth(true);
@@ -209,7 +209,7 @@ public class ProfilePageController implements Initializable {
     }
 
     public void addGuest(MouseEvent mouseEvent) {
-      /**  if (friendPopup == null) {
+     /** if (friendPopup == null) {
             friendPopup = new Popup();
         }
 
@@ -283,10 +283,10 @@ public class ProfilePageController implements Initializable {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             friendPopup.show(stage, event.getScreenX(), event.getScreenY());
         }
-
+*/
     }
-}*/
-    }
-
 }
+
+
+
 

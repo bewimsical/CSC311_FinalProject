@@ -100,12 +100,10 @@ public class ProfilePageController implements Initializable {
         if (user != null) {
             usernameLabel.setText(user.getUsername());
 //Fix the image formatting
-            try {
-                File imageFile = new File(new URI(user.getProfilePicUrl()));
-                if (imageFile.exists()) {
-                    Image image = new Image(imageFile.toURI().toString(), false);
 
-                    //Image image = new Image(imageFile.toURI().toString(), true);
+            try {
+                Image image = NavBarHandler.setupNavImage();
+                if (image != null) {
                     ImagePattern pattern = new ImagePattern(image);
                     circle_view.setFill(pattern);
                     circle_view2.setFill(pattern);
@@ -113,6 +111,7 @@ public class ProfilePageController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
 
             // Load friends
             try {

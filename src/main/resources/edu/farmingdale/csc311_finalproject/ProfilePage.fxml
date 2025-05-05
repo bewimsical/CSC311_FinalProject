@@ -9,6 +9,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
@@ -60,10 +61,17 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <VBox fx:id="friendList" prefHeight="200.0" prefWidth="100.0" />
+                  <VBox fx:id="friendList" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                          </content>
+                        </ScrollPane>
+                     </children></VBox>
                   <HBox alignment="CENTER_LEFT">
                      <children>
-                        <Label fx:id="gamesLabel" maxWidth="243.0" prefHeight="35.0" prefWidth="243.0" styleClass="heading" text="Games " textAlignment="CENTER" />
+                        <Label fx:id="partiesLabel" maxWidth="243.0" prefHeight="35.0" prefWidth="243.0" styleClass="heading" text="Parties" textAlignment="CENTER" />
                         <ImageView id="addGuest" fitHeight="16.0" fitWidth="16.0" onMouseClicked="#addGuest" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/plus-solid.png" />
@@ -77,7 +85,14 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <VBox fx:id="gamesList" prefHeight="200.0" prefWidth="100.0" />
+                  <VBox fx:id="partyList" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                          </content>
+                        </ScrollPane>
+                     </children></VBox>
                </children>
             </VBox>
             <VBox fx:id="gamesOwnedContainer" maxWidth="1.7976931348623157E308" prefHeight="464.0" prefWidth="235.0" styleClass="games-container" HBox.hgrow="ALWAYS">

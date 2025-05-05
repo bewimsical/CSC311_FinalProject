@@ -61,9 +61,9 @@ public class ProfilePageController implements Initializable {
     @FXML
     private VBox friendList;
     @FXML
-    private Label gamesLabel;
+    private Label partiesLabel;
     @FXML
-    private VBox gamesList;
+    private VBox partiesList;
     @FXML
     private VBox gamesOwnedContainer;
     @FXML
@@ -76,6 +76,7 @@ public class ProfilePageController implements Initializable {
     private User currentUser;
     private final ObservableList<User> friends = FXCollections.observableArrayList();
     private final ObservableList<Game> ownedGames = FXCollections.observableArrayList();
+    private final ObservableList<Party> userParties = FXCollections.observableArrayList();
 
     private List <User> friend = new ArrayList<>();
     private User selectedFriend;
@@ -89,7 +90,7 @@ public class ProfilePageController implements Initializable {
 
         // Match PartyController resizing logic
         gamesOwnedLabel.maxWidthProperty().bind(gamesOwnedContainer.widthProperty());
-        gamesLabel.maxWidthProperty().bind(gamesList.widthProperty());
+        partiesLabel.maxWidthProperty().bind(partiesList.widthProperty());
         friendsLabel.maxWidthProperty().bind(friendList.widthProperty());
 
         gamesOwnedListContainer.setFitToWidth(true);
@@ -137,6 +138,17 @@ public class ProfilePageController implements Initializable {
                 e.printStackTrace();
             }
         }
+        // Load parties
+        try {
+            userParties.addAll(Objects.requireNonNull(sendGET(getUserParties(user.getUserId()), new TypeReference<List<Party>>() {})));
+            for (Party party : userParties) {
+                HBox partyCard = createPartyCard(party);
+                partiesList.getChildren().add(partyCard);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private HBox createUserCard(User u) {
@@ -153,6 +165,24 @@ public class ProfilePageController implements Initializable {
 
         HBox card = new HBox(10, profilePic, guestName);
         VBox.setMargin(card, new Insets(5, 0, 0, 0));
+        return card;
+    }
+
+    private HBox createPartyCard(Party p) {
+        Label nameLabel = new Label(p.getPartyName());
+        nameLabel.getStyleClass().add("info-text");
+
+        
+
+        VBox textBox = new VBox(5, nameLabel);
+        textBox.setAlignment(Pos.CENTER_LEFT);
+
+        HBox card = new HBox(10, textBox);
+        card.setAlignment(Pos.CENTER_LEFT);
+        card.getStyleClass().add("card");
+        card.setMaxWidth(230);
+        card.setMinWidth(230);
+        VBox.setMargin(card, new Insets(10, 5, 0, 5));
         return card;
     }
 
@@ -209,7 +239,7 @@ public class ProfilePageController implements Initializable {
     }
 
     public void addGuest(MouseEvent mouseEvent) {
-      /**  if (friendPopup == null) {
+     /** if (friendPopup == null) {
             friendPopup = new Popup();
         }
 
@@ -283,10 +313,10 @@ public class ProfilePageController implements Initializable {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             friendPopup.show(stage, event.getScreenX(), event.getScreenY());
         }
-
+*/
     }
-}*/
-    }
-
 }
+
+
+
 

@@ -1,12 +1,15 @@
 package edu.farmingdale.csc311_finalproject;
 
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -16,12 +19,15 @@ import java.util.regex.Pattern;
 public class NavBarHandler {
     private NavBarHandler(){}
 
-    public static void setupNav(Label home, Label games, Label friends, Label parties){
+    public static void setupNav(Label home, Label games, Label friends, Label parties, MenuItem logout){
         home.setOnMouseClicked(e -> switchScene(e.getSource(), "ProfilePage.fxml"));
         games.setOnMouseClicked(e -> switchScene(e.getSource(), "games-view.fxml"));
         friends.setOnMouseClicked(e -> switchScene(e.getSource(), "friends-view.fxml"));
         parties.setOnMouseClicked(e -> switchScene(e.getSource(), "all-parties-view.fxml"));
-
+        logout.setOnAction(e -> {
+            logout(e, "spareLoginPage.fxml");
+            Session.getInstance().clearSession();
+        });
 
     }
 
@@ -56,6 +62,23 @@ public class NavBarHandler {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void logout(Event e, String fxmlFile){
+        try {
+            // Get the focused window, since MenuItem is not part of the scene graph
+            Stage stage = (Stage) Stage.getWindows().stream()
+                    .filter(Window::isFocused)
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalStateException("No focused window"));
+
+            Parent root = FXMLLoader.load(NavBarHandler.class.getResource(fxmlFile));
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 

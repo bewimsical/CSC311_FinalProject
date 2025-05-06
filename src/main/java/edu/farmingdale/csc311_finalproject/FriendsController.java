@@ -48,6 +48,8 @@ public class FriendsController implements Initializable {
     @FXML
     private Label gamesBtn;
     @FXML
+    private MenuItem logout;
+    @FXML
     private VBox friendsContainer;
     @FXML
     private Label friendsLabel;
@@ -76,7 +78,7 @@ public class FriendsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //navbar handler
-        NavBarHandler.setupNav(homeBtn, gamesBtn, friendsBtn, partiesBtn);
+        NavBarHandler.setupNav(homeBtn, gamesBtn, friendsBtn, partiesBtn,logout);
 
         Image image = NavBarHandler.setupNavImage();
 
@@ -190,6 +192,7 @@ public class FriendsController implements Initializable {
             flow.setHgap(10);
             flow.setVgap(10);
             flow.setPadding(new Insets(10));
+            flow.setPrefWidth(680);
             ScrollPane addFriendsListContainer = new ScrollPane(flow);
             VBox searchResultsVBox = new VBox(resultsLabel, addFriendsListContainer);
             searchResultsVBox.setPrefWidth(700);

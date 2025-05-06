@@ -47,6 +47,7 @@ Prerequisites:
 - Friends Page: Search and add other users to your friends list so you can add them to your party later.
 - General Party Page: View and Create parties, pick a time, pick a place, and add it to your page. 
 - Specific Party Page: Click on one of your parties to pull up a new page where you can add friends and look at what games you each own before you vote on what to play.
+- Profile Page: View your parties, friends, and games all in one place
 
 ## Intended Users
 - Board game players: People who play board games with friends and family

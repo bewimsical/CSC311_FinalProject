@@ -50,7 +50,9 @@ public class NavBarHandler {
         try {
             Parent root = FXMLLoader.load(NavBarHandler.class.getResource(fxmlFile));
             Stage stage = (Stage)((Node)source).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(NavBarHandler.class.getResource("styles/party-style.css").toExternalForm());
+            stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

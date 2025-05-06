@@ -28,6 +28,7 @@ import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -64,6 +65,8 @@ public class FriendsController implements Initializable {
     private TextField searchField;
     @FXML
     private MenuButton usernameLabel;
+    @FXML
+    private TextField searchFriendField;
 
     private User currentUser = Session.getInstance().getUser();
     private final ObservableSet<User> friends =  FXCollections.observableSet();
@@ -75,26 +78,7 @@ public class FriendsController implements Initializable {
         //navbar handler
         NavBarHandler.setupNav(homeBtn, gamesBtn, friendsBtn, partiesBtn);
 
-//        //todo switch to session user
-//        try {
-//            currentUser = sendGET(getUserUrl(1), new TypeReference<User>() {
-//            });
-//
-//
-//        } catch (IOException e) {
-//            currentUser = null;//TODO FIX THIS!!!!!!!
-//            e.printStackTrace();
-//        }
-//        String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
-//        Image image;
-//        // Load and resize image for nav bar
-//        try {
-//            image = new Image(Objects.requireNonNull(getClass().getResource(img)).toExternalForm());
-//        } catch (Exception e) {
-//            image = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
-//        }
         Image image = NavBarHandler.setupNavImage();
-
 
         ImageView profilePic = new ImageView(image);
         profilePic.setFitWidth(circle_view.getRadius() * 2);
@@ -109,7 +93,6 @@ public class FriendsController implements Initializable {
 
         searchPopup = new Popup();
         searchPopup.setAutoHide(true);
-
 
         try {
             friends.addAll(Objects.requireNonNull(sendGET(getUserFriends(currentUser.getUserId()), new TypeReference<List<User>>() {
@@ -159,7 +142,6 @@ public class FriendsController implements Initializable {
         friendName.setAlignment(Pos.CENTER);
         friendName.getStyleClass().add("friend-name-text");
 
-
         VBox card = new VBox(10, imageContainer, friendName);
         card.setAlignment(Pos.CENTER);
         card.getStyleClass().add("friend-card");
@@ -175,72 +157,12 @@ public class FriendsController implements Initializable {
 
     }
 
-    public VBox createFriendCard(UserDto userDto) {
-        String friendImg = userDto.getProfilePicUrl();
-        Image friendImage;
-        if (checkImage(friendImg)) {
-            try {
-                friendImage = new Image(Objects.requireNonNull(getClass().getResource(friendImg)).toExternalForm());
-            } catch (Exception e) {
-                friendImage = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
-            }
-        } else {
-            try {
-                friendImage = new Image(friendImg, true);
-            } catch (Exception e) {
-                friendImage = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
-            }
-        }
-
-        ImageView friendPic = new ImageView(friendImage);
-        double friendPicSize = 125;
-        friendPic.setFitHeight(friendPicSize);
-        friendPic.setFitWidth(friendPicSize);
-        friendPic.setPreserveRatio(true);
-        friendPic.setSmooth(true);
-
-        StackPane imageContainer = new StackPane(friendPic);
-        imageContainer.setPrefSize(friendPicSize, friendPicSize);
-        imageContainer.setMaxSize(friendPicSize, friendPicSize);
-
-        Label friendName = new Label(userDto.getUsername());
-        friendName.setWrapText(true);
-        friendName.setMaxWidth(166);
-        friendName.setTextAlignment(TextAlignment.CENTER);
-        friendName.setAlignment(Pos.CENTER);
-        friendName.getStyleClass().add("friend-name-text");
-
-        Button addFriendBtn = new Button("Add");
-        addFriendBtn.setOnAction(e -> sendAddFriendRequest(currentUser.getUserId(), userDto.getUserId()));
-        addFriendBtn.getStyleClass().add("friends-popup-button");
-
-        VBox card = new VBox(10, imageContainer, friendName, addFriendBtn);
-        card.setAlignment(Pos.CENTER);
-        card.getStyleClass().add("friend-card");
-        double cardSize = 185;
-        card.setMaxWidth(cardSize);
-        card.setMinWidth(cardSize);
-        card.setPrefWidth(cardSize);
-        card.setUserData(userDto.getUserId());
-        friendName.prefWidthProperty().bind(card.widthProperty());
-
-        FlowPane.setMargin(card, new Insets(10, 6, 0, 6));
-        return card;
-    }
-
-
     public boolean checkImage(String imgUrl){
         String pattern = "^images";
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(imgUrl);
         return m.lookingAt();
     }
-
-    @FXML
-    private TextField searchFriendField;
-    @FXML
-    private ScrollPane searchResultsContainer;
-
 
     @FXML
     private void handleSearchFriend() {
@@ -252,94 +174,64 @@ public class FriendsController implements Initializable {
 
     private void searchFriendsByUsername(String username) {
         System.out.println("Searching for: " + username);//method confirmation
+        List<User> results = new ArrayList<>();
+        try {
+            results.addAll(Objects.requireNonNull(sendGET(ApiClient.searchFriendsByUsername(username), new TypeReference<List<User>>() {
+            })));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        String endpoint = "http://localhost:8080/users/search/" + username;
-
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(endpoint))
-                .GET()
-                .build();
-
-        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                .thenApply(HttpResponse::body)
-                .thenAccept(this::updateFriendSearchResults)
-                .exceptionally(e -> {
-                    e.printStackTrace();
-                    return null;
-                });
-    }
-
-//    @FXML
-//    private VBox searchResultsVBox;
+        if (!searchPopup.isShowing()) {
+            Label resultsLabel = new Label("Search Results");
+            resultsLabel.getStyleClass().add("search-results-heading");
+            resultsLabel.setMaxWidth(Double.MAX_VALUE);
+            FlowPane flow = new FlowPane();
+            flow.setHgap(10);
+            flow.setVgap(10);
+            flow.setPadding(new Insets(10));
+            ScrollPane addFriendsListContainer = new ScrollPane(flow);
+            VBox searchResultsVBox = new VBox(resultsLabel, addFriendsListContainer);
+            searchResultsVBox.setPrefWidth(700);
+            searchResultsVBox.setAlignment(Pos.TOP_CENTER);
+            resultsLabel.setAlignment(Pos.CENTER);
+            resultsLabel.maxWidthProperty().bind(searchResultsVBox.widthProperty());
+            resultsLabel.setTextAlignment(TextAlignment.CENTER);
+            searchResultsVBox.getStyleClass().add("add-friends-popup");
+            addFriendsListContainer.setPrefSize(700, 300);
 
 
+            for (User user : results) {
+                VBox friendCard = createFriendCard(user);
+                Button addFriendBtn = new Button("Add");
+                addFriendBtn.setOnAction(e -> sendAddFriendRequest(currentUser.getUserId(), user.getUserId()));
+                addFriendBtn.getStyleClass().add("friends-popup-button");
+                friendCard.getChildren().add(addFriendBtn);
 
-    private void updateFriendSearchResults(String jsonResponse) {
-        System.out.println("updateFriendSearchResults called with JSON: " + jsonResponse);
-        //VBox searchResultsVBox;
-        //ScrollPane searchResultsContainer
-        Platform.runLater(() -> {
-//            searchResultsContainer.getContent();
-//            searchResultsContainer.setContent(null);
-
-            Gson gson = new Gson();
-            Type listType = new TypeToken<List<UserDto>>() {}.getType();
-            List<UserDto> users = gson.fromJson(jsonResponse, listType);
-
-            if (users == null || users.isEmpty()) {
-                System.out.println("No users found in response.");
-                return;
+                flow.getChildren().add(friendCard);
             }
-            if (!searchPopup.isShowing()) {
 
-                FlowPane flow = new FlowPane();
-                flow.setHgap(10);
-                flow.setVgap(10);
-                flow.setPadding(new Insets(10));
-                ScrollPane friendsListContainer = new ScrollPane(flow);
-                VBox searchResultsVBox = new VBox(friendsListContainer);
-                searchResultsVBox.getStyleClass().add("friends-popup-list");
+            searchPopup.getContent().add(searchResultsVBox);
 
-
-                for (UserDto user : users) {
-                    VBox friendCard = createFriendCard(user);
-                    flow.getChildren().add(friendCard);
-                }
-
-                //searchResultsVBox.getChildren(flow);
-
-                searchPopup.getContent().add(searchResultsVBox);
-
-                Stage stage = (Stage) ((Node) homeBtn.getParent()).getScene().getWindow();
-                searchPopup.show(stage, 0, 200);
-                }
-
-            });
+            Stage stage = (Stage) ((Node) homeBtn.getParent()).getScene().getWindow();
+            double x = stage.getX() + (stage.getWidth() - 700)/2 ;
+            double y = stage.getY() + 210;
+            searchPopup.show(stage, x, y);
+        }
     }
-
-
-
 
     private void sendAddFriendRequest(Long userId, Long friendId) {
-//        String endpoint = "http://localhost:8080/users/addfriend?user=" + userId + "&friend=" + friendId;
-//
-//        HttpClient client = HttpClient.newHttpClient();
-//        HttpRequest request = HttpRequest.newBuilder()
-//                .uri(URI.create(endpoint))
-//                .POST(HttpRequest.BodyPublishers.noBody())
-//                .build();
-//
-//        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-//                .thenAccept(response -> System.out.println("Friend added!"))
-//                .exceptionally(e -> {
-//                    e.printStackTrace();
-//                    return null;
-//                });
+
         System.out.println(userId + " " + friendId);
         try {
-            sendPOST(addFriendToUser(userId, friendId), null, new TypeReference<Void>() {
+            User friend = sendPOST(addFriendToUser(userId, friendId), null, new TypeReference<User>() {
             });
+            if (friend != null) {
+                VBox newFriend = createFriendCard(friend);
+                friendsList.getChildren().add(newFriend);
+                searchPopup.hide();
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("friend not added");//TODO add label or warning

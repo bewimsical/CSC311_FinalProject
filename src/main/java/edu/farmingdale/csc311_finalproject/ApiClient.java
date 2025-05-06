@@ -18,6 +18,7 @@ public final class ApiClient {
 
     private static final String USER_AGENT = "Mozilla/5.0";
     private static final String BASE_API_URL = "http://localhost:8080";
+//    private static final String BASE_API_URL = "https://gamenight.harryscheiner.com";
 
 
     private ApiClient(){}

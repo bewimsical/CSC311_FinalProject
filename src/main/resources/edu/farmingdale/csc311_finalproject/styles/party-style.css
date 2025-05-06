@@ -648,4 +648,25 @@
     -fx-font-size: 25px;
     -fx-text-fill: #513310;
 }
+/* Login text fields */
+#emailTextField, #passwordTextField, #signInButton {
+    -fx-background-color: #87632d90;
+    -fx-font-family: "Raleway";
+}
+
+/* Login text */
+#emailPrompt, #passwordPrompt, #createAccountText,#createAccountText {
+    -fx-font-family: "Raleway";
+}
+
+/*Create Account text*/
+#firstNameText, #lastNameText, #userNameText, #emailAddressText, #passwordText,#reconfirmPasswordText,#returnToLoginText{
+    -fx-font-family: "Raleway";
+}
+/*Create account textFields*/
+#FirstNameTextField,#lastNameTextField,#userNameTextField,#createAccountEmailTextField,#createAccountPasswordTextFIeld,#createAccountConfirmPasswordTextField, #createAccountButton{
+    -fx-background-color: #87632d90;
+    -fx-font-family: "Raleway";
+}
+
 

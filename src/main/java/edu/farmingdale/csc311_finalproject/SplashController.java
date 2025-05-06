@@ -66,7 +66,7 @@ public class SplashController {
             tt.play();
 
 
-            // Bring to front after 1.3 seconds
+            // Bring to front after 2 seconds
             PauseTransition pause = new PauseTransition(Duration.seconds(2));
             pause.setOnFinished(e -> logInBoard.toFront());
             pause.play();
@@ -85,6 +85,9 @@ public class SplashController {
                         Parent root = loader.load();
                         Stage stage = (Stage) logInBoard.getScene().getWindow();
                         Scene scene = new Scene(root, 650, 600);
+                        scene.getStylesheets().add(
+                                getClass().getResource("styles/party-style.css").toExternalForm());
+
                         stage.setScene(scene);
                         stage.show();
                     } catch (IOException ex) {
@@ -153,6 +156,8 @@ public class SplashController {
                         Parent root = loader.load();
                         Stage stage = (Stage) logInBoard.getScene().getWindow();
                         Scene scene = new Scene(root, 650, 600);
+                        scene.getStylesheets().add(
+                                getClass().getResource("styles/party-style.css").toExternalForm());
                         stage.setScene(scene);
                         stage.show();
                     } catch (IOException ex) {

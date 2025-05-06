@@ -221,6 +221,8 @@ void createAccountHandler(MouseEvent event) {
             Parent root = fxmlCreateAccountLoader.load();
             Stage stage = (Stage) createAccountText.getScene().getWindow();
             Scene scene = new Scene(root, 650, 600);
+            scene.getStylesheets().add(
+                    getClass().getResource("styles/party-style.css").toExternalForm());
             stage.setScene(scene);
             stage.show();
         } catch (Exception ex) {

@@ -161,6 +161,8 @@ public class CreateAccountPageController {
 
                 FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LoginPage.fxml"));
                 Scene loginScene = new Scene(fxmlLoader.load(), 650, 600);
+                loginScene.getStylesheets().add(
+                        getClass().getResource("styles/party-style.css").toExternalForm());
                 Stage loginStage = new Stage();
                 loginStage.setScene(loginScene);
                 loginStage.setTitle("Login Page");
@@ -270,6 +272,8 @@ public class CreateAccountPageController {
                 Parent root = fxmlCreateAccountLoader.load();
                 Stage stage = (Stage) returnToLoginText.getScene().getWindow();
                 Scene scene = new Scene(root, 650, 600);
+                scene.getStylesheets().add(
+                        getClass().getResource("styles/party-style.css").toExternalForm());
                 stage.setScene(scene);
                 stage.show();
             } catch (Exception ex) {

@@ -40,7 +40,7 @@
                 <Image url="@../../../box_noinside.png" />
             </image>
         </ImageView>
-        <Text fill="#fff600" layoutX="433.0" layoutY="389.0" onMouseClicked="#signUpPage" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up" wrappingWidth="118.13677978515625">
+        <Text fx:id="signUpText" fill="#fff600" layoutX="433.0" layoutY="389.0" onMouseClicked="#signUpPage" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up" wrappingWidth="118.13677978515625">
             <font>
                 <Font size="21.0" />
             </font>

@@ -24,6 +24,9 @@ public class SplashController {
     private Text logInText;
 
     @FXML
+    private Text signUpText;
+
+    @FXML
     private ImageView logInBoard;
 
     @FXML
@@ -44,6 +47,14 @@ public class SplashController {
         shake1.setByX(20);
         shake1.setCycleCount(6);
         shake1.setAutoReverse(true);
+        TranslateTransition shake2 = new TranslateTransition(Duration.millis(100), logInText);
+        shake2.setByX(20);
+        shake2.setCycleCount(6);
+        shake2.setAutoReverse(true);
+        TranslateTransition shake3 = new TranslateTransition(Duration.millis(100), signUpText);
+        shake3.setByX(20);
+        shake3.setCycleCount(6);
+        shake3.setAutoReverse(true);
 
         // 2. After shake, continue with main logInBoard animations
         shake.setOnFinished(event1 -> {
@@ -86,6 +97,8 @@ public class SplashController {
         // Start the shake
         shake.play();
         shake1.play();
+        shake2.play();
+        shake3.play();
     }
 
 
@@ -102,6 +115,14 @@ public class SplashController {
         shake1.setByX(20);
         shake1.setCycleCount(6);
         shake1.setAutoReverse(true);
+        TranslateTransition shake2 = new TranslateTransition(Duration.millis(100), logInText);
+        shake2.setByX(20);
+        shake2.setCycleCount(6);
+        shake2.setAutoReverse(true);
+        TranslateTransition shake3 = new TranslateTransition(Duration.millis(100), signUpText);
+        shake3.setByX(20);
+        shake3.setCycleCount(6);
+        shake3.setAutoReverse(true);
 
         // 2. After shake, continue with main logInBoard animations
         shake.setOnFinished(event1 -> {
@@ -144,6 +165,9 @@ public class SplashController {
         // Start the shake
         shake.play();
         shake1.play();
+        shake2.play();
+        shake3.play();
+
     }
 
 

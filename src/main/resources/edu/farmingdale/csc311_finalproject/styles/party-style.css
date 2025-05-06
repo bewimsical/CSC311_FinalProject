@@ -96,6 +96,137 @@
 
 }
 
+.game-search-result {
+    -fx-font-family: Raleway;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #513310;
+    -fx-wrap-text: true;
+}
+
+.game-search-result:hover {
+    -fx-background-color: #ffffff40;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+
+.text-field {
+    -fx-background-color: #ffffff70;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #87632d;
+    -fx-border-width: 1;
+    -fx-font-family: Raleway;
+    -fx-text-fill: #513310;
+}
+
+
+.combo-box {
+    -fx-background-color: #ffffff70;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #87632d;
+    -fx-border-width: 1;
+    -fx-font-family: Raleway;
+    -fx-text-fill: #513310;
+}
+
+.date-picker {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-background-radius: 10;
+    -fx-border-color: #87632d;
+    -fx-border-radius: 10;
+    -fx-font-family: Raleway;
+    -fx-text-fill: #513310;
+}
+
+.date-picker > .arrow-button {
+    -fx-background-color: #87632d95;
+    -fx-background-radius: 0 10 10 0;
+}
+
+.date-picker > .arrow-button:hover {
+    -fx-background-color: #87632d;
+}
+
+.date-picker > .arrow-button > .arrow {
+    -fx-background-color: white;
+}
+
+.date-picker-popup {
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    -fx-border-color: #87632d;
+    -fx-border-radius: 10;
+}
+
+.date-picker {
+    -fx-background-color: transparent;
+    -fx-font-family: Raleway;
+    -fx-text-fill: #513310;
+    -fx-prompt-text-fill: #87632d;
+}
+
+/* The calendar popup */
+.date-picker-popup {
+    -fx-background-color: #ffffffc0;
+    -fx-border-color: #87632d;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-font-family: Raleway;
+}
+
+/* Month/Year label */
+.date-picker-popup .label {
+    -fx-text-fill: #513310;
+    -fx-font-family: 'IM Fell English SC';
+    -fx-font-size: 16px;
+}
+
+/* Day cells */
+.date-cell {
+    -fx-font-family: Raleway;
+    -fx-text-fill: #513310;
+    -fx-background-color: transparent;
+}
+.date-cell:hover {
+    -fx-background-color: #87632d30;
+}
+.date-cell:selected {
+    -fx-background-color: #87632d80;
+    -fx-text-fill: white;
+}
+
+
+//for partNameField and locationField bcs the gray prompt text is badbadnono
+.text-field1 {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-background-radius: 10;
+    -fx-border-color: #87632d;
+    -fx-border-radius: 10;
+    -fx-font-family: Raleway;
+    -fx-text-fill: #513310;
+    -fx-prompt-text-fill: #87632d;
+}
+
+
+
+.combo-box-popup .list-view {
+    -fx-background-color: #fdf2d5;
+    -fx-control-inner-background: #fdf2d5;
+    -fx-text-fill: #513310;
+    -fx-font-family: Raleway;
+}
+
+
+.combo-box:hover {
+    -fx-background-color: #fff5e0;
+    -fx-cursor: hand;
+}
+
+
 
 .left-pane, .games-container{
     -fx-border-color: transparent #87632d transparent transparent;

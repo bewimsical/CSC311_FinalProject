@@ -42,7 +42,6 @@ public class CreatePartyController {
 
     @FXML
     private void initialize() {
-        // Fill time dropdowns
         for (int i = 1; i <= 12; i++) hourBox.getItems().add(String.format("%02d", i));
         for (int i = 0; i < 60; i++) minuteBox.getItems().add(String.format("%02d", i));
         amPmBox.getItems().addAll("AM", "PM");
@@ -66,9 +65,15 @@ public class CreatePartyController {
         if (amPm.equals("PM") && hourInt != 12) hourInt += 12;
         if (amPm.equals("AM") && hourInt == 12) hourInt = 0;
 
+        partyNameField.getStyleClass().add("text-field");
+        locationField.getStyleClass().add("text-field");
+        hourBox.getStyleClass().add("combo-box");
+        minuteBox.getStyleClass().add("combo-box");
+        amPmBox.getStyleClass().add("combo-box");
+
         LocalDateTime fullDateTime = LocalDateTime.of(date, LocalTime.of(hourInt, Integer.parseInt(minute)));
 
-        // Construct JSON manually (no DTO)
+
         String json = String.format(
                 "{\"party_name\": \"%s\", \"party_date\": \"%s\", \"location\": \"%s\"}",
                 name, fullDateTime.toString(), location

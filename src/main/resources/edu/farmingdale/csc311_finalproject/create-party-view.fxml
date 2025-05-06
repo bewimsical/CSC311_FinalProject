@@ -19,12 +19,12 @@
 
         <VBox spacing="5.0" maxWidth="300">
             <Label text="Party Name:" styleClass="info-text"/>
-            <TextField fx:id="partyNameField" promptText="Enter party name"/>
+            <TextField fx:id="partyNameField" promptText="Enter party name" styleClass="text-field1" />
         </VBox>
 
         <VBox spacing="5.0" maxWidth="300">
             <Label text="Date:" styleClass="info-text"/>
-            <DatePicker fx:id="datePicker"/>
+            <DatePicker fx:id="datePicker" styleClass="date-picker"/>
         </VBox>
 
         <VBox spacing="5.0" maxWidth="300">
@@ -39,7 +39,7 @@
 
         <VBox spacing="5.0" maxWidth="300">
             <Label text="Location:" styleClass="info-text"/>
-            <TextField fx:id="locationField" promptText="Enter location"/>
+            <TextField fx:id="locationField" promptText="Enter location" styleClass="text-field1" />
         </VBox>
 
         <Button fx:id="createBtn" text="Create Party"

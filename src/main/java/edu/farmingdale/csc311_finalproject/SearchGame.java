@@ -14,6 +14,7 @@ public class SearchGame {
         this.year = year;
     }
 
+
     public int getId() {
         return id;
     }

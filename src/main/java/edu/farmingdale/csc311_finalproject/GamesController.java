@@ -173,9 +173,12 @@ public class GamesController implements Initializable {
     private void displaySearchResults(List<SearchGame> results) {
         VBox resultBox = new VBox(5);
         resultBox.setPadding(new Insets(10));
+        resultBox.getStyleClass().add("friends-popup-list");
 
         for (SearchGame game : results) {
             Label resultLabel = new Label(game.getName() + " (" + game.getYear() + ")");
+            resultLabel.getStyleClass().add("game-search-result");
+
             resultLabel.setOnMouseClicked(e -> {
                 selectedSearchGame = game;
                 try {
@@ -205,6 +208,8 @@ public class GamesController implements Initializable {
 
         ScrollPane scroll = new ScrollPane(resultBox);
         scroll.setPrefSize(250, 200);
+        scroll.getStyleClass().add("friends-popup");
+        scroll.getStylesheets().add(getClass().getResource("styles/party-style.css").toExternalForm());
         searchPopup.getContent().clear();
         searchPopup.getContent().add(scroll);
         searchPopup.setAutoHide(true);

@@ -66,6 +66,9 @@
                                 <MenuItem mnemonicParsing="false" text="Settings" />
                                 <MenuItem fx:id="logout" mnemonicParsing="false" text="Logout" />
                             </items>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                         </MenuButton>
                     </children></HBox>
             </children>
@@ -95,6 +98,9 @@
                            <StackPane.margin>
                               <Insets right="5.0" />
                            </StackPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                      </children>
                   </StackPane>

@@ -25,7 +25,7 @@ public class NavBarHandler {
         friends.setOnMouseClicked(e -> switchScene(e.getSource(), "friends-view.fxml"));
         parties.setOnMouseClicked(e -> switchScene(e.getSource(), "all-parties-view.fxml"));
         logout.setOnAction(e -> {
-            logout(e, "spareLoginPage.fxml");
+            logout(e, "LoginPage.fxml");
             Session.getInstance().clearSession();
         });
 

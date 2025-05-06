@@ -4,83 +4,57 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.SplashController">
     <children>
-      <ImageView fitHeight="600.0" fitWidth="650.0" layoutY="1.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../../240_F_317264974_2RsPbGMW0JVHPKYt3eBQwBj65OgC23Bv.jpg" />
-         </image>
-      </ImageView>
-        <ImageView fitHeight="424.0" fitWidth="451.0" layoutX="99.0" layoutY="121.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../../wardrobe.jpg" />
-         </image>
+        <ImageView fitHeight="600.0" fitWidth="650.0" layoutY="1.0" pickOnBounds="true">
+            <image>
+                <Image url="@../../../cartoon%20room.png" />
+            </image>
         </ImageView>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" height="266.0" layoutX="181.0" layoutY="168.0" stroke="BLACK" strokeType="INSIDE" width="274.0">
-         <fill>
-            <LinearGradient endX="1.0" endY="1.0" proportional="false" startY="0.8674242460366451">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.21960784494876862" green="0.05882352963089943" blue="0.05882352963089943" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </fill></Rectangle>
-      <ImageView fitHeight="115.0" fitWidth="337.0" layoutX="153.0" layoutY="6.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../../Screenshot%202025-04-08%20160726.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fitHeight="62.0" fitWidth="274.0" layoutX="181.0" layoutY="367.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../../table-floating-shelf-furniture-table-a383fd09d511e070d488ba174a16620e.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="logInBoard" fitHeight="73.0" fitWidth="148.0" layoutX="235.0" layoutY="301.0" onMouseClicked="#logInPage" pickOnBounds="true">
-         <image>
-            <Image url="@../../../login.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fitHeight="62.0" fitWidth="274.0" layoutX="181.0" layoutY="256.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../../table-floating-shelf-furniture-table-a383fd09d511e070d488ba174a16620e.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="signUpBoard" fitHeight="73.0" fitWidth="148.0" layoutX="251.0" layoutY="190.0" onMouseClicked="#signUpPage" pickOnBounds="true">
-         <image>
-            <Image url="@../../../singup.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
-        <ImageView fx:id="door1" fitHeight="266.0" fitWidth="139.0" layoutX="181.0" layoutY="169.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../../leftDoor.png" />
-         </image>
+        <ImageView fx:id="insideBox" fitHeight="219.0" fitWidth="473.0" layoutX="102.0" layoutY="266.0" pickOnBounds="true">
+            <image>
+                <Image url="@../../../box_inside_NORIM.png" />
+            </image>
         </ImageView>
-      <ImageView fx:id="door" fitHeight="266.0" fitWidth="139.0" layoutX="317.0" layoutY="169.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../../rightdoor.png" />
-         </image>
-      </ImageView>
+        <ImageView fx:id="signUpBoard" fitHeight="130.0" fitWidth="166.0" layoutX="256.0" layoutY="424.0" onMouseClicked="#signUpPage" pickOnBounds="true">
+            <image>
+                <Image url="@../../../login_screen_improved.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="OPEN_HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="logInBoard" fitHeight="130.0" fitWidth="166.0" layoutX="256.0" layoutY="424.0" onMouseClicked="#logInPage" pickOnBounds="true">
+            <image>
+                <Image url="@../../../login_screen_improved.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="OPEN_HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="gameNightChest" fitHeight="505.0" fitWidth="473.0" layoutX="102.0" layoutY="121.0" pickOnBounds="true">
+            <image>
+                <Image url="@../../../box_noinside.png" />
+            </image>
+        </ImageView>
+        <Text fx:id="signUpText" fill="#fff600" layoutX="433.0" layoutY="389.0" onMouseClicked="#signUpPage" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up" wrappingWidth="118.13677978515625">
+            <font>
+                <Font size="21.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Text>
+        <Text fx:id="logInText" fill="#fff600" layoutX="152.0" layoutY="388.0" onMouseClicked="#logInPage" strokeType="OUTSIDE" strokeWidth="0.0" text="Log In" wrappingWidth="62.936767578125">
+            <font>
+                <Font size="21.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Text>
     </children>
 </Pane>

@@ -14,10 +14,6 @@ import static edu.farmingdale.csc311_finalproject.ApiClient.sendGET;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LoginPage.fxml"));
-//        Scene scene = new Scene(fxmlLoader.load(), 650, 600);
-//        stage.setScene(scene);
-//        stage.show();
 
         //OPENS PARTY PAGE DIRECTLY
         User currentUser = sendGET(getUserUrl(1), new TypeReference<User>() {});

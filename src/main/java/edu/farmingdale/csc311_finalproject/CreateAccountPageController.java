@@ -159,7 +159,7 @@ public class CreateAccountPageController {
                 alert.setContentText("You may now log in with your new account.");
                 alert.showAndWait();
 
-                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("spareLoginPage.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LoginPage.fxml"));
                 Scene loginScene = new Scene(fxmlLoader.load(), 650, 600);
                 Stage loginStage = new Stage();
                 loginStage.setScene(loginScene);
@@ -266,7 +266,7 @@ public class CreateAccountPageController {
 
         fadeAndShake.setOnFinished(e -> {
             try {
-                FXMLLoader fxmlCreateAccountLoader = new FXMLLoader(HelloApplication.class.getResource("SpareLoginPage.fxml"));
+                FXMLLoader fxmlCreateAccountLoader = new FXMLLoader(HelloApplication.class.getResource("LoginPage.fxml"));
                 Parent root = fxmlCreateAccountLoader.load();
                 Stage stage = (Stage) returnToLoginText.getScene().getWindow();
                 Scene scene = new Scene(root, 650, 600);

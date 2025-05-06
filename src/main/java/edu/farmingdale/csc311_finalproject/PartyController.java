@@ -12,10 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -46,6 +43,8 @@ public class PartyController implements Initializable {
     private Label friendsBtn;
     @FXML
     private Label gamesBtn;
+    @FXML
+    private MenuItem logout;
     @FXML
     private Circle circle_view;
     @FXML
@@ -108,7 +107,7 @@ public class PartyController implements Initializable {
         guestPopup.setAutoHide(true);
 
         //navbar handler
-        NavBarHandler.setupNav(homeBtn, gamesBtn,friendsBtn,partiesBtn);
+        NavBarHandler.setupNav(homeBtn, gamesBtn,friendsBtn,partiesBtn,logout);
 
 //        String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
 //        Image image;

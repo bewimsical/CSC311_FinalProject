@@ -65,8 +65,8 @@ public class CreatePartyController {
         if (amPm.equals("PM") && hourInt != 12) hourInt += 12;
         if (amPm.equals("AM") && hourInt == 12) hourInt = 0;
 
-        partyNameField.getStyleClass().add("text-field");
-        locationField.getStyleClass().add("text-field");
+        partyNameField.getStyleClass().add("create-party-text-field");
+        locationField.getStyleClass().add("create-party-text-field");
         hourBox.getStyleClass().add("combo-box");
         minuteBox.getStyleClass().add("combo-box");
         amPmBox.getStyleClass().add("combo-box");

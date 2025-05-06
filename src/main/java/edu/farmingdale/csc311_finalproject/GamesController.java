@@ -9,10 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -43,6 +40,8 @@ public class GamesController implements Initializable {
     @FXML
     private Label gamesBtn;
     @FXML
+    private MenuItem logout;
+    @FXML
     private VBox gamesContainer;
     @FXML
     private Label gamesLabel;
@@ -68,7 +67,7 @@ public class GamesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //navbar handler
-        NavBarHandler.setupNav(homeBtn, gamesBtn,friendsBtn,partiesBtn);
+        NavBarHandler.setupNav(homeBtn, gamesBtn,friendsBtn,partiesBtn, logout);
 
 //        //todo switch to session user
 //        try {

@@ -55,6 +55,8 @@ public class AllPartiesController implements Initializable {
     @FXML
     private Label gamesBtn;
     @FXML
+    private MenuItem logout;
+    @FXML
     private VBox partiesContainer;
     @FXML
     private Label partiesLabel;
@@ -91,7 +93,7 @@ public class AllPartiesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //navbar handler
-        NavBarHandler.setupNav(homeBtn, gamesBtn, friendsBtn, partiesBtn);
+        NavBarHandler.setupNav(homeBtn, gamesBtn, friendsBtn, partiesBtn, logout);
 
 //        String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
 //        Image image;

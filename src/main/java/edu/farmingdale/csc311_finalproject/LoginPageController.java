@@ -176,7 +176,7 @@ public class LoginPageController {
     @FXML
     void createAccountHandler(MouseEvent event) {
         try {
-            FXMLLoader fxmlCreateAccountLoader = new FXMLLoader(HelloApplication.class.getResource("SpareCreateAccountPage.fxml"));
+            FXMLLoader fxmlCreateAccountLoader = new FXMLLoader(HelloApplication.class.getResource("CreateAccountPage.fxml"));
             Parent root = fxmlCreateAccountLoader.load();
             Stage stage = (Stage) createAccountText.getScene().getWindow();
             Scene scene = new Scene(root, 650, 600);
@@ -217,7 +217,7 @@ void createAccountHandler(MouseEvent event) {
 
     fadeAndShake.setOnFinished(e -> {
         try {
-            FXMLLoader fxmlCreateAccountLoader = new FXMLLoader(HelloApplication.class.getResource("SpareCreateAccountPage.fxml"));
+            FXMLLoader fxmlCreateAccountLoader = new FXMLLoader(HelloApplication.class.getResource("CreateAccountPage.fxml"));
             Parent root = fxmlCreateAccountLoader.load();
             Stage stage = (Stage) createAccountText.getScene().getWindow();
             Scene scene = new Scene(root, 650, 600);
@@ -249,28 +249,8 @@ void createAccountHandler(MouseEvent event) {
     }
 
 
-    @FXML
-    void forgotPasswordHandler(MouseEvent event) {
-        try {
-            FXMLLoader fxmlForgotPasswordLoader = new FXMLLoader(HelloApplication.class.getResource("ForgotPasswordPage.fxml"));
-            Scene forgotPasswordScene = new Scene(fxmlForgotPasswordLoader.load(), 600, 400);
 
-            Stage forgotPasswordStage = new Stage();
-            forgotPasswordStage.setTitle("Forgot Password Page");
-            forgotPasswordStage.setScene(forgotPasswordScene);
-            forgotPasswordStage.show();
 
-            Stage currentStage = (Stage) forgotPasswordField.getScene().getWindow();
-            currentStage.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Failed to load Page");
-            alert.setContentText("An error occurred while trying to load the page.");
-            alert.showAndWait();
-        }
-    }
     public void setStage(Stage stage) {
         // Handle resize and fullscreen changes
         stage.widthProperty().addListener((obs, oldVal, newVal) -> handleResize(stage));

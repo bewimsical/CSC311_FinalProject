@@ -68,8 +68,11 @@
                         <MenuButton fx:id="usernameLabel" layoutX="722.0" layoutY="14.0" mnemonicParsing="false" text="username">
                             <items>
                                 <MenuItem mnemonicParsing="false" text="Settings" />
-                                <MenuItem mnemonicParsing="false" text="Logout" />
+                                <MenuItem fx:id="logout" mnemonicParsing="false" text="Logout" />
                             </items>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                         </MenuButton>
                     </children></HBox>
             </children>
@@ -123,6 +126,9 @@
                                                     <image>
                                                         <Image url="@images/arrow-left-solid.png" />
                                                     </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                                 </ImageView>
                                                 <ImageView fx:id="nextMonth" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                     <HBox.margin>
@@ -131,6 +137,9 @@
                                                     <image>
                                                         <Image url="@images/arrow-right-solid.png" />
                                                     </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                                 </ImageView>
                                             </children>
                                         </HBox>
@@ -186,6 +195,9 @@
                                             </children>
                                         </AnchorPane>
                                     </content>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                                 </TitledPane>
                                 <TitledPane fx:id="pastPartiesPane" animated="false" text="Past Parties">
                                     <content>
@@ -199,6 +211,9 @@
                                             </children>
                                         </AnchorPane>
                                     </content>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                                 </TitledPane>
                             </panes>
                             <VBox.margin>

@@ -192,6 +192,7 @@ public class FriendsController implements Initializable {
             flow.setHgap(10);
             flow.setVgap(10);
             flow.setPadding(new Insets(10));
+            flow.setPrefWidth(680);
             ScrollPane addFriendsListContainer = new ScrollPane(flow);
             VBox searchResultsVBox = new VBox(resultsLabel, addFriendsListContainer);
             searchResultsVBox.setPrefWidth(700);

@@ -20,6 +20,21 @@ The technologies game night operates with is Java/JavaFX for the front end and b
 - Board Game Geek API
 - Microsoft Azure
 
+## Setup
+Prerequisites:
+- Java Development Kit (JDK) Version: 20
+-   https://adoptopenjdk.net/?variant=openjdk11
+
+- Apache Maven
+- https://maven.apache.org/install.html
+
+## Installation Guide
+1. Clone this Repository
+2. Clone the server Repositroy
+-   https://github.com/bewimsical/GameNightServer
+3. Build the Project
+4. Run the Project
+
 ## Features
 - Login/Register: Create an account uploaded to our database and sign into your account to save application relevant information.
 - Games Page: Search and view board games pulled from the Board Games Geek API and add them to your account.

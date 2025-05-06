@@ -218,9 +218,13 @@ public class GamesController implements Initializable {
     }
 
     public void addGameToPartyList(Game g) {
+        System.out.println("Attempting to add game: " + g.getGame_name());
         if (!games.contains(g)) {
             games.add(g);
             gamesList.getChildren().add(createGameCard(g));
+            System.out.println("Game added to PartyController!");
+        } else {
+            System.out.println("Game already exists in PartyController.");
         }
     }
 

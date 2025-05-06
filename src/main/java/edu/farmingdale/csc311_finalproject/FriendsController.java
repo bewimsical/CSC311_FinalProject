@@ -48,6 +48,8 @@ public class FriendsController implements Initializable {
     @FXML
     private Label gamesBtn;
     @FXML
+    private MenuItem logout;
+    @FXML
     private VBox friendsContainer;
     @FXML
     private Label friendsLabel;
@@ -76,7 +78,7 @@ public class FriendsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //navbar handler
-        NavBarHandler.setupNav(homeBtn, gamesBtn, friendsBtn, partiesBtn);
+        NavBarHandler.setupNav(homeBtn, gamesBtn, friendsBtn, partiesBtn,logout);
 
         Image image = NavBarHandler.setupNavImage();
 

@@ -188,7 +188,7 @@
                   <MenuButton fx:id="usernameLabel" layoutX="722.0" layoutY="14.0" mnemonicParsing="false" text="username">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Settings" />
-                        <MenuItem mnemonicParsing="false" text="Logout" />
+                        <MenuItem fx:id="logout" mnemonicParsing="false" text="Logout" />
                      </items>
                   </MenuButton>
                </children></HBox>

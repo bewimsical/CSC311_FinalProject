@@ -167,6 +167,9 @@
                         <MenuItem mnemonicParsing="false" text="Settings" />
                         <MenuItem fx:id="logout" mnemonicParsing="false" text="Logout" />
                      </items>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </MenuButton>
                </children>
             </HBox>

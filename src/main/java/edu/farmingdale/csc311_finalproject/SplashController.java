@@ -81,7 +81,7 @@ public class SplashController {
                 st.play();
                 st.setOnFinished(ev2 -> {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("spareLoginPage.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
                         Parent root = loader.load();
                         Stage stage = (Stage) logInBoard.getScene().getWindow();
                         Scene scene = new Scene(root, 650, 600);
@@ -149,7 +149,7 @@ public class SplashController {
                 st.play();
                 st.setOnFinished(ev2 -> {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("SpareCreateAccountPage.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateAccountPage.fxml"));
                         Parent root = loader.load();
                         Stage stage = (Stage) logInBoard.getScene().getWindow();
                         Scene scene = new Scene(root, 650, 600);

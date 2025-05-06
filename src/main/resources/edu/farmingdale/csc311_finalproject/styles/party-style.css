@@ -253,7 +253,6 @@
 }
 .friends-popup-list{
     -fx-padding: 10;
-
     -fx-background-radius: 5px;
 }
 
@@ -263,8 +262,6 @@
 .friend-card:hover{
     -fx-background-color: #ffffff30;
 }
-
-
 
 
 .friends-popup-button{
@@ -615,5 +612,21 @@
 }
 .today{
     -fx-fill: #87632d50;
+}
+
+.add-friends-popup{
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 2, 2);
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px;
+    -fx-border-color: #87632d;
+    -fx-background-image: url("../images/tile.png");
+    -fx-padding: 10px, 0, 0, 0;
+}
+
+.search-results-heading{
+    -fx-font-family: 'IM Fell English SC';
+    -fx-font-size: 25px;
+    -fx-text-fill: #513310;
 }
 

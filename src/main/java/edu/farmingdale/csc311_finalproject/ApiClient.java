@@ -18,6 +18,7 @@ public final class ApiClient {
 
     private static final String USER_AGENT = "Mozilla/5.0";
     private static final String BASE_API_URL = "http://localhost:8080";
+//    private static final String BASE_API_URL = "https://gamenight.harryscheiner.com";
 
 
     private ApiClient(){}
@@ -151,7 +152,7 @@ public final class ApiClient {
     }
 
     //POST request body is null, returns null
-    public static String addFriendToUser(long userId, int friendId){
+    public static String addFriendToUser(long userId, long friendId){
         return String.format("%s/users/addfriend?user=%d&friend=%d", BASE_API_URL,userId,friendId);
     }
 

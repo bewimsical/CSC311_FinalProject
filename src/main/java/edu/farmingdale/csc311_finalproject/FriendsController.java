@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,6 +34,8 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import edu.farmingdale.csc311_finalproject.UserDto;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 
 import static edu.farmingdale.csc311_finalproject.ApiClient.*;
 
@@ -64,6 +67,9 @@ public class FriendsController implements Initializable {
 
     private User currentUser = Session.getInstance().getUser();
     private final ObservableSet<User> friends =  FXCollections.observableSet();
+
+    private Popup searchPopup;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //navbar handler
@@ -101,13 +107,17 @@ public class FriendsController implements Initializable {
         // Set username
         usernameLabel.setText(currentUser.getUsername());
 
+        searchPopup = new Popup();
+        searchPopup.setAutoHide(true);
+
 
         try {
             friends.addAll(Objects.requireNonNull(sendGET(getUserFriends(currentUser.getUserId()), new TypeReference<List<User>>() {
             })));
             for (User f : friends) {
                 VBox card = createFriendCard(f);
-                searchResultsVBox.getChildren().add(card);
+                friendsList.getChildren().add(card);
+                //searchResultsVBox.getChildren().add(card);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -201,7 +211,8 @@ public class FriendsController implements Initializable {
         friendName.getStyleClass().add("friend-name-text");
 
         Button addFriendBtn = new Button("Add");
-        addFriendBtn.setOnAction(e -> sendAddFriendRequest(Session.getCurrentUserId(), userDto.getUserId()));
+        addFriendBtn.setOnAction(e -> sendAddFriendRequest(currentUser.getUserId(), userDto.getUserId()));
+        addFriendBtn.getStyleClass().add("friends-popup-button");
 
         VBox card = new VBox(10, imageContainer, friendName, addFriendBtn);
         card.setAlignment(Pos.CENTER);
@@ -259,17 +270,18 @@ public class FriendsController implements Initializable {
                 });
     }
 
-    @FXML
-    private VBox searchResultsVBox;
+//    @FXML
+//    private VBox searchResultsVBox;
 
 
 
     private void updateFriendSearchResults(String jsonResponse) {
         System.out.println("updateFriendSearchResults called with JSON: " + jsonResponse);
-
+        //VBox searchResultsVBox;
+        //ScrollPane searchResultsContainer
         Platform.runLater(() -> {
-            searchResultsContainer.getContent();
-            searchResultsContainer.setContent(null);
+//            searchResultsContainer.getContent();
+//            searchResultsContainer.setContent(null);
 
             Gson gson = new Gson();
             Type listType = new TypeToken<List<UserDto>>() {}.getType();
@@ -279,40 +291,59 @@ public class FriendsController implements Initializable {
                 System.out.println("No users found in response.");
                 return;
             }
+            if (!searchPopup.isShowing()) {
+
+                FlowPane flow = new FlowPane();
+                flow.setHgap(10);
+                flow.setVgap(10);
+                flow.setPadding(new Insets(10));
+                ScrollPane friendsListContainer = new ScrollPane(flow);
+                VBox searchResultsVBox = new VBox(friendsListContainer);
+                searchResultsVBox.getStyleClass().add("friends-popup-list");
 
 
-            FlowPane flow = new FlowPane();
-            flow.setHgap(10);
-            flow.setVgap(10);
-            flow.setPadding(new Insets(10));
+                for (UserDto user : users) {
+                    VBox friendCard = createFriendCard(user);
+                    flow.getChildren().add(friendCard);
+                }
 
-            for (UserDto user : users) {
-                VBox friendCard = createFriendCard(user);
-                flow.getChildren().add(friendCard);
-            }
+                //searchResultsVBox.getChildren(flow);
 
-            searchResultsContainer.setContent(flow);
-        });
+                searchPopup.getContent().add(searchResultsVBox);
+
+                Stage stage = (Stage) ((Node) homeBtn.getParent()).getScene().getWindow();
+                searchPopup.show(stage, 0, 200);
+                }
+
+            });
     }
 
 
 
 
     private void sendAddFriendRequest(Long userId, Long friendId) {
-        String endpoint = "http://localhost:8080/users/addfriend?user=" + userId + "&friend=" + friendId;
-
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(endpoint))
-                .POST(HttpRequest.BodyPublishers.noBody())
-                .build();
-
-        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                .thenAccept(response -> System.out.println("Friend added!"))
-                .exceptionally(e -> {
-                    e.printStackTrace();
-                    return null;
-                });
+//        String endpoint = "http://localhost:8080/users/addfriend?user=" + userId + "&friend=" + friendId;
+//
+//        HttpClient client = HttpClient.newHttpClient();
+//        HttpRequest request = HttpRequest.newBuilder()
+//                .uri(URI.create(endpoint))
+//                .POST(HttpRequest.BodyPublishers.noBody())
+//                .build();
+//
+//        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+//                .thenAccept(response -> System.out.println("Friend added!"))
+//                .exceptionally(e -> {
+//                    e.printStackTrace();
+//                    return null;
+//                });
+        System.out.println(userId + " " + friendId);
+        try {
+            sendPOST(addFriendToUser(userId, friendId), null, new TypeReference<Void>() {
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("friend not added");//TODO add label or warning
+        }
     }
 
 

@@ -151,7 +151,7 @@ public final class ApiClient {
     }
 
     //POST request body is null, returns null
-    public static String addFriendToUser(long userId, int friendId){
+    public static String addFriendToUser(long userId, long friendId){
         return String.format("%s/users/addfriend?user=%d&friend=%d", BASE_API_URL,userId,friendId);
     }
 

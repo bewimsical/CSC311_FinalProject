@@ -11,6 +11,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -33,23 +34,19 @@
                         <Label fx:id="homeBtn" styleClass="top-menu-item" text="Home">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Label>
+                            </cursor></Label>
                         <Label fx:id="gamesBtn" layoutX="10.0" layoutY="19.0" styleClass="top-menu-item" text="Games">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Label>
+                            </cursor></Label>
                         <Label fx:id="friendsBtn" layoutX="53.0" layoutY="19.0" styleClass="top-menu-item" text="Friends">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Label>
+                            </cursor></Label>
                         <Label fx:id="partiesBtn" layoutX="156.0" layoutY="19.0" styleClass="top-menu-item" text="Parties">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Label>
+                            </cursor></Label>
                     </children>
                     <padding>
                         <Insets left="20.0" />
@@ -60,17 +57,21 @@
                         <StackPane fx:id="profileContainer" maxHeight="20.0" maxWidth="20.0" prefHeight="20.0" prefWidth="20.0" styleClass="profile-thumb-container">
                             <children>
                                 <Circle fx:id="circle_view" fill="#c0c8d0" radius="19.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                                <!-- ImageView will be added here dynamically -->
                             </children>
                         </StackPane>
+
                         <MenuButton fx:id="usernameLabel" layoutX="722.0" layoutY="14.0" mnemonicParsing="false" text="username">
                             <items>
                                 <MenuItem mnemonicParsing="false" text="Settings" />
                                 <MenuItem mnemonicParsing="false" text="Logout" />
                             </items>
                         </MenuButton>
-                    </children>
-                </HBox>
+                    </children></HBox>
             </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
         </HBox>
     </top>
     <center>
@@ -83,13 +84,18 @@
                                 <Insets left="20.0" />
                             </padding>
                         </Label>
+                        <Button maxHeight="25.0" maxWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="add-button">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Button>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER_LEFT" prefHeight="131.0" prefWidth="826.0" styleClass="search-bar">
                     <children>
                         <StackPane alignment="CENTER_RIGHT">
                             <children>
-                                <TextField fx:id="searchFriendField" prefHeight="35.0" prefWidth="250.0" promptText="add friends" styleClass="search-field">
+                                <TextField fx:id="searchFriendField" prefHeight="35.0" prefWidth="250.0" promptText="search for friends" styleClass="search-field">
                                     <padding>
                                         <Insets left="10.0" right="35.0" />
                                     </padding>
@@ -106,10 +112,13 @@
                         <Insets left="20.0" />
                     </padding>
                 </HBox>
-
-                <ScrollPane fx:id="searchResultsContainer" maxWidth="1.7976931348623157E308" prefHeight="425.0" prefWidth="826.0" styleClass="game-container" VBox.vgrow="ALWAYS">
+                <ScrollPane fx:id="friendsListContainer" maxWidth="1.7976931348623157E308" prefHeight="425.0" prefWidth="826.0" styleClass="game-container" VBox.vgrow="ALWAYS">
                     <content>
-                        <VBox fx:id="searchResultsVBox" alignment="TOP_LEFT" spacing="10" />
+                        <FlowPane fx:id="friendsList" hgap="5.0" maxWidth="1.7976931348623157E308" prefWidth="820.0" prefWrapLength="0.0" vgap="5.0">
+                            <padding>
+                                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                            </padding>
+                        </FlowPane>
                     </content>
                     <VBox.margin>
                         <Insets top="5.0" />

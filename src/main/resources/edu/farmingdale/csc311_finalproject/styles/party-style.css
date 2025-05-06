@@ -111,7 +111,7 @@
 }
 
 
-.text-field {
+.create-party-text-field {
     -fx-background-color: #ffffff70;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
@@ -134,9 +134,19 @@
 
 .date-picker {
     -fx-background-color: rgba(255, 255, 255, 0.3);
-    -fx-background-radius: 10;
-    -fx-border-color: #87632d;
-    -fx-border-radius: 10;
+    /*-fx-background-radius: 10;*/
+    /*-fx-border-color: #87632d;*/
+    /*-fx-border-radius: 10;*/
+    -fx-font-family: Raleway;
+    -fx-text-fill: #513310;
+}
+
+.date-picker > .text-field {
+    -fx-background-color: #ffffff70;
+    -fx-background-radius: 10 0 0 10;
+    -fx-border-radius: 10 0 0 10;
+    -fx-border-color: #87632d transparent #87632d #87632d;
+    -fx-border-width: 1;
     -fx-font-family: Raleway;
     -fx-text-fill: #513310;
 }
@@ -144,6 +154,9 @@
 .date-picker > .arrow-button {
     -fx-background-color: #87632d95;
     -fx-background-radius: 0 10 10 0;
+    -fx-border-color: #87632d  #87632d #87632d transparent;
+    -fx-border-radius: 0 10 10 0;
+    -fx-border-width: 1;
 }
 
 .date-picker > .arrow-button:hover {
@@ -200,7 +213,7 @@
 }
 
 
-//for partNameField and locationField bcs the gray prompt text is badbadnono
+/*//for partNameField and locationField bcs the gray prompt text is badbadnono*/
 .text-field1 {
     -fx-background-color: rgba(255, 255, 255, 0.3);
     -fx-background-radius: 10;

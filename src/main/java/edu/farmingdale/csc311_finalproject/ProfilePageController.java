@@ -90,7 +90,7 @@ public class ProfilePageController implements Initializable {
 
         // Match PartyController resizing logic
         gamesOwnedLabel.maxWidthProperty().bind(gamesOwnedContainer.widthProperty());
-        partiesLabel.maxWidthProperty().bind(partiesList.widthProperty());
+        //partiesLabel.maxWidthProperty().bind(partiesList.widthProperty());
         friendsLabel.maxWidthProperty().bind(friendList.widthProperty());
 
         gamesOwnedListContainer.setFitToWidth(true);
@@ -143,7 +143,7 @@ public class ProfilePageController implements Initializable {
             userParties.addAll(Objects.requireNonNull(sendGET(getUserParties(user.getUserId()), new TypeReference<List<Party>>() {})));
             for (Party party : userParties) {
                 HBox partyCard = createPartyCard(party);
-                partiesList.getChildren().add(partyCard);
+                //partiesList.getChildren().add(partyCard);
             }
         } catch (IOException e) {
             e.printStackTrace();

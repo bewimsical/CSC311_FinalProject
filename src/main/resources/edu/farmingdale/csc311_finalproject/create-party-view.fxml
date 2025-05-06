@@ -27,7 +27,7 @@
 
         <VBox maxWidth="300" spacing="5.0">
             <Label styleClass="info-text" text="Date:" />
-            <DatePicker fx:id="datePicker" styleClass="create-party-text-field" />
+            <DatePicker fx:id="datePicker" />
         </VBox>
 
         <VBox maxWidth="300" spacing="5.0">

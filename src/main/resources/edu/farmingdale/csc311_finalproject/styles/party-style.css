@@ -564,9 +564,11 @@
 
 .calendar-highlight{
     -fx-fill: transparent;
+
 }
 .day-cell:hover .calendar-highlight{
     -fx-fill: #87632d80;
+
 }
 
 .day-cell.selected .calendar-highlight{
@@ -575,6 +577,10 @@
 
 .day-cell.selected{
     -fx-background-color: transparent;
+}
+
+.day-cell{
+    -fx-cursor: hand;
 }
 
 .selected-party-time-text{

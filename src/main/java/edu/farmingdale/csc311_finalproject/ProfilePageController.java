@@ -287,7 +287,7 @@ public class ProfilePageController implements Initializable {
 
         Label gameName = new Label(g.getGame_name());
         gameName.setWrapText(true);
-        gameName.setMaxWidth(300);
+        gameName.setMaxWidth(280);
         gameName.setTextAlignment(TextAlignment.LEFT);
         gameName.setAlignment(Pos.CENTER_LEFT);
         gameName.getStyleClass().add("game-name-text");
@@ -311,9 +311,10 @@ public class ProfilePageController implements Initializable {
 
     private HBox createEmptyCard(String message){
         Label label = new Label(currentUser.getUsername() + message);
-        label.getStyleClass().add("selected-party-time-text");
+        label.getStyleClass().add("empty-selected-party-time-text");
         label.setTextAlignment(TextAlignment.CENTER);
         label.setAlignment(Pos.CENTER);
+        label.setMaxWidth(360);
         HBox card = new HBox(10,label);
         card.setAlignment(Pos.CENTER);
         card.setMaxWidth(365);

@@ -365,6 +365,7 @@ public class AllPartiesController implements Initializable {
     private HBox createSelectedDayPartyCard(Party p){
         Label time = new Label(formatTime(p.getPartyDate()));
         time.getStyleClass().add("selected-party-time-text");
+        time.setMinWidth(80);
 
         Label partyName = new Label(p.getPartyName());
         partyName.setWrapText(true);

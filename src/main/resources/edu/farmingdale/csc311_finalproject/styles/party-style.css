@@ -593,6 +593,15 @@
     -fx-text-fill: #513310;
     -fx-alignment: center-left;
 }
+.empty-selected-party-time-text{
+    -fx-font-family: 'IM Fell English SC';
+    -fx-font-size: 20px;
+    -fx-text-fill: #513310;
+    -fx-alignment: center-left;
+    -fx-wrap-text: true;
+}
+
+
 .selected-party-info-text{
     -fx-font-family: Raleway;
     -fx-font-size: 15px;

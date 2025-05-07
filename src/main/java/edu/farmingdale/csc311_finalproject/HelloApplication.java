@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         //OPENS PARTY PAGE DIRECTLY
-        User currentUser = sendGET(getUserUrl(1), new TypeReference<User>() {});
+        User currentUser = sendGET(getUserUrl(3), new TypeReference<User>() {});
         Session.getInstance().setUser(currentUser);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("all-parties-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 850, 560);

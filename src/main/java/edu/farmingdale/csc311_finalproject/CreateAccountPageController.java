@@ -139,7 +139,7 @@ public class CreateAccountPageController {
                     username, firstName, lastName, email, profilePicUrl, password);
 
 
-            URL url = new URL("http://localhost:8080/users/create");
+            URL url = new URL(ApiClient.getBaseApiUrl() + "/users/create");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("POST");
             con.setRequestProperty("Content-Type", "application/json");

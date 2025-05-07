@@ -80,7 +80,7 @@ public class CreatePartyController {
         );
 
         try {
-            URL url = new URL("http://localhost:8080/parties/create/" + loggedInUserId);
+            URL url = new URL(ApiClient.getBaseApiUrl() + "/parties/create/" + loggedInUserId);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");

@@ -17,12 +17,15 @@ import java.util.List;
 public final class ApiClient {
 
     private static final String USER_AGENT = "Mozilla/5.0";
-    private static final String BASE_API_URL = "http://localhost:8080";
-//    private static final String BASE_API_URL = "https://gamenight.harryscheiner.com";
+//    private static final String BASE_API_URL = "http://localhost:8080";
+    private static final String BASE_API_URL = "https://gamenight.harryscheiner.com";
 
 
     private ApiClient(){}
 
+    public static String getBaseApiUrl(){
+        return BASE_API_URL;
+    }
     public static <T> T sendGET(String GET_URL, TypeReference<T> typeReference) throws IOException {
         URL obj = new URL(GET_URL);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();

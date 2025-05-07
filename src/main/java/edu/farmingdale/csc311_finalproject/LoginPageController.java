@@ -110,7 +110,7 @@ public class LoginPageController {
                 String email = emailTextField.getText();
                 String password = passwordTextField.getText();
 
-                URL url = new URL("http://localhost:8080/users/login");
+                URL url = new URL(ApiClient.getBaseApiUrl() + "/users/login");
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("POST");
                 con.setRequestProperty("Content-Type", "application/json");

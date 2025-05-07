@@ -6,10 +6,13 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,156 +40,246 @@ import static edu.farmingdale.csc311_finalproject.ApiClient.*;
 
 public class ProfilePageController implements Initializable {
 
-    @FXML
-    private Label homeBtn;
-    @FXML
-    private Label partiesBtn;
-    @FXML
-    private Label friendsBtn;
-    @FXML
-    private Label gamesBtn;
-    @FXML
-    private MenuItem logout;
+
     @FXML
     private Circle circle_view;
     @FXML
-    private MenuButton usernameLabel;
+    private Label friendCount;
     @FXML
-    private StackPane profileContainer;
+    private Label friendsBtn;
     @FXML
-    private Circle circle_view2;
+    private VBox friendsContainer;
+    @FXML
+    private FlowPane friendsFlow;
     @FXML
     private Label friendsLabel;
     @FXML
-    private VBox friendList;
+    private ScrollPane friendsScroll;
+    @FXML
+    private Label gameCount;
+    @FXML
+    private Label gamesBtn;
+    @FXML
+    private VBox gamesContainer;
+    @FXML
+    private FlowPane gamesFlow;
+    @FXML
+    private ScrollPane gamesScroll;
+    @FXML
+    private Label homeBtn;
+    @FXML
+    private MenuItem logout;
+    @FXML
+    private Label partiesBtn;
     @FXML
     private Label partiesLabel;
     @FXML
-    private VBox partiesList;
+    private Label partyCount;
     @FXML
-    private VBox gamesOwnedContainer;
+    private StackPane profileContainer;
     @FXML
-    private Label gamesOwnedLabel;
+    private Circle profileImagePlaceholder;
     @FXML
-    private ScrollPane gamesOwnedListContainer;
+    private MenuButton usernameLabel;
     @FXML
-    private FlowPane gamesOwnedList;
+    private StackPane mainProfileContainer;
+    @FXML
+    private Label mainUsername;
 
     private User currentUser;
     private final ObservableList<User> friends = FXCollections.observableArrayList();
     private final ObservableList<Game> ownedGames = FXCollections.observableArrayList();
-    private final ObservableList<Party> userParties = FXCollections.observableArrayList();
+    private final List<Party> parties = new ArrayList<>();
 
-    private List <User> friend = new ArrayList<>();
-    private User selectedFriend;
-    private Node selectedCard;
-    private Popup friendPopup;
-    private ContextMenuEvent event;
+    public ProfilePageController(){
+        this.currentUser = Session.getInstance().getUser();
+    }
+
+    public ProfilePageController(User user){
+        this.currentUser = user;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         NavBarHandler.setupNav(homeBtn, gamesBtn,friendsBtn,partiesBtn, logout);
 
-        // Match PartyController resizing logic
-        gamesOwnedLabel.maxWidthProperty().bind(gamesOwnedContainer.widthProperty());
-        //partiesLabel.maxWidthProperty().bind(partiesList.widthProperty());
-        friendsLabel.maxWidthProperty().bind(friendList.widthProperty());
+        Image image = NavBarHandler.setupNavImage();
+        ImageView profilePic = new ImageView(image);
+        profilePic.setFitWidth(circle_view.getRadius() * 2);
+        profilePic.setFitHeight(circle_view.getRadius() * 2);
+        profilePic.setClip(new Circle(circle_view.getRadius(), circle_view.getRadius(), circle_view.getRadius()));
 
-        gamesOwnedListContainer.setFitToWidth(true);
-        gamesOwnedList.prefWidthProperty().bind(gamesOwnedListContainer.widthProperty());
+        // Add to StackPane (on top of the Circle)
+        profileContainer.getChildren().add(profilePic);
+        // Set username
+        usernameLabel.setText(Session.getInstance().getUser().getUsername());
 
-        // Load current user
-        User user = Session.getInstance().getUser();
-        if (user != null) {
-            usernameLabel.setText(user.getUsername());
-//Fix the image formatting
+        String imgUrl = currentUser.getProfilePicUrl();
+        Image profileImg;
 
+        if( checkImage(imgUrl)) {
             try {
-                Image image = NavBarHandler.setupNavImage();
-                if (image != null) {
-                    ImagePattern pattern = new ImagePattern(image);
-                    circle_view.setFill(pattern);
-                    circle_view2.setFill(pattern);
-                }
+                profileImg = new Image(Objects.requireNonNull(NavBarHandler.class.getResource(imgUrl)).toExternalForm());
             } catch (Exception e) {
-                e.printStackTrace();
+                profileImg = new Image(Objects.requireNonNull(NavBarHandler.class.getResource("images/wizard_cat.PNG")).toExternalForm());
             }
-
-
-            // Load friends
+        }else{
             try {
-                friends.addAll(Objects.requireNonNull(sendGET(getUserFriends(user.getUserId()), new TypeReference<List<User>>() {
-                })));
-                for (User friend : friends) {
-                    HBox friendCard = createUserCard(friend);
-                    friendList.getChildren().add(friendCard);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            // Load games
-            try {
-                ownedGames.addAll(Objects.requireNonNull(sendGET(getUserGames(user.getUserId()), new TypeReference<List<Game>>() {
-                })));
-                for (Game g : ownedGames) {
-                    HBox gameCard = createGameCard(g);
-                    gamesOwnedList.getChildren().add(gameCard);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+                profileImg = new Image(imgUrl, true);
+            } catch (Exception e) {
+                profileImg = new Image(Objects.requireNonNull(NavBarHandler.class.getResource("images/wizard_cat.PNG")).toExternalForm());
             }
         }
-        // Load parties
+        ImageView mainProfilePic = new ImageView(profileImg);
+        mainProfilePic.setFitWidth(profileImagePlaceholder.getRadius() * 2);
+        mainProfilePic.setFitHeight(profileImagePlaceholder.getRadius() * 2);
+        mainProfilePic.setClip(new Circle(profileImagePlaceholder.getRadius(), profileImagePlaceholder.getRadius(), profileImagePlaceholder.getRadius()));
+
+        // Add to StackPane (on top of the Circle)
+        mainProfileContainer.getChildren().add(mainProfilePic);
+        mainUsername.setText(currentUser.getUsername());
+
+        // Load friends
         try {
-            userParties.addAll(Objects.requireNonNull(sendGET(getUserParties(user.getUserId()), new TypeReference<List<Party>>() {})));
-            for (Party party : userParties) {
-                HBox partyCard = createPartyCard(party);
-                //partiesList.getChildren().add(partyCard);
+            friends.addAll(Objects.requireNonNull(sendGET(getUserFriends(currentUser.getUserId()), new TypeReference<List<User>>() {
+            })));
+            if (friends.isEmpty()){
+                HBox empty = createEmptyCard(" has no friends!");
+                friendsFlow.getChildren().add(empty);
+
+            }else {
+                for (User friend : friends) {
+                    VBox friendCard = createUserCard(friend);
+                    friendsFlow.getChildren().add(friendCard);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        // Load games
+        try {
+            ownedGames.addAll(Objects.requireNonNull(sendGET(getUserGames(currentUser.getUserId()), new TypeReference<List<Game>>() {
+            })));
+            if(ownedGames.isEmpty()){
+                HBox empty = createEmptyCard(" has an empty game cabinet!");
+                gamesFlow.getChildren().add(empty);
+            }
+            for (Game g : ownedGames) {
+                HBox gameCard = createGameCard(g);
+                gamesFlow.getChildren().add(gameCard);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            parties.addAll(Objects.requireNonNull(sendGET(getUserParties(currentUser.getUserId()), new TypeReference<List<Party>>() {
+            })));
+            for (Game g : ownedGames) {
+                HBox gameCard = createGameCard(g);
+                gamesFlow.getChildren().add(gameCard);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        gameCount.setText(String.valueOf(ownedGames.size()));
+        friendCount.setText(String.valueOf(friends.size()));
+        partyCount.setText(String.valueOf(parties.size()));
+
     }
 
-    private HBox createUserCard(User u) {
-        String img = u.getProfilePicUrl() != null ? u.getProfilePicUrl() : "images/wizard_cat.PNG";
-        Image image = new Image(getClass().getResource(img).toExternalForm());
-        ImageView profilePic = new ImageView(image);
-        profilePic.setFitHeight(25);
-        profilePic.setFitWidth(25);
-        profilePic.setPreserveRatio(true);
-        profilePic.setSmooth(true);
+    public boolean checkImage(String imgUrl){
+        String pattern = "^images";
+        Pattern p = Pattern.compile(pattern);
+        Matcher m = p.matcher(imgUrl);
+        return m.lookingAt();
+    }
 
-        Label guestName = new Label(u.getUsername());
-        guestName.getStyleClass().add("info-text");
+    private VBox createUserCard(User f) {
+        String friendImg = f.getProfilePicUrl();
+        Image friendImage;
+        if( checkImage(friendImg)) {
+            try {
+                friendImage = new Image(Objects.requireNonNull(getClass().getResource(friendImg)).toExternalForm());
+            } catch (Exception e) {
+                friendImage = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
+            }
+        }else{
+            try {
+                friendImage = new Image(friendImg, true);
+            } catch (Exception e) {
+                friendImage = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
+            }
+        }
+        ImageView friendPic = new ImageView(friendImage);
+        double friendPicSize = 98;
+        friendPic.setFitHeight(friendPicSize);
+        friendPic.setFitWidth(friendPicSize);
+        friendPic.setPreserveRatio(true);
+        friendPic.setSmooth(true);
 
-        HBox card = new HBox(10, profilePic, guestName);
-        VBox.setMargin(card, new Insets(5, 0, 0, 0));
+        StackPane imageContainer = new StackPane(friendPic);
+        imageContainer.setPrefSize(friendPicSize, friendPicSize);
+        imageContainer.setMaxSize(friendPicSize, friendPicSize);
+
+        Label friendName = new Label(f.getUsername());
+        friendName.setWrapText(true);
+        friendName.setMaxWidth(98); // adjust based on design
+        friendName.setTextAlignment(TextAlignment.CENTER);
+        friendName.setAlignment(Pos.CENTER);
+        friendName.getStyleClass().add("profile-friend-name-text");
+
+        VBox card = new VBox(10, imageContainer, friendName);
+        card.setAlignment(Pos.CENTER);
+        card.getStyleClass().add("friend-card");
+        double cardSize = 118;
+        card.setMaxWidth(cardSize);
+        card.setMinWidth(cardSize);
+        card.setPrefWidth(cardSize);
+        card.setUserData(f.getUserId());
+        friendName.prefWidthProperty().bind(card.widthProperty());
+
+        card.setUserData(f.getUserId());
+        card.setOnMouseClicked(event -> {
+
+            Long id = (Long)card.getUserData();
+            try {
+                User user = sendGET(getUserUrl(id), new TypeReference<User>() {});
+                try {
+                    FXMLLoader loader = new FXMLLoader(AllPartiesController.class.getResource("ProfilePage.fxml"));
+                    loader.setControllerFactory(param -> new ProfilePageController(user));
+                    Parent root = loader.load();
+
+                    Scene scene = new Scene(root);
+                    scene.getStylesheets().add(getClass().getResource("styles/party-style.css").toExternalForm());
+                    Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+        FlowPane.setMargin(card, new Insets(10, 5, 0, 5));
         return card;
     }
 
-    private HBox createPartyCard(Party p) {
-        Label nameLabel = new Label(p.getPartyName());
-        nameLabel.getStyleClass().add("info-text");
 
-        
-
-        VBox textBox = new VBox(5, nameLabel);
-        textBox.setAlignment(Pos.CENTER_LEFT);
-
-        HBox card = new HBox(10, textBox);
-        card.setAlignment(Pos.CENTER_LEFT);
-        card.getStyleClass().add("card");
-        card.setMaxWidth(230);
-        card.setMinWidth(230);
-        VBox.setMargin(card, new Insets(10, 5, 0, 5));
-        return card;
-    }
 
     private HBox createGameCard(Game g) {
-        Image gameImage = new Image(g.getImgUrl(), true);
+        String gameImg = g.getImgUrl();
+        Image gameImage;
+        try {
+            gameImage = new Image(gameImg, true);
+        }catch (Exception e){
+            gameImage = new Image(Objects.requireNonNull(getClass().getResource("images/d20_logo_sky.PNG")).toExternalForm());
+        }
         ImageView gamePic = new ImageView(gameImage);
         gamePic.setFitHeight(75);
         gamePic.setFitWidth(75);
@@ -198,7 +291,7 @@ public class ProfilePageController implements Initializable {
 
         Label gameName = new Label(g.getGame_name());
         gameName.setWrapText(true);
-        gameName.setMaxWidth(140);
+        gameName.setMaxWidth(300);
         gameName.setTextAlignment(TextAlignment.LEFT);
         gameName.setAlignment(Pos.CENTER_LEFT);
         gameName.getStyleClass().add("game-name-text");
@@ -214,106 +307,29 @@ public class ProfilePageController implements Initializable {
         HBox card = new HBox(10, imageContainer, textBox);
         card.setAlignment(Pos.CENTER_LEFT);
         card.getStyleClass().add("card");
-        card.setMaxWidth(230);
-        card.setMinWidth(230);
+        card.setMaxWidth(365);
+        card.setMinWidth(365);
         FlowPane.setMargin(card, new Insets(10, 5, 0, 5));
         return card;
     }
 
-    public HBox createFriendCard(User u) {
-        String img = u.getProfilePicUrl() != null ? u.getProfilePicUrl() : "images/wizard_cat.PNG";
-        Image image = new Image(getClass().getResource(img).toExternalForm());
-        ImageView profilePic = new ImageView(image);
-        profilePic.setFitHeight(25);
-        profilePic.setFitWidth(25);
-        profilePic.setPreserveRatio(true);
-        profilePic.setSmooth(true);
-
-        Label name = new Label(u.getUsername());
-        name.getStyleClass().add("info-text");
-
-        HBox card = new HBox(10, profilePic, name);
-        VBox.setMargin(card, new Insets(5, 0, 0, 0));
+    private HBox createEmptyCard(String message){
+        Label label = new Label(currentUser.getUsername() + message);
+        label.getStyleClass().add("selected-party-time-text");
+        label.setTextAlignment(TextAlignment.CENTER);
+        label.setAlignment(Pos.CENTER);
+        HBox card = new HBox(10,label);
+        card.setAlignment(Pos.CENTER);
+        card.setMaxWidth(365);
+        card.setMinWidth(365);
+        card.getStyleClass().add("card");
+        card.getStyleClass().add("selected-party-card");
+        label.maxWidthProperty().bind(card.widthProperty());
+        VBox.setMargin(card, new Insets(10, 0, 0, 0));
         return card;
     }
 
-    public void addGuest(MouseEvent mouseEvent) {
-     /** if (friendPopup == null) {
-            friendPopup = new Popup();
-        }
 
-        if (!friendPopup.isShowing()) {
-            VBox friendsList = new VBox();
-            ScrollPane friendsListContainer = new ScrollPane(friendsList);
-            friendsList.getStyleClass().add("friends-popup-list");
-            friendsListContainer.setPrefSize(200, 200);
-            friendsList.setPrefWidth(194);
-            friendsList.setMaxWidth(194);
-
-            Button cancel = new Button("Cancel");
-            Button add = new Button("Add");
-            cancel.setOnAction(e -> friendPopup.hide());
-
-
-            add.setOnAction(e -> {
-                if (selectedFriend != null && !this.friends.contains(selectedFriend)) {
-                    this.friends.add(selectedFriend);
-                    friendList.getChildren().add(createFriendCard(selectedFriend));
-                    // Optional: Send POST request to save new friend relationship
-                    try {
-                        sendPOST(addFriendUrl(currentUser.getUserId(), selectedFriend.getUserId()), null, new TypeReference<Void>() {});
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-                friendPopup.hide();
-            });
-
-            cancel.getStyleClass().add("friends-popup-button");
-            add.getStyleClass().add("friends-popup-button");
-
-            HBox buttonContainer = new HBox(20, cancel, add);
-            buttonContainer.setAlignment(Pos.CENTER);
-            VBox popup = new VBox(10, friendsListContainer, buttonContainer);
-            popup.setMargin(buttonContainer, new Insets(10, 0, 20, 0));
-            popup.getStyleClass().add("friends-popup");
-
-            try {
-                List<User> allUsers = sendGET(getAllUsersUrl(), new TypeReference<List<User>>() {});
-                for (User u : allUsers) {
-                    if (!u.getUserId().equals(currentUser.getUserId()) && !friends.contains(u)) {
-                        HBox card = createFriendCard(u);
-                        card.getStyleClass().add("friend-card");
-                        card.setUserData(u.getUserId());
-
-                        card.setOnMouseClicked(e -> {
-                            long id = (Long) card.getUserData();
-                            selectedFriend = allUsers.stream()
-                                    .filter(user -> user.getUserId() == id)
-                                    .findFirst().orElse(null);
-
-                            if (selectedCard != null) {
-                                selectedCard.getStyleClass().remove("selected-friend");
-                            }
-                            selectedCard = card;
-                            selectedCard.getStyleClass().add("selected-friend");
-                        });
-
-                        friendsList.getChildren().add(card);
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            friendPopup.getContent().add(popup);
-
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            friendPopup.show(stage, event.getScreenX(), event.getScreenY());
-        }
-*/
-    }
 }
 
 

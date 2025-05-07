@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +8,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
@@ -18,162 +16,147 @@
 <?import javafx.scene.shape.Circle?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="850.0" stylesheets="@styles/party-style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc311_finalproject.ProfilePageController">
-   <center>
-      <HBox styleClass="container" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </BorderPane.margin>
-         <children>
-            <VBox prefHeight="464.0" prefWidth="235.0" styleClass="left-pane">
-               <children>
-                  <HBox alignment="CENTER">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <Circle fx:id="circle_view2" fill="#c0c8d0" radius="60.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
-                  <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="154.0">
-                     <padding>
-                        <Insets left="11.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="154.0">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT">
+    <center>
+        <HBox alignment="TOP_CENTER" styleClass="container" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </BorderPane.margin>
+            <children>
+                <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="464.0" prefWidth="805.0">
+                    <children>
+                        <HBox alignment="BOTTOM_CENTER" maxHeight="80.0" maxWidth="1.7976931348623157E308" styleClass="profile-top">
+                            <VBox.margin>
+                                <Insets bottom="5.0" />
+                            </VBox.margin>
                      <children>
-                        <Label fx:id="friendsLabel" maxWidth="243.0" prefHeight="35.0" prefWidth="243.0" styleClass="heading" text="Friends" textAlignment="CENTER" />
-                        <ImageView id="addGuest" fitHeight="16.0" fitWidth="16.0" onMouseClicked="#addGuest" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/plus-solid.png" />
-                           </image>
+                        <StackPane fx:id="mainProfileContainer" maxHeight="62.0" maxWidth="62.0" prefHeight="62.0" prefWidth="62.0" styleClass="profile-thumb-container">
                            <HBox.margin>
-                              <Insets right="5.0" />
+                              <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
                            </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
+                           <children>
+                                    <Circle fx:id="profileImagePlaceholder" fill="#c0c8d0" radius="60.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                           </children>
+                        </StackPane>
+                        <VBox alignment="BOTTOM_LEFT" prefHeight="180.0" prefWidth="315.0">
+                           <children>
+                              <Label fx:id="mainUsername" styleClass="profile-username" text="userername" />
+                              <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="317.0" spacing="10.0">
+                                 <children>
+                                    <Label styleClass="profile-stats-label" text="Games" />
+                                    <Label fx:id="gameCount" layoutX="10.0" layoutY="10.0" styleClass="profile-stats" text="24" />
+                                    <Label styleClass="profile-stats-label" text="Parties" />
+                                    <Label fx:id="partyCount" styleClass="profile-stats" text="24" />
+                                    <Label styleClass="profile-stats-label" text="Friends" />
+                                    <Label fx:id="friendCount" styleClass="profile-stats" text="24" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="30.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                        </HBox>
+                  <HBox alignment="CENTER" prefHeight="288.0" prefWidth="805.0">
+                     <children>
+                              <VBox fx:id="gamesContainer" prefHeight="200.0" prefWidth="403.0">
+                                  <children>
+                                    <HBox alignment="CENTER">
+                                        <children>
+                                            <Label fx:id="friendsLabel" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="75.0" styleClass="heading" text="Games" textAlignment="CENTER" />
+                                        </children>
+                                    </HBox>
+                                      <ScrollPane fx:id="gamesScroll" prefHeight="446.0" prefWidth="402.0">
+                                 <content>
+                                    <FlowPane fx:id="gamesFlow" prefHeight="240.0" prefWidth="386.0" />
+                                 </content>
+                                      </ScrollPane>
+                                  </children>
+                        </VBox>
+                              <VBox fx:id="friendsContainer" prefHeight="200.0" prefWidth="403.0">
+                                  <children>
+                                    <HBox alignment="CENTER">
+                                        <children>
+                                            <Label fx:id="partiesLabel" maxWidth="413.0" prefHeight="35.0" prefWidth="87.0" styleClass="heading" text="Friends" textAlignment="CENTER" />
+                                        </children>
+                                    </HBox>
+                                      <ScrollPane fx:id="friendsScroll" prefHeight="249.0" prefWidth="403.0">
+                                 <content>
+                                    <FlowPane fx:id="friendsFlow" prefHeight="244.0" prefWidth="386.0" />
+                                 </content>
+                                      </ScrollPane>
+                                  </children>
+                        </VBox>
                      </children>
                   </HBox>
-                  <VBox fx:id="friendList" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                          </content>
-                        </ScrollPane>
-                     </children></VBox>
-                  <HBox alignment="CENTER_LEFT">
-                     <children>
-                        <Label fx:id="partiesLabel" maxWidth="243.0" prefHeight="35.0" prefWidth="243.0" styleClass="heading" text="Parties" textAlignment="CENTER" />
-                        <ImageView id="addGuest" fitHeight="16.0" fitWidth="16.0" onMouseClicked="#addGuest" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/plus-solid.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </HBox>
-                  <VBox fx:id="partyList" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                          </content>
-                        </ScrollPane>
-                     </children></VBox>
-               </children>
-            </VBox>
-            <VBox fx:id="gamesOwnedContainer" maxWidth="1.7976931348623157E308" prefHeight="464.0" prefWidth="235.0" styleClass="games-container" HBox.hgrow="ALWAYS">
-               <children>
-                  <Label fx:id="gamesOwnedLabel" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" text="Owned Games" VBox.vgrow="ALWAYS">
-                     <styleClass>
-                        <String fx:value="heading" />
-                        <String fx:value="game-heading" />
-                     </styleClass>
-                  </Label>
-                  <ScrollPane fx:id="gamesOwnedListContainer" maxWidth="1.7976931348623157E308" prefHeight="425.0" prefWidth="239.0" styleClass="game-container" VBox.vgrow="ALWAYS">
-                     <content>
-                        <FlowPane fx:id="gamesOwnedList" hgap="5.0" maxWidth="1.7976931348623157E308" prefWidth="270.0" prefWrapLength="0.0" vgap="5.0">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </FlowPane>
-                     </content>
-                  </ScrollPane>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-   </center>
-   <top>
-      <HBox prefHeight="62.0" prefWidth="850.0" styleClass="top-menu" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets left="10.0" right="10.0" top="10.0" />
-         </BorderPane.margin>
-         <children>
-            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/d20_logo.PNG" />
-               </image>
-            </ImageView>
-            <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="505.0">
-               <children>
-                  <Label fx:id="homeBtn" styleClass="top-menu-item" text="Home">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-                  <Label fx:id="gamesBtn" layoutX="10.0" layoutY="19.0" styleClass="top-menu-item" text="Games">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-                  <Label fx:id="friendsBtn" layoutX="53.0" layoutY="19.0" styleClass="top-menu-item" text="Friends">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-                  <Label fx:id="partiesBtn" layoutX="156.0" layoutY="19.0" styleClass="top-menu-item" text="Parties">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-               </children>
+                    </children>
                <padding>
-                  <Insets left="20.0" />
+                  <Insets top="10.0" />
                </padding>
-            </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="281.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <StackPane fx:id="profileContainer" maxHeight="20.0" maxWidth="20.0" prefHeight="20.0" prefWidth="20.0" styleClass="profile-thumb-container">
-                     <children>
-                        <Circle fx:id="circle_view" fill="#c0c8d0" radius="19.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
-                     </children>
-                  </StackPane>
-                  <MenuButton fx:id="usernameLabel" layoutX="722.0" layoutY="14.0" mnemonicParsing="false" text="username">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Settings" />
-                        <MenuItem fx:id="logout" mnemonicParsing="false" text="Logout" />
-                     </items>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </MenuButton>
-               </children>
-            </HBox>
-         </children>
-      </HBox>
-   </top>
+                </VBox>
+            </children>
+        </HBox>
+    </center>
+    <top>
+        <HBox prefHeight="62.0" prefWidth="850.0" styleClass="top-menu" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets left="10.0" right="10.0" top="10.0" />
+            </BorderPane.margin>
+            <children>
+                <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/d20_logo.PNG" />
+                    </image>
+                </ImageView>
+                <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="505.0">
+                    <children>
+                        <Label fx:id="homeBtn" styleClass="top-menu-item" text="Home">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Label>
+                        <Label fx:id="gamesBtn" layoutX="10.0" layoutY="19.0" styleClass="top-menu-item" text="Games">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Label>
+                        <Label fx:id="friendsBtn" layoutX="53.0" layoutY="19.0" styleClass="top-menu-item" text="Friends">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Label>
+                        <Label fx:id="partiesBtn" layoutX="156.0" layoutY="19.0" styleClass="top-menu-item" text="Parties">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="20.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="281.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <StackPane fx:id="profileContainer" maxHeight="20.0" maxWidth="20.0" prefHeight="20.0" prefWidth="20.0" styleClass="profile-thumb-container">
+                            <children>
+                                <Circle fx:id="circle_view" fill="#c0c8d0" radius="19.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                            </children>
+                        </StackPane>
+                        <MenuButton fx:id="usernameLabel" layoutX="722.0" layoutY="14.0" mnemonicParsing="false" text="username">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Settings" />
+                                <MenuItem fx:id="logout" mnemonicParsing="false" text="Logout" />
+                            </items>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </MenuButton>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+    </top>
 </BorderPane>

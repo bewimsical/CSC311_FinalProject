@@ -95,14 +95,6 @@ public class AllPartiesController implements Initializable {
         //navbar handler
         NavBarHandler.setupNav(homeBtn, gamesBtn, friendsBtn, partiesBtn, logout);
 
-//        String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
-//        Image image;
-//        // Load and resize image for nav bar
-//        try {
-//            image = new Image(Objects.requireNonNull(getClass().getResource(img)).toExternalForm());
-//        } catch (Exception e) {
-//            image = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
-//        }
         Image image = NavBarHandler.setupNavImage();
 
         ImageView profilePic = new ImageView(image);
@@ -164,11 +156,8 @@ public class AllPartiesController implements Initializable {
             final String prevMonthName = currentMonth.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
             final int prevMonthYear = currentMonth.getYear();
             final String prevMonthDisplay = prevMonthName + " " + prevMonthYear;
-            System.out.println("prev: "+prevMonthDisplay);
             monthLabel.setText(prevMonthDisplay);
         });
-
-
     }
 
     public HBox createPartyCard(Party p){
@@ -176,14 +165,12 @@ public class AllPartiesController implements Initializable {
         day.getStyleClass().add("month-text");
         day.setTextAlignment(TextAlignment.CENTER);
         day.setAlignment(Pos.CENTER);
-        System.out.println(day.getStyleClass());
         Label month = new Label(formatMonth(p.getPartyDate()));
         month.getStyleClass().add("month-label");
         month.setTextAlignment(TextAlignment.CENTER);
         month.setAlignment(Pos.CENTER);
         day.setPadding(Insets.EMPTY);
         month.setPadding(Insets.EMPTY);
-        System.out.println(month.getStyleClass());
         VBox dateContainer = new VBox(month, day);
         day.maxWidthProperty().bind(dateContainer.widthProperty());
         month.maxWidthProperty().bind(dateContainer.widthProperty());
@@ -234,7 +221,6 @@ public class AllPartiesController implements Initializable {
         sgContainer.getStyleClass().add("select-card");
         sgContainer.setUserData(p.getPartyId());
         sgContainer.setOnMouseClicked(event -> {
-            System.out.println(p.getPartyId());
 
             Long id = (Long)sgContainer.getUserData();
             try {
@@ -329,7 +315,6 @@ public class AllPartiesController implements Initializable {
                 }
                 selectedDay = daycell;
                 daycell.getStyleClass().add("selected");
-                System.out.println(dayLabel.getText());
             });
 
             calendarGrid.add(daycell, col, row);
@@ -404,7 +389,6 @@ public class AllPartiesController implements Initializable {
         card.getStyleClass().add("selected-party-card");
         card.setUserData(p.getPartyId());
         card.setOnMouseClicked(event -> {
-            System.out.println(p.getPartyId());
 
             Long id = (Long)card.getUserData();
             try {
@@ -436,14 +420,12 @@ public class AllPartiesController implements Initializable {
         day.getStyleClass().add("past-month-text");
         day.setTextAlignment(TextAlignment.CENTER);
         day.setAlignment(Pos.CENTER);
-        System.out.println(day.getStyleClass());
         Label month = new Label(formatMonth(p.getPartyDate()));
         month.getStyleClass().add("past-month-label");
         month.setTextAlignment(TextAlignment.CENTER);
         month.setAlignment(Pos.CENTER);
         day.setPadding(Insets.EMPTY);
         month.setPadding(Insets.EMPTY);
-        System.out.println(month.getStyleClass());
         VBox dateContainer = new VBox(month, day);
         day.maxWidthProperty().bind(dateContainer.widthProperty());
         month.maxWidthProperty().bind(dateContainer.widthProperty());
@@ -491,7 +473,6 @@ public class AllPartiesController implements Initializable {
         card.getStyleClass().add("select-card");
         card.setUserData(p.getPartyId());
         card.setOnMouseClicked(event -> {
-            System.out.println(p.getPartyId());
 
             Long id = (Long)card.getUserData();
             try {

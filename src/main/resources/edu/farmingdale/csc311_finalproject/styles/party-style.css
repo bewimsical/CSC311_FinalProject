@@ -16,6 +16,10 @@
     font-family: 'Montserrat';
     src: url('../fonts/Montserrat-Regular.ttf');
 }
+@font-face {
+    font-family: 'IM Fell English';
+    src: url('../fonts/IMFellEnglish-Regular.ttf');
+}
 
 .root, .friends-popup{
     /*-fx-background-color: #d4ae6c;*/
@@ -667,6 +671,26 @@
 #FirstNameTextField,#lastNameTextField,#userNameTextField,#createAccountEmailTextField,#createAccountPasswordTextFIeld,#createAccountConfirmPasswordTextField, #createAccountButton{
     -fx-background-color: #87632d90;
     -fx-font-family: "Raleway";
+}
+
+.profile-username{
+    -fx-font-family: 'IM Fell English';
+    -fx-font-size: 40px;
+    -fx-text-fill: #513310;
+}
+.profile-stats-label{
+    -fx-font-family: Raleway;
+    -fx-font-size: 15px;
+    -fx-text-fill: #513310;
+}
+.profile-stats{
+    -fx-font-family: 'IM Fell English';
+    -fx-font-size: 20px;
+    -fx-text-fill: #513310;
+}
+.profile-top{
+    -fx-background-color: #ffffff30;
+    -fx-background-radius: 10px;
 }
 
 

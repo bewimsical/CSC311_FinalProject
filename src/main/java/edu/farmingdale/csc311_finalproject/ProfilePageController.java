@@ -176,10 +176,6 @@ public class ProfilePageController implements Initializable {
         try {
             parties.addAll(Objects.requireNonNull(sendGET(getUserParties(currentUser.getUserId()), new TypeReference<List<Party>>() {
             })));
-            for (Game g : ownedGames) {
-                HBox gameCard = createGameCard(g);
-                gamesFlow.getChildren().add(gameCard);
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }

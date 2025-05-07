@@ -33,11 +33,11 @@
                   </Text>
                   <TextField fx:id="emailTextField" layoutX="91.0" layoutY="129.0" prefHeight="41.0" prefWidth="327.0" style="-fx-background-radius: 5;" />
                   <PasswordField fx:id="passwordTextField" layoutX="91.0" layoutY="234.0" prefHeight="41.0" prefWidth="327.0" style="-fx-background-radius: 8;" />
-                  <Text fx:id="emailPrompt" layoutX="99.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
-                  <Text fx:id="passwordPrompt" layoutX="102.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+                  <Text fx:id="emailPrompt" layoutX="91.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+                  <Text fx:id="passwordPrompt" layoutX="91.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
                   <ImageView fx:id="logoImage" fitHeight="96.0" fitWidth="327.0" layoutX="93.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/logo_gold.PNG" />
+                        <Image url="@images/logo_gold_327w.png" />
                      </image>
                   </ImageView>
                </children>

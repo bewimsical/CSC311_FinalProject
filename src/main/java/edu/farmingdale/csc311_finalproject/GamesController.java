@@ -167,8 +167,10 @@ public class GamesController implements Initializable {
                             null,
                             new TypeReference<Void>() {}
                     );
-                    games.add(fullGame);
-                    gamesList.getChildren().add(createGameCard(fullGame));
+                    if(!games.contains(fullGame)) {
+                        games.add(fullGame);
+                        gamesList.getChildren().add(createGameCard(fullGame));
+                    }
                     PartyController partyController = Session.getInstance().getPartyController();
                     if (partyController != null) {
                         partyController.addGameToPartyList(fullGame);

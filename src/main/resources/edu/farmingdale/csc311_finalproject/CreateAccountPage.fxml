@@ -27,11 +27,11 @@
       <TextField fx:id="FirstNameTextField" layoutX="175.0" layoutY="99.0" prefHeight="40.0" prefWidth="294.0" style="-fx-background-radius: 8;" />
       <TextField fx:id="createAccountEmailTextField" layoutX="175.0" layoutY="270.0" prefHeight="40.0" prefWidth="294.0" style="-fx-background-radius: 8;" />
       <Text fx:id="firstNameText" layoutX="174.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name" />
-      <Text fx:id="lastNameText" layoutX="173.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
-      <Text fx:id="userNameText" layoutX="172.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name" />
+      <Text fx:id="lastNameText" layoutX="174.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
+      <Text fx:id="userNameText" layoutX="174.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name" />
       <Text fx:id="emailAddressText" layoutX="174.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
-      <Text fx:id="passwordText" layoutX="163.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-      <Text fx:id="reconfirmPasswordText" layoutX="134.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reconfirm Password" />
+      <Text fx:id="passwordText" layoutX="174.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+      <Text fx:id="reconfirmPasswordText" layoutX="174.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reconfirm Password" />
       <Text fx:id="returnToLoginText" layoutX="298.0" layoutY="509.0" onMouseClicked="#returnToLogin" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to login">
          <cursor>
             <Cursor fx:constant="HAND" />

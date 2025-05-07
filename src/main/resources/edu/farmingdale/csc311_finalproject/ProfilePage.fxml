@@ -22,28 +22,31 @@
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </BorderPane.margin>
             <children>
-                <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="464.0" prefWidth="622.5">
+                <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="464.0" prefWidth="805.0">
                     <children>
-                        <HBox alignment="BOTTOM_CENTER" maxWidth="1.7976931348623157E308" prefWidth="622.5" styleClass="profile-top">
+                        <HBox alignment="BOTTOM_CENTER" maxHeight="80.0" maxWidth="1.7976931348623157E308" styleClass="profile-top">
                             <VBox.margin>
                                 <Insets bottom="5.0" />
                             </VBox.margin>
                      <children>
-                              <Circle fx:id="circle_view2" fill="#c0c8d0" radius="60.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0">
+                        <StackPane fx:id="mainProfileContainer" maxHeight="62.0" maxWidth="62.0" prefHeight="62.0" prefWidth="62.0" styleClass="profile-thumb-container">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
                            </HBox.margin>
-                        </Circle>
+                           <children>
+                                    <Circle fx:id="profileImagePlaceholder" fill="#c0c8d0" radius="60.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                           </children>
+                        </StackPane>
                         <VBox alignment="BOTTOM_LEFT" prefHeight="180.0" prefWidth="315.0">
                            <children>
-                              <Label styleClass="profile-username" text="userername" />
+                              <Label fx:id="mainUsername" styleClass="profile-username" text="userername" />
                               <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="317.0" spacing="10.0">
                                  <children>
                                     <Label styleClass="profile-stats-label" text="Games" />
-                                    <Label fx:id="gameCounr" layoutX="10.0" layoutY="10.0" styleClass="profile-stats" text="24" />
+                                    <Label fx:id="gameCount" layoutX="10.0" layoutY="10.0" styleClass="profile-stats" text="24" />
                                     <Label styleClass="profile-stats-label" text="Parties" />
                                     <Label fx:id="partyCount" styleClass="profile-stats" text="24" />
-                                    <Label styleClass="profile-stats-label" text="Freinds" />
+                                    <Label styleClass="profile-stats-label" text="Friends" />
                                     <Label fx:id="friendCount" styleClass="profile-stats" text="24" />
                                  </children>
                               </HBox>
@@ -57,32 +60,38 @@
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT">
-                            <children>
-                                <Label fx:id="friendsLabel" maxWidth="243.0" prefHeight="35.0" prefWidth="243.0" styleClass="heading" text="Games" textAlignment="CENTER" />
-                            </children>
-                        </HBox>
-                        <VBox fx:id="friendList" prefHeight="200.0" prefWidth="100.0">
-                            <children>
-                                <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                           <content>
-                              <FlowPane prefHeight="200.0" prefWidth="603.0" />
-                           </content>
-                                </ScrollPane>
-                            </children></VBox>
-                        <HBox alignment="CENTER_LEFT">
-                            <children>
-                                <Label fx:id="partiesLabel" maxWidth="243.0" prefHeight="35.0" prefWidth="243.0" styleClass="heading" text="Friends" textAlignment="CENTER" />
-                            </children>
-                        </HBox>
-                        <VBox fx:id="partyList" prefHeight="200.0" prefWidth="100.0">
-                            <children>
-                                <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                           <content>
-                              <FlowPane prefHeight="200.0" prefWidth="603.0" />
-                           </content>
-                                </ScrollPane>
-                            </children></VBox>
+                  <HBox alignment="CENTER" prefHeight="288.0" prefWidth="805.0">
+                     <children>
+                              <VBox fx:id="gamesContainer" prefHeight="200.0" prefWidth="403.0">
+                                  <children>
+                                    <HBox alignment="CENTER">
+                                        <children>
+                                            <Label fx:id="friendsLabel" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="75.0" styleClass="heading" text="Games" textAlignment="CENTER" />
+                                        </children>
+                                    </HBox>
+                                      <ScrollPane fx:id="gamesScroll" prefHeight="446.0" prefWidth="402.0">
+                                 <content>
+                                    <FlowPane fx:id="gamesFlow" prefHeight="240.0" prefWidth="386.0" />
+                                 </content>
+                                      </ScrollPane>
+                                  </children>
+                        </VBox>
+                              <VBox fx:id="friendsContainer" prefHeight="200.0" prefWidth="403.0">
+                                  <children>
+                                    <HBox alignment="CENTER">
+                                        <children>
+                                            <Label fx:id="partiesLabel" maxWidth="413.0" prefHeight="35.0" prefWidth="87.0" styleClass="heading" text="Friends" textAlignment="CENTER" />
+                                        </children>
+                                    </HBox>
+                                      <ScrollPane fx:id="friendsScroll" prefHeight="249.0" prefWidth="403.0">
+                                 <content>
+                                    <FlowPane fx:id="friendsFlow" prefHeight="244.0" prefWidth="386.0" />
+                                 </content>
+                                      </ScrollPane>
+                                  </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                     </children>
                <padding>
                   <Insets top="10.0" />

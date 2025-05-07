@@ -7,10 +7,13 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -153,6 +156,31 @@ public class FriendsController implements Initializable {
         card.setPrefWidth(cardSize);
         card.setUserData(g.getUserId());
         friendName.prefWidthProperty().bind(card.widthProperty());
+
+        card.setUserData(g.getUserId());
+        card.setOnMouseClicked(event -> {
+
+            Long id = (Long)card.getUserData();
+            try {
+                User user = sendGET(getUserUrl(id), new TypeReference<User>() {});
+                try {
+                    FXMLLoader loader = new FXMLLoader(AllPartiesController.class.getResource("ProfilePage.fxml"));
+                    loader.setControllerFactory(param -> new ProfilePageController(user));
+                    Parent root = loader.load();
+
+                    Scene scene = new Scene(root);
+                    scene.getStylesheets().add(getClass().getResource("styles/party-style.css").toExternalForm());
+                    Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
 
         FlowPane.setMargin(card, new Insets(10, 6, 0, 6));
         return card;

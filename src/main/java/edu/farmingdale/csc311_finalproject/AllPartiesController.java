@@ -95,14 +95,6 @@ public class AllPartiesController implements Initializable {
         //navbar handler
         NavBarHandler.setupNav(homeBtn, gamesBtn, friendsBtn, partiesBtn, logout);
 
-//        String img = currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "images/wizard_cat.PNG";
-//        Image image;
-//        // Load and resize image for nav bar
-//        try {
-//            image = new Image(Objects.requireNonNull(getClass().getResource(img)).toExternalForm());
-//        } catch (Exception e) {
-//            image = new Image(Objects.requireNonNull(getClass().getResource("images/wizard_cat.PNG")).toExternalForm());
-//        }
         Image image = NavBarHandler.setupNavImage();
 
         ImageView profilePic = new ImageView(image);
@@ -166,8 +158,6 @@ public class AllPartiesController implements Initializable {
             final String prevMonthDisplay = prevMonthName + " " + prevMonthYear;
             monthLabel.setText(prevMonthDisplay);
         });
-
-
     }
 
     public HBox createPartyCard(Party p){

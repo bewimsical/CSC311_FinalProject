@@ -20,7 +20,7 @@ public class NavBarHandler {
     private NavBarHandler(){}
 
     public static void setupNav(Label home, Label games, Label friends, Label parties, MenuItem logout){
-        home.setOnMouseClicked(e -> switchScene(e.getSource(), "ProfilePage.fxml"));
+        home.setOnMouseClicked(e -> goToProfile(e.getSource(), "ProfilePage.fxml"));
         games.setOnMouseClicked(e -> switchScene(e.getSource(), "games-view.fxml"));
         friends.setOnMouseClicked(e -> switchScene(e.getSource(), "friends-view.fxml"));
         parties.setOnMouseClicked(e -> switchScene(e.getSource(), "all-parties-view.fxml"));
@@ -55,6 +55,21 @@ public class NavBarHandler {
     private static void switchScene(Object source, String fxmlFile) {
         try {
             Parent root = FXMLLoader.load(NavBarHandler.class.getResource(fxmlFile));
+            Stage stage = (Stage)((Node)source).getScene().getWindow();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(NavBarHandler.class.getResource("styles/party-style.css").toExternalForm());
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void goToProfile(Object source, String fxmlFile){
+        try {
+            FXMLLoader loader = new FXMLLoader(AllPartiesController.class.getResource("ProfilePage.fxml"));
+            loader.setControllerFactory(param -> new ProfilePageController());
+            Parent root = loader.load();
             Stage stage = (Stage)((Node)source).getScene().getWindow();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(NavBarHandler.class.getResource("styles/party-style.css").toExternalForm());

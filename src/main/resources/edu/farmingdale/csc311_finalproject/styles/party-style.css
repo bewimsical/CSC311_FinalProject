@@ -693,4 +693,10 @@
     -fx-background-radius: 10px;
 }
 
+.profile-friend-name-text{
+    -fx-font-family: Raleway, SansSerif;
+    -fx-text-fill: #513310;
+    -fx-font-size: 11px;
+}
+
 

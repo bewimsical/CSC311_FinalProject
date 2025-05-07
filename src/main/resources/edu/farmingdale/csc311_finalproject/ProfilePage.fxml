@@ -24,7 +24,7 @@
             <children>
                 <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="464.0" prefWidth="805.0">
                     <children>
-                        <HBox alignment="BOTTOM_CENTER" maxHeight="80.0" maxWidth="1.7976931348623157E308" styleClass="profile-top">
+                        <HBox alignment="BOTTOM_LEFT" maxHeight="88.0" maxWidth="1.7976931348623157E308" prefHeight="88.0" prefWidth="805.0" styleClass="profile-top">
                             <VBox.margin>
                                 <Insets bottom="5.0" />
                             </VBox.margin>
@@ -37,9 +37,9 @@
                                     <Circle fx:id="profileImagePlaceholder" fill="#c0c8d0" radius="60.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
                            </children>
                         </StackPane>
-                        <VBox alignment="BOTTOM_LEFT" prefHeight="180.0" prefWidth="315.0">
+                        <VBox alignment="BOTTOM_LEFT" prefHeight="114.0" prefWidth="474.0">
                            <children>
-                              <Label fx:id="mainUsername" styleClass="profile-username" text="userername" />
+                              <Label fx:id="mainUsername" prefHeight="57.0" prefWidth="467.0" styleClass="profile-username" text="userername" />
                               <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="317.0" spacing="10.0">
                                  <children>
                                     <Label styleClass="profile-stats-label" text="Games" />
@@ -57,7 +57,7 @@
                         </VBox>
                      </children>
                      <padding>
-                        <Insets bottom="10.0" top="10.0" />
+                        <Insets bottom="10.0" left="180.0" top="10.0" />
                      </padding>
                         </HBox>
                   <HBox alignment="CENTER" prefHeight="288.0" prefWidth="805.0">

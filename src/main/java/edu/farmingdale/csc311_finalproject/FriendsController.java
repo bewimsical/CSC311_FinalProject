@@ -196,7 +196,7 @@ public class FriendsController implements Initializable {
 
     @FXML
     private void handleSearchFriend() {
-        String query = searchFriendField.getText().trim();
+        String query = searchFriendField.getText().trim().replaceAll("\\s+", "_");
         if (!query.isEmpty()) {
             searchFriendsByUsername(query);
         }

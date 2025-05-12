@@ -7,6 +7,7 @@
 - [Installation Guide](#installation-guide)
 - [Features](#features)
 - [Intended Users](#intended-users)
+- [How It Works](#how-it-works)
 - [Contributors](#contributors)
 
 ## Overview
@@ -52,6 +53,61 @@ Prerequisites:
 ## Intended Users
 - Board game players: People who play board games with friends and family
 - Board game collectors: People who own multiple board games and bring them places
+
+## How it Works
+
+
+## Splash Page 
+![splash page gif game nigth](https://github.com/user-attachments/assets/74a497b8-f82a-4d56-9345-555440321423)
+
+Game Night's animated Splash Page that can take you to either our login or create account pages.
+
+## Login Page
+![login page game night](https://github.com/user-attachments/assets/60f3278a-cd3a-48b7-b287-0b1632652e11)
+
+Insert Login Description 
+
+## Create Account Page
+![create account page game night](https://github.com/user-attachments/assets/6cf445d5-dc47-47ed-bbeb-b66af68ca47e)
+
+Insert Create Account Description 
+
+## Parties Page
+![parties page game night](https://github.com/user-attachments/assets/6fd2d496-e5f1-4706-8f73-66bb96956384)
+
+Party Page Description
+
+## Create Party Screen
+![create new party page](https://github.com/user-attachments/assets/3edcc6b3-a164-4ff8-aa7d-32c513b3ca3d)
+
+Description
+
+
+## Party Specific Page
+![party specifc gif](https://github.com/user-attachments/assets/1be3310c-9705-4da5-bc5a-5d149e241644)
+
+## Friends Page
+![friends page game night](https://github.com/user-attachments/assets/92b6c80a-0a6d-4530-8708-98315292d54f)
+
+Descript
+
+## Games Page
+![games page gif game nigth](https://github.com/user-attachments/assets/44bedc80-3ecb-4823-94d2-7d825f499fab)
+
+Games descript
+
+## Profile Page
+![profile page game night](https://github.com/user-attachments/assets/7337b19c-569e-4727-84ef-b1a054dbf937)
+
+Descript
+
+
+
+
+
+
+
+
 
 ## Contributors
 - Kathleen Wims [GitHub](https://github.com/bewimsical)  

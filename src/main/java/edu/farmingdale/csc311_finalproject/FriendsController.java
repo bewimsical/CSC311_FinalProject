@@ -80,6 +80,9 @@ public class FriendsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        friendsListContainer.setFitToWidth(true);
+        friendsList.prefWidthProperty().bind(friendsListContainer.widthProperty());
+
         //navbar handler
         NavBarHandler.setupNav(homeBtn, gamesBtn, friendsBtn, partiesBtn,logout);
 
@@ -182,7 +185,7 @@ public class FriendsController implements Initializable {
 
         });
 
-        FlowPane.setMargin(card, new Insets(10, 6, 0, 6));
+        FlowPane.setMargin(card, new Insets(10, 4, 0, 4));
         return card;
 
     }

@@ -123,6 +123,6 @@ The games page displays all the users current games and has a search bar for the
 - Kenneth LeGare [GitHub](https://github.com/DataHiveMind)  
 - Joshua Samson [GitHub](https://github.com/jsams909)  
 - Efrat Weiss [GitHub](https://github.com/Wieefi)
-- Artwork my Megan Scheiner
+- Artwork by Megan Scheiner
 
   

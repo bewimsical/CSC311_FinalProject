@@ -95,6 +95,8 @@ Creating a party allows the user to name their party, use a map to pick a date, 
 ## Party Specific Page
 ![party specifc gif](https://github.com/user-attachments/assets/1be3310c-9705-4da5-bc5a-5d149e241644)
 
+Clicking on a specific party bring you to the page where the main functionality happens. Displayed on the left hand side is the party information such as time, date, and name as well as all the current users in the party. Users can be added by the party creator and all board games owned by the current party members are autopopulated into the games list. 
+
 ## Friends Page
 ![friends page game night](https://github.com/user-attachments/assets/bb032b8e-1a42-4806-9f61-d44140de1150)
 
@@ -107,7 +109,7 @@ The games page displays all the users current games and has a search bar for the
 
 ## Profile Page
 ![profile page game night](https://github.com/user-attachments/assets/7337b19c-569e-4727-84ef-b1a054dbf937)
-
+The Profile Page displays the users username and profile picture, their games, their friends, and shows their personal stats. The stats are how many games the user owns, how many friends they have, and how many parties the user is a part of. Friends can all be clicked on to view their profile as well.
 
 
 

@@ -209,7 +209,7 @@ public class GamesController implements Initializable {
 
     @FXML
     void searchGame() {
-        String query = searchField.getText().trim();
+        String query = searchField.getText().trim().replaceAll("\\s+", "_");
         if (query.isEmpty()) return;
 
         try {
@@ -224,6 +224,7 @@ public class GamesController implements Initializable {
             e.printStackTrace();
         }
     }
+
 
 
 

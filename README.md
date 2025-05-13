@@ -1,14 +1,23 @@
 # Game Night Client
 
 ## Table of Contents
-- [Overview](#overview)
-- [Technologies Used](#technologies-used)
-- [Setup](#setup)
-- [Installation Guide](#installation-guide)
-- [Features](#features)
-- [Intended Users](#intended-users)
-- [How It Works](#how-it-works)
-- [Contributors](#contributors)
+1. [Overview](#overview)
+2. [Technologies Used](#technologies-used)
+3. [Setup](#setup)
+4. [Installation Guide](#installation-guide)
+5. [Features](#features)
+6. [Intended Users](#intended-users)
+7. [How It Works](#how-it-works)
+   - [Splash Page](#splash-page)  
+   - [Login Page](#login-page)  
+   - [Create Account Page](#create-account-page)  
+   - [Parties Page](#parties-page)
+   - [Create Party Screen](#create-party-screen)
+   - [Party Specific Page](#party-specific-page)
+   - [Friends Page](#friends-page)
+   - [Games Page](#games-page) 
+   - [Profile Page](#profile-page) 
+9. [Contributors](#contributors)
 
 ## Overview
 Gamenight is a SAAS (software as a service) application that allows people to log what board games they own, add friends to their account, and then link board game libraries with said users friends in order to plan a game night.  
@@ -65,22 +74,22 @@ Game Night's animated Splash Page that can take you to either our login or creat
 ## Login Page
 ![login page game night](https://github.com/user-attachments/assets/60f3278a-cd3a-48b7-b287-0b1632652e11)
 
-Insert Login Description 
+Game Night's login page that uses an email and password (that is hashed) stored in the database to log the user in and bring them to their parties page. If the password is incorrect the user will recieve an alert. There is also a text button that allows a user to go to the create account page directly from the login page.
 
 ## Create Account Page
 ![create account page game night](https://github.com/user-attachments/assets/6cf445d5-dc47-47ed-bbeb-b66af68ca47e)
 
-Insert Create Account Description 
+Game Night's account requires a first name, last name, username, email and a password that must be reconfirmed in order to create an account. If all fields are correctly made then after hitting the create account button an alert will pop up saying the account was successfully created, assining the user a random profile picture, and the user will be brought back to the sign in page. If the user information belongs to another account and or the password fields do not match an alert will pop up saying the account cannot be created. There is also a text button that can bring the user back to login anytime they want.
 
 ## Parties Page
 ![parties page game night](https://github.com/user-attachments/assets/6fd2d496-e5f1-4706-8f73-66bb96956384)
 
-Party Page Description
+The parties page is a hub showing all the users upcoming parties displaying the date, time, name, and filled in location of the party. The right hand side has a interactive calendar that highlights the current date as well as any dates with upcoming parties. Below the calendar is two drop down menus, one for the current selected date on the calendar and if there is on parties on said date, and a drop down for any past parties the user is in.
 
 ## Create Party Screen
 ![create new party page](https://github.com/user-attachments/assets/3edcc6b3-a164-4ff8-aa7d-32c513b3ca3d)
 
-Description
+Creating a party allows the user to name their party, use a map to pick a date, use a drop down to pick a specific time, and then has a text field to name the location of their choosing.
 
 
 ## Party Specific Page
@@ -89,12 +98,14 @@ Description
 ## Friends Page
 ![friends page game night](https://github.com/user-attachments/assets/92b6c80a-0a6d-4530-8708-98315292d54f)
 
+The friends page displays all the users current friends and has a search bar that allows the user to search the username of any other user on the Game Night database.
+
 Descript
 
 ## Games Page
 ![games page gif game nigth](https://github.com/user-attachments/assets/44bedc80-3ecb-4823-94d2-7d825f499fab)
 
-Games descript
+The games page displays all the users current games and has a search bar for the user to search games all pulled from the Board Game Geek API.
 
 ## Profile Page
 ![profile page game night](https://github.com/user-attachments/assets/7337b19c-569e-4727-84ef-b1a054dbf937)

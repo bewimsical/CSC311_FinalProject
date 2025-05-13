@@ -29,7 +29,7 @@ The technologies Game Night operates with are Java/JavaFX for the front end and 
 - JavaFX  
 - Figma
 - Spring Boot
-- Board Game Geek API
+- [Board Game Geek API](https://boardgamegeek.com/wiki/page/BGG_XML_API)
 - Microsoft Azure
 
 ## Setup
@@ -96,11 +96,9 @@ Creating a party allows the user to name their party, use a map to pick a date, 
 ![party specifc gif](https://github.com/user-attachments/assets/1be3310c-9705-4da5-bc5a-5d149e241644)
 
 ## Friends Page
-![friends page game night](https://github.com/user-attachments/assets/92b6c80a-0a6d-4530-8708-98315292d54f)
+![friends page game night](https://github.com/user-attachments/assets/bb032b8e-1a42-4806-9f61-d44140de1150)
 
 The friends page displays all the users current friends and has a search bar that allows the user to search the username of any other user on the Game Night database.
-
-Descript
 
 ## Games Page
 ![games page gif game nigth](https://github.com/user-attachments/assets/44bedc80-3ecb-4823-94d2-7d825f499fab)
@@ -110,7 +108,6 @@ The games page displays all the users current games and has a search bar for the
 ## Profile Page
 ![profile page game night](https://github.com/user-attachments/assets/7337b19c-569e-4727-84ef-b1a054dbf937)
 
-Descript
 
 
 
@@ -126,3 +123,6 @@ Descript
 - Kenneth LeGare [GitHub](https://github.com/DataHiveMind)  
 - Joshua Samson [GitHub](https://github.com/jsams909)  
 - Efrat Weiss [GitHub](https://github.com/Wieefi)
+- Artwork my Megan Scheiner
+
+  

@@ -74,17 +74,17 @@ Game Night's animated Splash Page that can take you to either our login or creat
 ## Login Page
 ![login page game night](https://github.com/user-attachments/assets/60f3278a-cd3a-48b7-b287-0b1632652e11)
 
-Game Night's login page that uses an email and password (that is hashed) stored in the database to log the user in and bring them to their parties page. If the password is incorrect the user will recieve an alert. There is also a text button that allows a user to go to the create account page directly from the login page.
+Game Night's login page uses an email and password (that is hashed) stored in the database to log the user in and bring them to their parties page. If the password is incorrect the user will receive  an alert. There is also a text button that allows a user to go to the create account page directly from the login page.
 
 ## Create Account Page
 ![create account page game night](https://github.com/user-attachments/assets/6cf445d5-dc47-47ed-bbeb-b66af68ca47e)
 
-Game Night's account requires a first name, last name, username, email and a password that must be reconfirmed in order to create an account. If all fields are correctly made then after hitting the create account button an alert will pop up saying the account was successfully created, assining the user a random profile picture, and the user will be brought back to the sign in page. If the user information belongs to another account and or the password fields do not match an alert will pop up saying the account cannot be created. There is also a text button that can bring the user back to login anytime they want.
+Game Night's account requires a first name, last name, username, email and a password that must be reconfirmed in order to create an account. If all fields are correctly made then after hitting the create account button an alert will pop up saying the account was successfully created, assigning  the user a random profile picture, and the user will be brought back to the sign in page. If the user information belongs to another account and or the password fields do not match an alert will pop up saying the account cannot be created. There is also a text button that can bring the user back to login anytime they want.
 
 ## Parties Page
 ![parties page game night](https://github.com/user-attachments/assets/6fd2d496-e5f1-4706-8f73-66bb96956384)
 
-The parties page is a hub showing all the users upcoming parties displaying the date, time, name, and filled in location of the party. The right hand side has a interactive calendar that highlights the current date as well as any dates with upcoming parties. Below the calendar is two drop down menus, one for the current selected date on the calendar and if there is on parties on said date, and a drop down for any past parties the user is in.
+The parties page is a hub showing all the users upcoming parties displaying the date, time, name, and filled in location of the party. The right hand side has an interactive calendar that highlights the current date as well as any dates with upcoming parties. Below the calendar is two drop down menus, one for the current selected date on the calendar and if there is on parties on said date, and a drop down for any past parties the user is in.
 
 ## Create Party Screen
 ![create new party page](https://github.com/user-attachments/assets/3edcc6b3-a164-4ff8-aa7d-32c513b3ca3d)
@@ -93,9 +93,9 @@ Creating a party allows the user to name their party, use a map to pick a date, 
 
 
 ## Party Specific Page
-![party specifc gif](https://github.com/user-attachments/assets/1be3310c-9705-4da5-bc5a-5d149e241644)
+![party specific gif](https://github.com/user-attachments/assets/1be3310c-9705-4da5-bc5a-5d149e241644)
 
-Clicking on a specific party bring you to the page where the main functionality happens. Displayed on the left hand side is the party information such as time, date, and name as well as all the current users in the party. Users can be added by the party creator and all board games owned by the current party members are autopopulated into the games list. Any user in the party may click or vote on a game which adds the game to the selected games list. By clicking on a game a user has already voted for, they can remove their vote from that game. If a user clicks on a game that was selected by another user it will up tick the number of votes said game has showing that multiple people have voted for that game.
+Clicking on a specific party bring you to the page where the main functionality happens. Displayed on the left hand side is the party information such as time, date, and name as well as all the current users in the party. Users can be added by the party creator and all board games owned by the current party members are auto populated into the games list. Any user in the party may click or vote on a game which adds the game to the selected games list. By clicking on a game a user has already voted for, they can remove their vote from that game. If a user clicks on a game that was selected by another user it will up tick the number of votes said game has showing that multiple people have voted for that game.
 ## Friends Page
 ![friends page game night](https://github.com/user-attachments/assets/bb032b8e-1a42-4806-9f61-d44140de1150)
 

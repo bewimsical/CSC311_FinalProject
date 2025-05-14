@@ -95,8 +95,7 @@ Creating a party allows the user to name their party, use a map to pick a date, 
 ## Party Specific Page
 ![party specifc gif](https://github.com/user-attachments/assets/1be3310c-9705-4da5-bc5a-5d149e241644)
 
-Clicking on a specific party bring you to the page where the main functionality happens. Displayed on the left hand side is the party information such as time, date, and name as well as all the current users in the party. Users can be added by the party creator and all board games owned by the current party members are autopopulated into the games list. 
-
+Clicking on a specific party bring you to the page where the main functionality happens. Displayed on the left hand side is the party information such as time, date, and name as well as all the current users in the party. Users can be added by the party creator and all board games owned by the current party members are autopopulated into the games list. Any user in the party may click or vote on a game which adds the game to the selected games list. By clicking on a game a user has already voted for, they can remove their vote from that game. If a user clicks on a game that was selected by another user it will up tick the number of votes said game has showing that multiple people have voted for that game.
 ## Friends Page
 ![friends page game night](https://github.com/user-attachments/assets/bb032b8e-1a42-4806-9f61-d44140de1150)
 

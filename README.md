@@ -17,8 +17,8 @@
    - [Friends Page](#friends-page)
    - [Games Page](#games-page) 
    - [Profile Page](#profile-page) 
-9. [Contributors](#contributors)
-
+8. [Contributors](#contributors)
+9. [Link to Youtube Video Overview](#link-to-youtube-video-overview)
 ## Overview
 Gamenight is a SAAS (software as a service) application that allows people to log what board games they own, add friends to their account, and then link board game libraries with said users friends in order to plan a game night.  
 The planning phase involves everyone seeing each other's libraries and voting on what games should be played. There are also fields to name the group, set a time for the meeting, and pick where the meeting is taking place.  
@@ -126,4 +126,6 @@ The Profile Page displays the users username and profile picture, their games, t
 - Efrat Weiss [GitHub](https://github.com/Wieefi)
 - Artwork by Megan Scheiner
 
+## Link to Youtube Video Overview
+-[Watch Here!](https://youtu.be/fL_YZSTsOAY)
   
